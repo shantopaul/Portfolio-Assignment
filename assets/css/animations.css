@@ -126,7 +126,36 @@
 }
 
 /* --------------------------------------------------------------------------
-   6. Reduced Motion Accessibility Enforcement (WCAG 2.1 AA)
+   6. Floating Ambient Badges (Hero Profile)
+   -------------------------------------------------------------------------- */
+@keyframes floatBadge1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes floatBadge2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+.float-anim-1 {
+  animation: floatBadge1 4s ease-in-out infinite;
+}
+
+.float-anim-2 {
+  animation: floatBadge2 5s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   7. Reduced Motion Accessibility Enforcement (WCAG 2.1 AA)
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -151,4 +180,10 @@
   .pulse-indicator {
     animation: none !important;
   }
+
+  .float-anim-1,
+  .float-anim-2 {
+    animation: none !important;
+  }
 }
+

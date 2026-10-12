@@ -1,8 +1,8 @@
 # Memory.md — Project Progress & State
 
 > **Last Updated:** 2026-10-12  
-> **Current Phase:** Phase 1: Project Setup & Foundation Architecture (Completed)  
-> **Status:** 🟢 Phase 1 Complete — Ready for Phase 2 (feature/setup)
+> **Current Phase:** Phase 2: Navigation & Hero Section (Completed)  
+> **Status:** 🟢 Phase 2 Complete — Ready for Phase 3 (feature/navigation)
 
 ---
 
@@ -18,7 +18,7 @@
 
 ### Development
 - [x] Phase 1: Project Setup & Foundation Architecture ✅
-- [ ] Phase 2: Navigation & Hero Section
+- [x] Phase 2: Navigation & Hero Section ✅
 - [ ] Phase 3: Content Sections
 - [ ] Phase 4: Projects & Contact
 - [ ] Phase 5: Chatbot UI
@@ -29,9 +29,9 @@
 
 ## 📂 Current Working File
 
-**Branch:** `feature/setup`  
-**Current Phase:** Phase 1 Complete (Foundation Architecture Ready)  
-**Completed Files:** `index.html`, `netlify.toml`, `package.json`, `.env.example`, `assets/css/`, `assets/js/`, `assets/data/`, `assets/images/`, `netlify/functions/chat.js`
+**Branch:** `feature/navigation`  
+**Current Phase:** Phase 2 Complete (Navigation & Bento Hero Ready)  
+**Completed Files:** `index.html`, `assets/css/style.css`, `assets/css/responsive.css`, `assets/css/animations.css`, `assets/js/navigation.js`, `assets/js/main.js`, `assets/js/animations.js`, `assets/js/theme.js`
 
 ---
 
@@ -77,32 +77,32 @@ List of all project files and their status:
 | 2026-10-12 | Skill Installed | Added ui-ux-pro-max skill to `.agents/skills/` |
 | 2026-10-12 | Design System Enhanced | Integrated UI/UX Pro Max Bento Grid & AI-Native blueprint into `Design.md` |
 | 2026-10-12 | Phase 1 Completed | Full folder hierarchy, semantic index.html, modular CSS/JS, JSON stores, Netlify function stub |
+| 2026-10-12 | Phase 2 Completed | Sticky navbar with glassmorphism, responsive mobile drawer, system-aware theme toggle, zero-CLS typewriter subtitle, and Bento Hero section with glowing avatar ring & floating credential badges |
 
 ---
 
 ## 🚧 Known Issues
 
-No issues yet — project is in planning phase.
+None. All Phase 2 navigation, animation, and responsive layout tests pass.
 
 ---
 
 ## 📝 Notes & Decisions
 
-1. **Tech Stack Decision:** Pure HTML/CSS/JS frontend (no frameworks)
-2. **AI Provider:** Google Gemini API (recommended for free tier)
-3. **Hosting:** Netlify (static hosting + serverless functions)
-4. **Data Storage:** JSON files for personal knowledge base
-5. **Chatbot Restriction:** Strictly personal information only
+1. **Tech Stack Decision:** Pure HTML/CSS/JS frontend (no frameworks).
+2. **AI Provider:** Google Gemini API (recommended for free tier).
+3. **Hosting:** Netlify (static hosting + serverless functions).
+4. **Data Storage:** JSON files for personal knowledge base.
+5. **Chatbot Restriction:** Strictly personal information only.
+6. **Zero CLS Typewriter:** Fixed minimum height on typewriter container with flex centering prevents layout shifts.
+7. **Smooth Scroll Offset:** Dynamic window.scrollTo calculation factoring sticky navbar height ensures accurate section landings.
 
 ---
 
 ## ⏭️ Next Steps
 
-1. Begin **Phase 1: Project Setup & Foundation**
-2. Create project folder structure
-3. Initialize Git repository
-4. Set up index.html skeleton
-5. Create CSS and JS file stubs
+1. Wait for user instruction to begin **Phase 3: Content Sections (About, Skills, Education, Experience)**.
+2. Branch will be: `feature/content-sections` or as instructed.
 
 ---
 
