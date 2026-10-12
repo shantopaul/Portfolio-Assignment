@@ -100,6 +100,28 @@
     grid-template-columns: 1fr !important;
   }
 
+  /* Projects & Contact Mobile Adaptations */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
+  }
+
+  .contact-form-card {
+    padding: var(--space-xl) !important;
+  }
+
+  .footer-top {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--space-xl) !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--space-lg) !important;
+  }
+
   .bento-item--col-1,
   .bento-item--col-2,
   .bento-item--col-3,

@@ -838,27 +838,111 @@
         <header class="section-header reveal-on-scroll">
           <span class="section-badge">Showcase</span>
           <h2 class="section-title">Featured Projects</h2>
-          <p class="section-subtitle">Explore featured web applications, student utilities, and interactive platforms.</p>
+          <p class="section-subtitle">Explore full-stack web applications, academic student utilities, and interactive platforms.</p>
         </header>
 
         <!-- Category Filter Buttons -->
-        <div class="project-filters" style="display: flex; justify-content: center; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-2xl);">
-          <button type="button" class="btn btn-secondary project-filter-btn active" data-filter="all">All</button>
-          <button type="button" class="btn btn-secondary project-filter-btn" data-filter="Web">Web & AI</button>
-          <button type="button" class="btn btn-secondary project-filter-btn" data-filter="Academic">Academic</button>
-          <button type="button" class="btn btn-secondary project-filter-btn" data-filter="Full-Stack">Full-Stack</button>
+        <div class="project-filters reveal-on-scroll" role="toolbar" aria-label="Project Category Filters">
+          <button type="button" class="project-filter-btn active" data-filter="all" aria-pressed="true">
+            <i class="fa-solid fa-layer-group"></i> All Projects
+          </button>
+          <button type="button" class="project-filter-btn" data-filter="web" aria-pressed="false">
+            <i class="fa-solid fa-robot"></i> Web & AI
+          </button>
+          <button type="button" class="project-filter-btn" data-filter="academic" aria-pressed="false">
+            <i class="fa-solid fa-graduation-cap"></i> Academic
+          </button>
+          <button type="button" class="project-filter-btn" data-filter="full-stack" aria-pressed="false">
+            <i class="fa-solid fa-cubes"></i> Full-Stack
+          </button>
         </div>
 
-        <!-- Dynamic Projects Container (Populated via projects.js) -->
-        <div id="projects-container" class="projects-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-lg);">
-          <!-- Fallback initial card -->
-          <article class="bento-card project-card reveal-on-scroll">
-            <img src="assets/images/projects/portfolio-preview.svg" alt="Portfolio Preview" class="project-card-image" width="600" height="340" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: var(--space-md);">
-            <span class="badge badge-featured">Featured</span>
-            <h3 style="margin-top: var(--space-sm);">Portfolio with AI Chatbot</h3>
-            <p style="margin-top: var(--space-xs); font-size: 0.95rem;">Responsive portfolio with Bento Box UI and domain-bounded AI assistant for SE 236.</p>
-            <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm);">
-              <a href="https://github.com/shantopaul/Portfolio-Assignment" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Code</a>
+        <!-- Dynamic Projects Container (Populated via projects.js with static fallback) -->
+        <div id="projects-container" class="projects-grid">
+          <!-- Project 1: Portfolio with Domain-Bounded AI -->
+          <article class="bento-card project-card reveal-on-scroll is-revealed" data-category="Web & AI">
+            <div class="project-card-image-wrap">
+              <img src="assets/images/projects/portfolio-preview.svg" alt="Personal Portfolio with Domain-Bounded AI Chatbot preview" loading="lazy" class="project-card-image" width="600" height="340">
+              <span class="badge badge-featured"><i class="fa-solid fa-star"></i> Featured</span>
+            </div>
+            <div class="project-card-body">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs);">
+                <span class="badge badge-category">Web & AI</span>
+                <span class="badge badge-verified" style="font-size: 0.75rem;"><i class="fa-solid fa-shield-check"></i> SE 236 Lab</span>
+              </div>
+              <h3 class="project-card-title">Personal Portfolio with Domain-Bounded AI Chatbot</h3>
+              <p class="project-card-desc">
+                A responsive personal developer portfolio integrated with a serverless AI assistant strictly bounded to verified personal credentials.
+              </p>
+              <div class="project-tags">
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">Netlify Functions</span>
+                <span class="badge">Gemini API</span>
+                <span class="badge">UI/UX Pro Max</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/shantopaul/Portfolio-Assignment" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="View source code on GitHub for Personal Portfolio">
+                <i class="fa-brands fa-github"></i> View Code
+              </a>
+              <a href="https://shantopaul.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="View live demo for Personal Portfolio">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: SP ExamAlert -->
+          <article class="bento-card project-card reveal-on-scroll delay-100 is-revealed" data-category="Academic">
+            <div class="project-card-image-wrap">
+              <img src="assets/images/projects/project-placeholder.svg" alt="SP ExamAlert student application preview" loading="lazy" class="project-card-image" width="600" height="340">
+            </div>
+            <div class="project-card-body">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs);">
+                <span class="badge badge-category">Academic</span>
+                <span class="badge" style="font-size: 0.75rem;"><i class="fa-solid fa-clock"></i> Student Utility</span>
+              </div>
+              <h3 class="project-card-title">SP ExamAlert - Smart Exam Notification System</h3>
+              <p class="project-card-desc">
+                Academic exam and schedule notification application developed to assist university students with test preparation deadlines.
+              </p>
+              <div class="project-tags">
+                <span class="badge">JavaScript</span>
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+                <span class="badge">Academic</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <span class="badge" style="font-size: 0.75rem;"><i class="fa-solid fa-code-branch"></i> Academic Repo</span>
+              <span class="badge" style="font-size: 0.75rem; background: var(--bg-tertiary);"><i class="fa-solid fa-flask"></i> Lab In-Progress</span>
+            </div>
+          </article>
+
+          <!-- Project 3: RentVerse -->
+          <article class="bento-card project-card reveal-on-scroll delay-200 is-revealed" data-category="Full-Stack">
+            <div class="project-card-image-wrap">
+              <img src="assets/images/projects/project-placeholder.svg" alt="RentVerse university asset platform preview" loading="lazy" class="project-card-image" width="600" height="340">
+            </div>
+            <div class="project-card-body">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs);">
+                <span class="badge badge-category">Full-Stack</span>
+                <span class="badge" style="font-size: 0.75rem;"><i class="fa-solid fa-building"></i> Campus Platform</span>
+              </div>
+              <h3 class="project-card-title">RentVerse - University Property & Asset Management</h3>
+              <p class="project-card-desc">
+                Platform facilitating university housing, student rental discovery, and shared campus asset management.
+              </p>
+              <div class="project-tags">
+                <span class="badge">Web Development</span>
+                <span class="badge">Database</span>
+                <span class="badge">UI/UX</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <span class="badge" style="font-size: 0.75rem;"><i class="fa-solid fa-code-branch"></i> Academic Repo</span>
+              <span class="badge" style="font-size: 0.75rem; background: var(--bg-tertiary);"><i class="fa-solid fa-flask"></i> Lab In-Progress</span>
             </div>
           </article>
         </div>
@@ -871,41 +955,135 @@
         <header class="section-header reveal-on-scroll">
           <span class="section-badge">Communication</span>
           <h2 class="section-title">Get in Touch</h2>
-          <p class="section-subtitle">Have a question or interested in collaboration? Send a direct message.</p>
+          <p class="section-subtitle">Interested in collaborations, internship opportunities, or discussing software systems? Send a direct message.</p>
         </header>
 
-        <div style="max-width: 640px; margin: 0 auto;">
-          <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="_gotcha" class="bento-card reveal-on-scroll">
-            <!-- Hidden inputs for Netlify Forms & Honeypot -->
-            <input type="hidden" name="form-name" value="contact">
-            <p style="display: none;">
-              <label>Don’t fill this out if you're human: <input name="_gotcha"></label>
-            </p>
-
-            <div style="margin-bottom: var(--space-md);">
-              <label for="contact-name" style="display: block; font-weight: 600; margin-bottom: var(--space-xs);">Your Name</label>
-              <input type="text" id="contact-name" name="name" required class="chat-input" placeholder="e.g. John Doe" style="width: 100%; border-radius: var(--radius-md);">
-              <span class="field-error" style="display: none; color: var(--error); font-size: 0.8rem; margin-top: 4px;"></span>
+        <div class="contact-grid">
+          <!-- Left Column: Direct Contact & Availability -->
+          <article class="contact-info-card reveal-left">
+            <div>
+              <span class="badge badge-verified" style="margin-bottom: var(--space-xs);">
+                <span class="pulse-indicator"></span> Open to Opportunities
+              </span>
+              <h3 style="font-size: 1.4rem; margin-top: var(--space-2xs); margin-bottom: var(--space-xs);">Let's Connect</h3>
+              <p style="font-size: 0.925rem; color: var(--text-secondary); line-height: 1.6;">
+                I am actively seeking software engineering internships and academic project collaborations. Feel free to reach out via the message form or direct channels.
+              </p>
             </div>
 
-            <div style="margin-bottom: var(--space-md);">
-              <label for="contact-email" style="display: block; font-weight: 600; margin-bottom: var(--space-xs);">Email Address</label>
-              <input type="email" id="contact-email" name="email" required class="chat-input" placeholder="name@example.com" style="width: 100%; border-radius: var(--radius-md);">
-              <span class="field-error" style="display: none; color: var(--error); font-size: 0.8rem; margin-top: 4px;"></span>
+            <div class="contact-info-list">
+              <!-- Email -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                  <div class="contact-info-label">Email</div>
+                  <div class="contact-info-val">
+                    <a href="mailto:your.email@example.com">[PLACEHOLDER: your.email@example.com]</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <div class="contact-info-label">Location</div>
+                  <div class="contact-info-val">Dhaka, Bangladesh</div>
+                </div>
+              </div>
+
+              <!-- University Campus -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="fa-solid fa-university"></i>
+                </div>
+                <div>
+                  <div class="contact-info-label">Campus</div>
+                  <div class="contact-info-val">DIU Ashulia Campus, Dhaka</div>
+                </div>
+              </div>
             </div>
 
-            <div style="margin-bottom: var(--space-lg);">
-              <label for="contact-message" style="display: block; font-weight: 600; margin-bottom: var(--space-xs);">Message</label>
-              <textarea id="contact-message" name="message" rows="5" required class="chat-input" placeholder="Write your message here..." style="width: 100%; border-radius: var(--radius-md); resize: vertical;"></textarea>
-              <span class="field-error" style="display: none; color: var(--error); font-size: 0.8rem; margin-top: 4px;"></span>
+            <!-- Social Links & Response SLA -->
+            <div style="border-top: 1px solid var(--border); padding-top: var(--space-md);">
+              <div class="contact-info-label" style="margin-bottom: var(--space-xs);">Social Channels</div>
+              <div class="hero-socials" style="margin-top: 0;">
+                <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on GitHub" title="GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <button type="button" class="hero-social-btn" onclick="document.querySelector('.chat-launcher')?.click()" aria-label="Open AI Assistant" title="AI Assistant">
+                  <i class="fa-solid fa-robot"></i>
+                </button>
+              </div>
+
+              <div style="margin-top: var(--space-md); font-size: 0.8125rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-clock"></i> Typical response time: Within 24 hours
+              </div>
             </div>
+          </article>
 
-            <div id="contact-status-msg" style="margin-bottom: var(--space-md);"></div>
+          <!-- Right Column: Accessible Contact Form -->
+          <article class="contact-form-card reveal-right">
+            <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <!-- Hidden inputs for Netlify Forms & Honeypot Spam Guard -->
+              <input type="hidden" name="form-name" value="contact">
+              <p style="display: none;" aria-hidden="true">
+                <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+              </p>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-              <i class="fa-solid fa-paper-plane"></i> Send Message
-            </button>
-          </form>
+              <!-- Full Name Field -->
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  <span>Full Name <span style="color: var(--error);">*</span></span>
+                </label>
+                <input type="text" id="contact-name" name="name" class="form-control" placeholder="e.g., Alex Johnson" required autocomplete="name" aria-describedby="name-error">
+                <div id="name-error" class="field-error" role="alert"></div>
+              </div>
+
+              <!-- Email Field -->
+              <div class="form-group">
+                <label for="contact-email" class="form-label">
+                  <span>Email Address <span style="color: var(--error);">*</span></span>
+                </label>
+                <input type="email" id="contact-email" name="email" class="form-control" placeholder="name@example.com" required autocomplete="email" aria-describedby="email-error">
+                <div id="email-error" class="field-error" role="alert"></div>
+              </div>
+
+              <!-- Subject Field -->
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">
+                  <span>Subject <span style="color: var(--error);">*</span></span>
+                </label>
+                <input type="text" id="contact-subject" name="subject" class="form-control" placeholder="e.g., Internship Inquiry or Project Collaboration" required aria-describedby="subject-error">
+                <div id="subject-error" class="field-error" role="alert"></div>
+              </div>
+
+              <!-- Message Field with Character Counter -->
+              <div class="form-group">
+                <label for="contact-message" class="form-label">
+                  <span>Message <span style="color: var(--error);">*</span></span>
+                  <span id="message-char-counter" class="char-counter">0 / 1000 characters</span>
+                </label>
+                <textarea id="contact-message" name="message" rows="5" class="form-control" placeholder="Write your message or inquiry here..." required maxlength="1000" aria-describedby="message-error" style="resize: vertical;"></textarea>
+                <div id="message-error" class="field-error" role="alert"></div>
+              </div>
+
+              <!-- Submission Status Message Container -->
+              <div id="contact-status-msg" class="contact-status-msg" role="status" aria-live="polite"></div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary" style="width: 100%; min-height: 48px;">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </article>
         </div>
       </div>
     </section>
@@ -916,16 +1094,53 @@
        FOOTER
        ====================================================================== -->
   <footer class="footer" role="contentinfo">
-    <div class="container footer-content">
-      <div class="footer-socials">
-        <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-brand" style="text-decoration: none;">
+            <span class="nav-brand-badge">SP</span>
+            <span class="nav-brand-text">
+              <span class="brand-name">Shanto Paul</span>
+              <span class="brand-sub">SWE Student • DIU</span>
+            </span>
+          </a>
+          <p class="footer-tagline">
+            Building robust web applications, intuitive interfaces, and domain-bounded AI solutions.
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="#hero" class="footer-nav-link">Home</a>
+          <a href="#about" class="footer-nav-link">About</a>
+          <a href="#skills" class="footer-nav-link">Skills</a>
+          <a href="#education" class="footer-nav-link">Education</a>
+          <a href="#experience" class="footer-nav-link">Experience</a>
+          <a href="#projects" class="footer-nav-link">Projects</a>
+          <a href="#contact" class="footer-nav-link">Contact</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-socials">
+          <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#contact" class="footer-social-link" aria-label="Email Contact" title="Contact Shanto">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+
+        <p style="margin: 0; font-size: 0.875rem;">
+          © <span id="current-year">2026</span> Shanto Paul. Built for <strong>SE 236: Desktop & Web Programming Lab</strong> at Daffodil International University.
+        </p>
+
+        <a href="#hero" class="back-to-top-btn" aria-label="Back to top of page">
+          <i class="fa-solid fa-arrow-up"></i> Back to Top
         </a>
       </div>
-      <p>© <span id="current-year">2026</span> Shanto Paul. Built for SE 236 Lab at Daffodil International University.</p>
     </div>
   </footer>
 
