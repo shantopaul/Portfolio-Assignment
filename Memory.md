@@ -1,8 +1,8 @@
 # Memory.md — Project Progress & State
 
 > **Last Updated:** 2026-10-12  
-> **Current Phase:** Phase 4: Projects Showcase & Contact Integration (Completed)  
-> **Status:** 🟢 Phase 4 Complete — Ready for Phase 5 (feature/contact)
+> **Current Phase:** Phase 5: AI Chatbot — UI & Frontend Architecture (Completed)  
+> **Status:** 🟢 Phase 5 Complete — Ready for Phase 6 (feature/chatbot)
 
 ---
 
@@ -21,7 +21,7 @@
 - [x] Phase 2: Navigation & Hero Section ✅
 - [x] Phase 3: Content Sections ✅
 - [x] Phase 4: Projects & Contact ✅
-- [ ] Phase 5: Chatbot UI
+- [x] Phase 5: Chatbot UI ✅
 - [ ] Phase 6: Chatbot Backend & Integration
 - [ ] Phase 7: Testing, Optimization & Deployment
 
@@ -29,9 +29,9 @@
 
 ## 📂 Current Working File
 
-**Branch:** `feature/contact`  
-**Current Phase:** Phase 4 Complete (Projects Showcase, Category Filter, Validated Contact Form & Responsive Footer Ready)  
-**Completed Files:** `index.html`, `assets/css/style.css`, `assets/css/responsive.css`, `assets/js/projects.js`, `assets/js/contact.js`
+**Branch:** `feature/chatbot`  
+**Current Phase:** Phase 5 Complete (Floating Chat Launcher, Responsive Bottom-Sheet, UI State Machine & Knowledge Engine Ready)  
+**Completed Files:** `index.html`, `assets/css/chatbot.css`, `assets/js/chatbot.js`
 
 ---
 
@@ -47,11 +47,11 @@ List of all project files and their status:
 | Phases.md | ✅ Complete | 2026-10-12 | 7 phases planned |
 | Design.md | ✅ Complete | 2026-10-12 | Design system + Bento Grid + AI specs |
 | Memory.md | ✅ Complete | 2026-10-12 | This file |
-| index.html | ✅ Scaffolded | 2026-10-12 | Semantic HTML5 structure + Bento Grid |
+| index.html | ✅ Updated | 2026-10-12 | Semantic HTML5 structure + Bento Grid + Chatbot UI |
 | assets/css/style.css | ✅ Scaffolded | 2026-10-12 | Custom properties, reset, typography |
 | assets/css/responsive.css | ✅ Scaffolded | 2026-10-12 | Mobile-first breakpoints |
 | assets/css/animations.css | ✅ Scaffolded | 2026-10-12 | Scroll reveals, typewriter, pulses |
-| assets/css/chatbot.css | ✅ Scaffolded | 2026-10-12 | Chatbot launcher, panel, bottom-sheet |
+| assets/css/chatbot.css | ✅ Updated | 2026-10-12 | Floating launcher, status pulse, typing dots, bottom-sheet |
 | assets/js/main.js | ✅ Scaffolded | 2026-10-12 | App entry point & module runner |
 | assets/js/navigation.js | ✅ Scaffolded | 2026-10-12 | Navbar & mobile drawer logic |
 | assets/js/theme.js | ✅ Scaffolded | 2026-10-12 | Dark/light theme switcher |
@@ -59,7 +59,7 @@ List of all project files and their status:
 | assets/js/animations.js | ✅ Scaffolded | 2026-10-12 | IntersectionObserver animations |
 | assets/js/skills.js | ✅ Created | 2026-10-12 | Dynamic skill category tabs & filter engine |
 | assets/js/contact.js | ✅ Updated | 2026-10-12 | Real-time form validation, char counter & honeypot |
-| assets/js/chatbot.js | ✅ Scaffolded | 2026-10-12 | Chatbot UI state machine & API calls |
+| assets/js/chatbot.js | ✅ Updated | 2026-10-12 | State machine, session storage, debouncer, verified knowledge engine |
 | assets/documents/resume.pdf | ✅ Created | 2026-10-12 | Verified student resume document |
 | assets/data/personal-info.json | ✅ Updated | 2026-10-12 | Verified DIU education, HSC/SSC, experience |
 | assets/data/projects.json | ✅ Created | 2026-10-12 | Project catalog & tech tags |
@@ -82,12 +82,13 @@ List of all project files and their status:
 | 2026-10-12 | Phase 2 Completed | Sticky navbar with glassmorphism, responsive mobile drawer, system-aware theme toggle, zero-CLS typewriter subtitle, and Bento Hero section with glowing avatar ring & floating credential badges |
 | 2026-10-12 | Phase 3 Completed | Two-column About Me with verified facts & stats counters, multi-category Skills Matrix with interactive tabs filter, Education vertical timeline with connector line, and Academic & Practical Experience milestone cards |
 | 2026-10-12 | Phase 4 Completed | Dynamic project catalog with instant category filtering, accessible contact form with real-time field validation & character counter, anti-spam honeypot defense, and comprehensive responsive site footer with Back-to-Top trigger |
+| 2026-10-12 | Phase 5 Completed | Floating chat widget with status beacon, responsive mobile bottom-sheet, interactive question pills, conversation state machine, 1s debouncer, sessionStorage persistence, and verified local knowledge engine |
 
 ---
 
 ## 🚧 Known Issues
 
-None. All Phase 4 projects, filtering, contact form validation, and footer components pass checks.
+None. All Phase 5 chatbot UI components, state machines, bottom-sheet responsive mechanics, and verified fallback responses pass checks.
 
 ---
 
@@ -103,13 +104,15 @@ None. All Phase 4 projects, filtering, contact form validation, and footer compo
 8. **Skills Filter Engine:** Modular filter tabs with accessible aria-selected attributes and instant visual transitions.
 9. **Zero Personal Data Hallucination:** Academic records strictly follow verified DIU standing, with clear [PLACEHOLDER] labels for unverified institutional names.
 10. **Contact Form Validation & Spam Defense:** Pure client-side validation on blur/input, Netlify Form submission protocol, and invisible bot-field honeypot trap.
+11. **Chatbot Graceful Fallback & Zero Hallucination:** In Phase 5 UI development, an intelligent verified client-side fallback was implemented to allow immediate testing and interaction using local JSON stores before Phase 6 live API connection.
+12. **Mobile Bottom-Sheet UX:** Chat panel dynamically switches from fixed floating window (desktop) to 85dvh bottom-sheet (mobile < 768px) with accessible drag indicator and touch ergonomics.
 
 ---
 
 ## ⏭️ Next Steps
 
-1. Wait for user instruction to begin **Phase 5: AI Chatbot — UI & Frontend Architecture**.
-2. Branch will be: `feature/chatbot-ui` or as instructed.
+1. Wait for user instruction to begin **Phase 6: AI Chatbot Backend & Serverless Integration**.
+2. Branch will be: `feature/backend` or as instructed.
 
 ---
 
