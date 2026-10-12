@@ -8,7 +8,7 @@
     "start": "netlify dev",
     "dev": "netlify dev",
     "serve": "npx serve .",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "node --test tests/chatbot.test.js"
   },
   "keywords": [
     "portfolio",
