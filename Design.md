@@ -8,7 +8,8 @@
 ---
 
 ## Table of Contents
-1. [Design Philosophy](#1-design-philosophy)
+1. [Design Philosophy & UI/UX Intelligence](#1-design-philosophy)
+   - [1.1 UI/UX Pro Max Framework & Visual Archetype](#11-ui-ux-pro-max-framework--visual-archetype)
 2. [Color Palette & Theming](#2-color-palette--theming)
    - [Light Theme](#light-theme)
    - [Dark Theme](#dark-theme)
@@ -35,6 +36,10 @@
 9. [Responsive Breakpoints & Grid System](#9-responsive-breakpoints)
 10. [Iconography System](#10-icon-system)
 11. [Image & Media Guidelines](#11-image-guidelines)
+12. [UI/UX Pro Max Bento Box Grid Architecture](#12-ui-ux-pro-max-bento-box-grid-architecture)
+13. [Conversational AI Chatbot UX Blueprint](#13-conversational-ai-chatbot-ux-blueprint)
+14. [Layout Resilience, Compact Labels & Anti-Patterns](#14-layout-resilience-compact-labels--anti-patterns)
+15. [UI/UX Pre-Delivery Audit Checklist](#15-ui-ux-pre-delivery-audit-checklist)
 
 ---
 
@@ -47,6 +52,28 @@ The portfolio follows an intentional design ethos balancing academic rigor with 
 - **Consistent Design Language Throughout:** Monolithic CSS variables guarantee cohesive margins, corner rounding, hover states, and color contrasts across both light and dark display modes.
 - **Content-First Hierarchy:** Typography, typography weights, and line-height values are tuned for swift scanning by recruiters, peer developers, and evaluators.
 - **Purposeful Micro-interactions:** Fluid hover transformations and GPU-accelerated transitions give real-time feedback while respecting device performance and accessibility guidelines (`prefers-reduced-motion`).
+
+### 1.1 UI/UX Pro Max Framework & Visual Archetype
+
+Grounded in the installed **UI/UX Pro Max Design Intelligence System**, this portfolio combines two specialized design archetypes:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        PORTFOLIO VISUAL ARCHETYPE SYNTHESIS                            │
+├──────────────────────────────────────────┬─────────────────────────────────────────────┤
+│      Primary: BENTO BOX GRID             │       Secondary: AI-NATIVE INTERFACE        │
+├──────────────────────────────────────────┼─────────────────────────────────────────────┤
+│ • Modular tiles with varied grid spans   │ • Ambient conversational widget             │
+│ • Rounded corners (16px - 24px)          │ • Streaming typewriter feedback             │
+│ • Apple & Linear inspired aesthetics     │ • 3-dot pulse indicators & suggested pills  │
+│ • Surface elevation (Canvas → Card)      │ • Verified knowledge boundary alerts        │
+│ • Subtle border illumination on hover    │ • Compact drawer layout on mobile           │
+└──────────────────────────────────────────┴─────────────────────────────────────────────┘
+```
+
+- **Target Persona Alignment:** Recruiter, hiring manager, and engineering peer personas scan for quantifiable technical competencies and live demos within 15–30 seconds.
+- **Cognitive Load Optimization:** Information chunking using Bento Box geometry prevents vertical fatigue and clusters related credentials (e.g., DIU degree + tech stack + featured projects).
+- **Zero-Hallucination Visual Signaling:** Chatbot UI explicitly visually bounds conversation to verified data using emerald checkmark badges and distinct system disclaimer badges.
 
 ---
 
@@ -218,8 +245,10 @@ The portfolio follows an intentional design ethos balancing academic rigor with 
 ## 3. Typography
 
 ### Font Families
-- **Headings & Body Copy:** `'Inter', sans-serif`  
-  A modern, geometric sans-serif engineered specifically for screen legibility, clean letter spacing, and versatile weights (Light 300 to ExtraBold 800).
+- **Display & Section Headings (`H1`, `H2`, `H3`):** `'Space Grotesk', 'Inter', sans-serif`  
+  Tech-forward, geometric, innovative, and bold. Excellent for developer and AI interfaces to project authority and cutting-edge craft.
+- **Body Copy & Interface UI:** `'Inter', -apple-system, BlinkMacSystemFont, sans-serif`  
+  Engineered specifically for screen legibility, clean letter spacing, and versatile weights (Light 300 to ExtraBold 800).
 - **Code, Terminals & Technical Identifiers:** `'JetBrains Mono', 'Fira Code', monospace`  
   Designed for developers with distinct character distinctions (`0` vs `O`, `1` vs `l`) and clear tabular spacing.
 - **System Fallback Stack:** `system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`
@@ -230,12 +259,12 @@ Place this directly inside the `<head>` of HTML or at the very top of `styles.cs
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 ```
 
 Or via CSS:
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 ```
 
 ### Type Scale
@@ -849,4 +878,242 @@ flowchart LR
 .card:hover .project-card-image {
   transform: scale(1.04);
 }
+
+---
+
+## 12. UI/UX Pro Max Bento Box Grid Architecture
+
+Inspired by modern high-signal developer interfaces (Apple Developer, Linear, Raycast), the portfolio utilizes an asymmetric **Bento Box Grid** layout for high-density, scannable presentation of competencies, credentials, and achievements.
+
+### 12.1 Bento Layout Matrix
+
 ```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                          BENTO GRID SPECIFICATION (DESKTOP)                            │
+├─────────────────────────────────────────┬──────────────────────────────────────────────┤
+│ Col 1-2 (Span 2x2): PRIMARY HERO INTRO  │ Col 3-4 (Span 2x1): AI ASSISTANT HIGHLIGHT   │
+│ • Large headline with gradient          │ • Live chatbot prompt teaser                 │
+│ • Quick bio & current student status    │ • One-click sample prompt chips              │
+├─────────────────────────────────────────┼──────────────────────────────────────────────┤
+│ Col 1 (Span 1x1): DIU ACADEMICS         │ Col 2 (Span 1x1): TECH STACK RADAR           │
+│ • Daffodil International Univ badge     │ • Core languages & frameworks badges         │
+│ • B.Sc. in Software Engineering         │ • Quick-filter buttons                       │
+├─────────────────────────────────────────┴──────────────────────────────────────────────┤
+│ Col 3-4 (Span 2x1): FEATURED PROJECT SPOTLIGHT                                         │
+│ • Interactive preview thumbnail, GitHub repo link, live demo pill                      │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 12.2 Responsive Grid CSS Implementation
+
+```css
+/* Bento Box Master Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+/* Span Modifiers */
+.bento-item--col-1 { grid-column: span 1; }
+.bento-item--col-2 { grid-column: span 2; }
+.bento-item--col-3 { grid-column: span 3; }
+.bento-item--col-4 { grid-column: span 4; }
+
+.bento-item--row-1 { grid-row: span 1; }
+.bento-item--row-2 { grid-row: span 2; }
+
+/* Bento Tile Styling */
+.bento-card {
+  position: relative;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  overflow: hidden;
+  transition: transform var(--transition-normal), 
+              box-shadow var(--transition-normal), 
+              border-color var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Bento Hover Micro-interaction */
+.bento-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-xl), var(--shadow-primary-glow);
+  border-color: var(--primary);
+}
+
+/* Responsive Grid Adaptation */
+@media (max-width: 1023.98px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(160px, auto);
+  }
+  .bento-item--col-3,
+  .bento-item--col-4 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: var(--space-md);
+  }
+  .bento-item--col-1,
+  .bento-item--col-2,
+  .bento-item--col-3,
+  .bento-item--col-4 {
+    grid-column: span 1;
+  }
+  .bento-item--row-2 {
+    grid-row: span 1;
+  }
+}
+```
+
+---
+
+## 13. Conversational AI Chatbot UX Blueprint
+
+The portfolio assistant is an **AI-Native Conversational Interface** designed with strict visual constraints, clear boundaries, and zero-latency feedback mechanisms.
+
+### 13.1 Conversational State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle: Page Load
+    Idle --> LauncherOpen: Click Floating Launcher / Ctrl+K
+    LauncherOpen --> PromptSelected: Click Suggested Question Chip
+    LauncherOpen --> MessageSent: User Submits Query
+    PromptSelected --> MessageSent
+    MessageSent --> TypingIndicator: Backend Validation & Call
+    TypingIndicator --> ResponseStream: Receive Answer
+    TypingIndicator --> FallbackState: Out-of-Scope / Unavailable
+    ResponseStream --> IdleConversation: Done
+    FallbackState --> IdleConversation: Display Standard Refusal
+    IdleConversation --> LauncherOpen: Next Question
+    LauncherOpen --> Idle: Close / Esc / Click Outside
+```
+
+### 13.2 Visual Boundary Signaling (Anti-Hallucination Cues)
+
+To signal to visitors and evaluators that the assistant is strictly domain-bounded:
+1. **Header Scope Badge:** A persistent banner at the top of the chat panel:
+   ```html
+   <div class="chat-scope-badge">
+     <i class="fa-solid fa-shield-halved"></i>
+     <span>Verified Portfolio Assistant • Domain-Bounded</span>
+   </div>
+   ```
+2. **Suggested Prompt Pills:** Clickable chips populated only from verified knowledge:
+   - *"What does Shanto study at DIU?"*
+   - *"Which programming languages are verified?"*
+   - *"Show Shanto's featured projects"*
+   - *"How can I contact Shanto?"*
+3. **Graceful Fallback UI:** When an out-of-scope query is received, the assistant displays a distinct friendly amber indicator acknowledging the portfolio scope rather than an ambiguous blank error.
+
+### 13.3 Mobile Chatbot Bottom-Sheet Architecture
+
+On mobile viewports (`< 768px`), standard floating chat boxes get obscured by mobile software keyboards and touch gestures. The portfolio upgrades the mobile chat to an accessible **Slide-Up Bottom Sheet**:
+
+```css
+@media (max-width: 767.98px) {
+  .chat-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 85dvh; /* Dynamic viewport height to prevent virtual keyboard cutoff */
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-bottom: none;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+    transform: translateY(100%);
+    transition: transform var(--transition-normal);
+  }
+
+  .chat-panel.active {
+    transform: translateY(0);
+  }
+
+  /* Sheet Drag / Swipe Indicator Handle */
+  .chat-panel-handle {
+    width: 40px;
+    height: 4px;
+    border-radius: var(--radius-full);
+    background: var(--border);
+    margin: var(--space-xs) auto;
+  }
+}
+```
+
+### 13.4 Chatbot Accessibility Contract
+
+- **Focus Trap:** When the chat panel opens, focus is directed to the user input field. Tab navigation cycles inside the chat panel until dismissed.
+- **Escape Key Dismissal:** Pressing `Escape` immediately closes the chat widget and returns focus to the launcher button.
+- **Screen Reader Live Region:** The message stream container has `aria-live="polite"` and `aria-atomic="false"` so new messages are vocalized smoothly without cutting off current screen reader speech.
+
+---
+
+## 14. Layout Resilience, Compact Labels & Anti-Patterns
+
+Per the **UI/UX Pro Max design intelligence system**, the interface is hardened against typography breaks, awkward line wraps, and common layout failure modes.
+
+### 14.1 Resilient Text & Heading Balance
+
+```css
+/* Prevent lone orphan words on display headlines */
+h1, h2, .section-title {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Descriptive paragraphs retain optimal measure without line-break jitter */
+p, .project-description {
+  text-wrap: pretty;
+  max-width: 70ch;
+}
+```
+
+### 14.2 Compact Badges & Filter Reflow
+
+- Skill badges and project tags wrap naturally (`flex-wrap: wrap`) with a consistent `gap: 0.5rem`.
+- Badges never use hardcoded widths that cause label truncation (`white-space: nowrap` inside flex containers with flexible bounds).
+- Badges combine an icon + text label so color is never the single carrier of meaning.
+
+### 14.3 Prohibited Design Anti-Patterns
+
+| Anti-Pattern | Why It Is Prohibited | Approved Alternative |
+|---|---|---|
+| **Emojis as System Icons** | Emojis render inconsistently across Windows, iOS, and Android; lack semantic ARIA tags. | Font Awesome 6 SVG / CSS icons with dedicated sizes and aria attributes. |
+| **Flashing / Continuous Bounce** | Distracts from portfolio content and causes motion sickness. | One-time entry animations or subtle hover elevations (150–250ms). |
+| **Low-Contrast Gray Text** | Fails WCAG AA 4.5:1 ratio, unreadable for evaluators and recruiters. | High-contrast tokens: `#1E293B` on light, `#F1F5F9` on dark canvas. |
+| **Touch Targets < 44px** | Leads to missed taps and frustration on smartphones. | All interactive mobile controls have minimum `44px × 44px` hit areas. |
+| **Cumulative Layout Shifts (CLS)** | Skeletons or images loading late shove content downward. | Explicit `aspect-ratio: 16/9` on project images and pre-sized containers. |
+| **Invisible Focus Outlines** | Violates keyboard navigation access for assistive technology. | High-visibility focus ring: `outline: 2px solid var(--primary); outline-offset: 2px`. |
+
+---
+
+## 15. UI/UX Pre-Delivery Audit Checklist
+
+Before declaring any phase complete or pushing UI to production, audit against this pre-delivery gate:
+
+- [ ] **Contrast Compliance:** All text has at least 4.5:1 contrast against its background; interactive icons have 3.0:1.
+- [ ] **Cursor Indicators:** `cursor: pointer` is applied to all clickable cards, tabs, theme toggles, and buttons.
+- [ ] **Hover Transitions:** All hover states have smooth transitions calibrated between `150ms` and `250ms`.
+- [ ] **Keyboard Navigability:** Entire site can be navigated using `Tab`, `Shift+Tab`, `Enter`, `Space`, and `Esc`.
+- [ ] **Visible Focus Rings:** Every focused element has a clear, un-obscured focus ring in both light and dark themes.
+- [ ] **Reduced Motion:** If `prefers-reduced-motion: reduce` is enabled, all animations degrade to instant transitions.
+- [ ] **Form Validation Feedback:** Contact form shows inline error hints with icons and red borders; displays green checkmarks on valid inputs.
+- [ ] **Sticky Nav Compensation:** Page sections use `scroll-margin-top: 80px` so sticky navbar does not clip section titles upon smooth scrolling.
+- [ ] **Mobile Viewport Guard:** No horizontal scrolling (`overflow-x: hidden` on viewport level); inputs have `font-size: 16px` to avoid iOS Safari auto-zoom.
+- [ ] **Chatbot Bounds:** Disclaimer pill is clearly visible; suggested question chips work seamlessly on both touch and click.
+
