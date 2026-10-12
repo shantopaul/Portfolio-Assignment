@@ -1,0 +1,53 @@
+{
+  "projects": [
+    {
+      "id": "portfolio-ai",
+      "title": "Personal Portfolio with Domain-Bounded AI Chatbot",
+      "category": "Web & AI",
+      "featured": true,
+      "short_description": "A responsive personal developer portfolio integrated with a serverless AI assistant strictly bounded to verified personal credentials.",
+      "full_description": "Engineered as an assignment for SE 236 at DIU. Features Bento Box visual hierarchy, vanilla HTML/CSS/JS frontend, Netlify Serverless Functions, and Google Gemini API integration with zero-hallucination prompt guardrails.",
+      "tags": ["HTML5", "CSS3", "JavaScript", "Netlify Functions", "Gemini API", "UI/UX Pro Max"],
+      "image": "assets/images/projects/portfolio-preview.svg",
+      "github_url": "https://github.com/shantopaul/Portfolio-Assignment",
+      "demo_url": "https://shantopaul.netlify.app",
+      "highlights": [
+        "Domain-bounded AI assistant answering personal queries only",
+        "Mobile-first Bento Box Grid layout with dark/light themes",
+        "Zero API keys leaked to frontend; protected via serverless proxy"
+      ]
+    },
+    {
+      "id": "exam-alert",
+      "title": "SP ExamAlert - Smart Exam Notification System",
+      "category": "Academic",
+      "featured": false,
+      "short_description": "Academic exam and schedule notification application developed to assist university students with test preparation deadlines.",
+      "full_description": "A specialized student utility designed to track semester courses, exam schedules, and deadlines with automated alerts and reminders.",
+      "tags": ["JavaScript", "HTML5", "CSS3", "Academic"],
+      "image": "assets/images/projects/project-placeholder.svg",
+      "github_url": "[PLACEHOLDER: https://github.com/shantopaul/exam-alert]",
+      "demo_url": "[PLACEHOLDER: Demo URL if available]",
+      "highlights": [
+        "Structured course deadline tracker",
+        "Clean, distraction-free student dashboard"
+      ]
+    },
+    {
+      "id": "rentverse",
+      "title": "RentVerse - University Property & Asset Management",
+      "category": "Full-Stack",
+      "featured": false,
+      "short_description": "Platform facilitating university housing, student rental discovery, and shared asset management.",
+      "full_description": "Project addressing student housing logistics around campus with listings, filterable categories, and booking inquiries.",
+      "tags": ["Web Development", "Database", "UI/UX"],
+      "image": "assets/images/projects/project-placeholder.svg",
+      "github_url": "[PLACEHOLDER: https://github.com/shantopaul/rentverse]",
+      "demo_url": "[PLACEHOLDER: Demo URL if available]",
+      "highlights": [
+        "Property discovery and filtering matrix",
+        "Direct contact integration for tenant inquiries"
+      ]
+    }
+  ]
+}

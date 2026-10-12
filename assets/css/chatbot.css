@@ -1,0 +1,306 @@
+/* ==========================================================================
+   CHATBOT.CSS — CONVERSATIONAL AI COMPONENT SPECIFICATIONS
+   Project: Personal Portfolio Website — Shanto Paul (DIU)
+   Architecture: UI/UX Pro Max AI-Native Interface + Mobile Bottom-Sheet
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Floating Chat Launcher Widget
+   -------------------------------------------------------------------------- */
+.chat-launcher {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-chatbot);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-xl), var(--shadow-primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1050;
+  border: none;
+  min-width: 44px;
+  min-height: 44px;
+  transition: transform var(--transition-normal), 
+              box-shadow var(--transition-normal);
+}
+
+.chat-launcher:hover {
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: var(--shadow-xl), var(--shadow-accent-glow);
+}
+
+.chat-launcher-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 14px;
+  height: 14px;
+  background: var(--secondary);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-primary);
+}
+
+/* --------------------------------------------------------------------------
+   2. Desktop & Tablet Floating Chat Panel
+   -------------------------------------------------------------------------- */
+.chat-panel {
+  position: fixed;
+  bottom: 6.5rem;
+  right: 2rem;
+  width: 380px;
+  max-width: calc(100vw - 3rem);
+  height: 520px;
+  max-height: calc(100vh - 8rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1040;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), 
+              transform var(--transition-normal), 
+              visibility var(--transition-normal);
+}
+
+.chat-panel.active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   3. Chat Header & Verified Boundary Signaling
+   -------------------------------------------------------------------------- */
+.chat-header {
+  background: var(--gradient-chatbot);
+  color: #FFFFFF;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.chat-header-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.chat-header-title h3 {
+  font-size: 1.05rem;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 0;
+}
+
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.chat-header-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.chat-header-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Domain-Bounded Scope Banner */
+.chat-scope-banner {
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.chat-scope-banner i {
+  color: var(--secondary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Conversation Stream & Message Bubbles
+   -------------------------------------------------------------------------- */
+.chat-body {
+  flex: 1;
+  padding: var(--space-md);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: var(--bg-secondary);
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: var(--radius-lg);
+  word-break: break-word;
+}
+
+.chat-bubble-user {
+  background: var(--primary);
+  color: #FFFFFF;
+  align-self: flex-end;
+  border-bottom-right-radius: var(--radius-xs);
+  box-shadow: var(--shadow-sm);
+}
+
+.chat-bubble-bot {
+  background: var(--surface);
+  color: var(--text-primary);
+  align-self: flex-start;
+  border: 1px solid var(--border);
+  border-bottom-left-radius: var(--radius-xs);
+  box-shadow: var(--shadow-sm);
+}
+
+.chat-bubble-fallback {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   5. Suggested Question Chips
+   -------------------------------------------------------------------------- */
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.prompt-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.prompt-pill:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   6. Input Controls
+   -------------------------------------------------------------------------- */
+.chat-footer {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.chat-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.chat-send-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chat-send-btn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.chat-send-btn:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Mobile Viewport Slide-up Bottom-Sheet (< 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .chat-panel {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 85vh;
+    height: 85dvh;
+    max-height: 85dvh;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    border-bottom: none;
+    transform: translateY(100%);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .chat-panel.active {
+    transform: translateY(0);
+  }
+
+  .chat-drag-handle {
+    width: 36px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-full);
+    margin: 4px auto 8px auto;
+  }
+}
