@@ -371,52 +371,71 @@ export const handler = async (event) => {
     };
   }
 
-  // 6. Invoke Google Gemini REST API
+  // 6. Invoke Google Gemini REST API (with automatic model failover)
   try {
     const systemPrompt = buildSystemPrompt(verifiedKnowledge);
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const candidateModels = [
+      process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+      'gemini-2.5-flash-lite',
+      'gemini-flash-latest'
+    ];
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+    let geminiResponse = null;
+    let selectedModel = candidateModels[0];
 
-    const geminiResponse = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      signal: controller.signal,
-      body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: systemPrompt }]
-        },
-        contents: geminiContents,
-        generationConfig: {
-          temperature: 0.2, // Strict factual adherence
-          maxOutputTokens: 350,
-          topP: 0.8
-        }
-      })
-    });
+    for (const model of candidateModels) {
+      selectedModel = model;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
-    clearTimeout(timeoutId);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-    if (!geminiResponse.ok) {
-      const errText = await geminiResponse.text().catch(() => '');
-      console.error(`Gemini API returned status ${geminiResponse.status}:`, errText);
-
-      if (geminiResponse.status === 429) {
-        return {
-          statusCode: 429,
-          headers: CORS_HEADERS,
+      try {
+        const resp = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
           body: JSON.stringify({
-            status: 'error',
-            error: 'Google Gemini API quota or rate limit exceeded. Please try again in a few moments.',
-            reply: "The AI assistant is temporarily resting due to API rate limits. Please reach out directly through Shanto's contact form!"
+            system_instruction: {
+              parts: [{ text: systemPrompt }]
+            },
+            contents: geminiContents,
+            generationConfig: {
+              temperature: 0.2,
+              maxOutputTokens: 350,
+              topP: 0.8
+            }
           })
-        };
-      }
+        });
 
-      // If upstream model errors, provide deterministic verified answer rather than failing user experience
+        clearTimeout(timeoutId);
+
+        if (resp.ok) {
+          geminiResponse = resp;
+          break;
+        } else if (resp.status === 429) {
+          return {
+            statusCode: 429,
+            headers: CORS_HEADERS,
+            body: JSON.stringify({
+              status: 'error',
+              error: 'Google Gemini API quota or rate limit exceeded. Please try again in a few moments.',
+              reply: "The AI assistant is temporarily resting due to API rate limits. Please reach out directly through Shanto's contact form!"
+            })
+          };
+        } else {
+          // Model busy (503) or not found, try next candidate model
+          const errText = await resp.text().catch(() => '');
+          console.warn(`Model ${model} returned status ${resp.status}:`, errText);
+        }
+      } catch (reqErr) {
+        clearTimeout(timeoutId);
+        console.warn(`Model ${model} request error:`, reqErr.message);
+      }
+    }
+
+    if (!geminiResponse || !geminiResponse.ok) {
+      // Deterministic verified fallback ensures zero user disruption
       const fallbackReply = generateLocalVerifiedFallback(cleanMessage);
       return {
         statusCode: 200,
@@ -440,7 +459,7 @@ export const handler = async (event) => {
       body: JSON.stringify({
         status: 'success',
         reply: sanitizedReply,
-        source: 'gemini-1.5-flash',
+        source: selectedModel,
         timestamp: Date.now()
       })
     };
