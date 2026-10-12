@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+  <defs>
+    <linearGradient id="phGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#phGrad)"/>
+  <rect x="40" y="40" width="520" height="260" rx="16" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+  <circle cx="300" cy="150" r="40" fill="#334155" opacity="0.6"/>
+  <polygon points="290,135 315,150 290,165" fill="#64748B"/>
+  <text x="300" y="225" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="600" fill="#94A3B8" text-anchor="middle">Project Preview</text>
+  <text x="300" y="250" font-family="'Inter', sans-serif" font-size="13" fill="#64748B" text-anchor="middle">SE 236 • Software Engineering Lab</text>
+</svg>

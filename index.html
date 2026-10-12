@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Primary SEO Metadata -->
+  <title>Shanto Paul | Software Engineering Student & Full-Stack Developer</title>
+  <meta name="title" content="Shanto Paul | Software Engineering Student & Full-Stack Developer">
+  <meta name="description" content="Personal Portfolio of Shanto Paul, 6th-semester Software Engineering student at Daffodil International University (DIU). Features projects, skills, and an interactive domain-bounded AI assistant.">
+  <meta name="keywords" content="Shanto Paul, Daffodil International University, DIU, Software Engineering, SE 236, Full-Stack Developer, AI Chatbot, Portfolio">
+  <meta name="author" content="Shanto Paul">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shantopaul.netlify.app">
+  <meta property="og:title" content="Shanto Paul | Software Engineering Portfolio with AI Chatbot">
+  <meta property="og:description" content="Discover Shanto Paul's software engineering projects, technical skill matrix, and interact with the personal portfolio AI assistant.">
+  <meta property="og:image" content="assets/images/favicon/favicon.svg">
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shanto Paul | Software Engineering Portfolio with AI Chatbot">
+  <meta name="twitter:description" content="Software Engineering student at DIU showcasing web development projects and personal AI chatbot.">
+  <meta name="twitter:image" content="assets/images/favicon/favicon.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+
+  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/chatbot.css">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ======================================================================
+       HEADER & NAVIGATION BAR
+       ====================================================================== -->
+  <header class="navbar" role="banner">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <!-- Brand Logo / Monogram -->
+      <a href="#hero" class="nav-brand" aria-label="Shanto Paul Portfolio Home">
+        <span class="text-gradient" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">SP.</span>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Links -->
+      <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Utility Actions (Theme Toggle & Mobile Trigger) -->
+      <div class="nav-actions" style="display: flex; align-items: center; gap: var(--space-sm);">
+        <button class="theme-toggle btn-icon" type="button" aria-label="Switch to Light Theme" style="background: none; border: 1px solid var(--border); width: 40px; height: 40px; border-radius: var(--radius-full); cursor: pointer; color: var(--text-primary); display: flex; align-items: center; justify-content: center;">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+
+        <button class="nav-toggle btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="false" style="display: none; background: none; border: 1px solid var(--border); width: 40px; height: 40px; border-radius: var(--radius-full); cursor: pointer; color: var(--text-primary); align-items: center; justify-content: center;">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop -->
+  <div class="nav-backdrop" tabindex="-1" aria-hidden="true"></div>
+
+  <!-- ======================================================================
+       MAIN CONTENT CONTAINER
+       ====================================================================== -->
+  <main id="main-content" role="main">
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <!-- Bento Box Master Grid (UI/UX Pro Max Architecture) -->
+        <div class="bento-grid">
+          <!-- Bento Tile 1: Primary Profile & Hero Introduction (Span 2x2) -->
+          <article class="bento-card bento-item--col-2 bento-item--row-2 reveal-on-scroll">
+            <div>
+              <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-sm);">
+                <span class="pulse-indicator"></span>
+                <span class="badge badge-verified">Available for Opportunities</span>
+              </div>
+              <h1 style="margin-bottom: var(--space-sm);">
+                Hi, I'm <span class="text-gradient">Shanto Paul</span>
+              </h1>
+              <p style="font-size: 1.25rem; font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-md);">
+                Software Engineering Student & Full-Stack Web Developer
+              </p>
+              <p style="margin-bottom: var(--space-lg);">
+                Currently in 6th Semester at Daffodil International University (DIU). Specializing in modern web applications, scalable system architectures, and domain-bounded AI conversational assistants.
+              </p>
+            </div>
+            <div class="hero-cta-group" style="display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-md);">
+              <a href="#projects" class="btn btn-primary">
+                <i class="fa-solid fa-folder-open"></i> Explore Projects
+              </a>
+              <button type="button" class="btn btn-secondary" onclick="document.querySelector('.chat-launcher')?.click()">
+                <i class="fa-solid fa-robot"></i> Ask My AI
+              </button>
+            </div>
+          </article>
+
+          <!-- Bento Tile 2: Academic Credential Tile (Span 2x1) -->
+          <article class="bento-card bento-item--col-2 reveal-on-scroll delay-100">
+            <div>
+              <span class="badge"><i class="fa-solid fa-graduation-cap"></i> Academic Institution</span>
+              <h3 style="margin-top: var(--space-sm);">Daffodil International University</h3>
+              <p style="margin-top: var(--space-xs); font-size: 0.95rem;">
+                B.Sc. in Software Engineering • 6th Semester (Fall 2026)<br>
+                Course: SE 236 — Desktop & Web Programming Lab
+              </p>
+            </div>
+            <div style="margin-top: var(--space-md);">
+              <a href="#education" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">
+                View Coursework <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Bento Tile 3: AI Assistant Teaser (Span 1x1) -->
+          <article class="bento-card bento-item--col-1 reveal-on-scroll delay-200">
+            <div>
+              <span class="badge" style="background: rgba(124, 58, 237, 0.15); color: var(--accent);"><i class="fa-solid fa-brain"></i> AI Guardrails</span>
+              <h4 style="margin-top: var(--space-sm);">Verified AI Chatbot</h4>
+              <p style="font-size: 0.85rem; margin-top: var(--space-xs);">
+                Domain-bounded assistant answering solely from approved records.
+              </p>
+            </div>
+            <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;" onclick="document.querySelector('.chat-launcher')?.click()">
+              Launch Assistant
+            </button>
+          </article>
+
+          <!-- Bento Tile 4: Tech Stack Quick Badges (Span 1x1) -->
+          <article class="bento-card bento-item--col-1 reveal-on-scroll delay-300">
+            <div>
+              <span class="badge"><i class="fa-solid fa-code"></i> Core Stack</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: var(--space-sm);">
+                <span class="badge">JS (ES6+)</span>
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+                <span class="badge">Python</span>
+                <span class="badge">Netlify</span>
+              </div>
+            </div>
+            <a href="#skills" style="font-size: 0.85rem; font-weight: 600; margin-top: var(--space-md); display: inline-flex; align-items: center; gap: 4px;">
+              All Skills <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT ME SECTION -->
+    <section id="about" class="section section-alt">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-badge">Background</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">A brief overview of my engineering journey, academic focus, and career goals.</p>
+        </header>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-xl); align-items: center;">
+          <div class="reveal-on-scroll">
+            <img src="assets/images/profile/avatar-placeholder.svg" alt="Profile avatar illustration for Shanto Paul" width="400" height="400" style="width: 100%; max-width: 360px; border-radius: var(--radius-2xl); border: 1px solid var(--border); box-shadow: var(--shadow-lg); display: block; margin: 0 auto;">
+          </div>
+          <div class="reveal-on-scroll delay-100">
+            <h3 style="margin-bottom: var(--space-md);">Aspiring Software Engineer</h3>
+            <p style="margin-bottom: var(--space-md);">
+              I am an undergraduate software engineering student at <strong>Daffodil International University (DIU)</strong>, currently navigating the 6th semester. My coursework centers on desktop systems, modern web engineering, database design, and intelligent computing.
+            </p>
+            <p style="margin-bottom: var(--space-lg);">
+              I believe in clean, maintainable software architecture, accessible user interfaces, and the practical application of AI technologies to solve real-world problems.
+            </p>
+            <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+              <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
+              <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TECHNICAL SKILLS SECTION -->
+    <section id="skills" class="section">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-badge">Competencies</span>
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-subtitle">Verified programming languages, tools, and platforms actively applied in academic and personal projects.</p>
+        </header>
+
+        <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <!-- Skill Card 1 -->
+          <article class="bento-card reveal-on-scroll">
+            <div>
+              <span class="badge"><i class="fa-solid fa-code"></i> Languages</span>
+              <h3 style="margin-top: var(--space-sm); font-size: 1.25rem;">Programming</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-md);">
+                <span class="badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+                <span class="badge"><i class="fa-brands fa-html5"></i> HTML5</span>
+                <span class="badge"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                <span class="badge"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="badge"><i class="fa-solid fa-laptop-code"></i> C / C++</span>
+                <span class="badge"><i class="fa-brands fa-java"></i> Java</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Skill Card 2 -->
+          <article class="bento-card reveal-on-scroll delay-100">
+            <div>
+              <span class="badge"><i class="fa-solid fa-layer-group"></i> Frontend & UI</span>
+              <h3 style="margin-top: var(--space-sm); font-size: 1.25rem;">Web Technologies</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-md);">
+                <span class="badge">Responsive Layouts</span>
+                <span class="badge">Bento Box Grid</span>
+                <span class="badge">CSS Variables & Theming</span>
+                <span class="badge">DOM Events</span>
+                <span class="badge">WCAG Accessibility</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Skill Card 3 -->
+          <article class="bento-card reveal-on-scroll delay-200">
+            <div>
+              <span class="badge"><i class="fa-solid fa-server"></i> Backend & AI</span>
+              <h3 style="margin-top: var(--space-sm); font-size: 1.25rem;">Services & Cloud</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-md);">
+                <span class="badge">Netlify Functions</span>
+                <span class="badge">Google Gemini API</span>
+                <span class="badge">Prompt Injection Defense</span>
+                <span class="badge">RESTful JSON APIs</span>
+                <span class="badge">Node.js Runtime</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. EDUCATION SECTION -->
+    <section id="education" class="section section-alt">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-badge">Academics</span>
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Current university standing and coursework at Daffodil International University.</p>
+        </header>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+          <article class="bento-card reveal-on-scroll">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-sm);">
+              <div>
+                <span class="badge badge-verified"><i class="fa-solid fa-check-circle"></i> Enrolled</span>
+                <h3 style="margin-top: var(--space-xs);">B.Sc. in Software Engineering</h3>
+                <p style="font-weight: 600; color: var(--primary);">Daffodil International University (DIU)</p>
+                <p style="font-size: 0.95rem; margin-top: var(--space-2xs);">Department of Software Engineering • Semester 6 (Fall 2026)</p>
+              </div>
+              <span class="badge" style="background: var(--bg-tertiary);">2023 - Present</span>
+            </div>
+            <div style="margin-top: var(--space-md); border-top: 1px solid var(--border); padding-top: var(--space-md);">
+              <h4 style="font-size: 1rem; margin-bottom: var(--space-xs);">Key Laboratory & Course Work:</h4>
+              <ul style="list-style-type: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.4rem;">
+                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> SE 236: Desktop & Web Programming Lab</li>
+                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> Object-Oriented Software Engineering</li>
+                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> Data Structures & Algorithms</li>
+                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> Database Management Systems</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXPERIENCE & ACHIEVEMENTS SECTION (Conditionally structured) -->
+    <section id="experience" class="section">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-badge">Milestones</span>
+          <h2 class="section-title">Experience & Achievements</h2>
+          <p class="section-subtitle">Academic accomplishments and practical software laboratory projects.</p>
+        </header>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+          <article class="bento-card reveal-on-scroll">
+            <span class="badge"><i class="fa-solid fa-award"></i> Academic Laboratory Project</span>
+            <h3 style="margin-top: var(--space-sm);">SE 236: Personal Portfolio with Domain-Bounded AI</h3>
+            <p style="margin-top: var(--space-xs);">
+              Developed a full-stack personal portfolio integrating Netlify Serverless Functions and Google Gemini API, strictly bounded to prevent model hallucination and enforce factual verification.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PROJECTS SECTION -->
+    <section id="projects" class="section section-alt">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-badge">Showcase</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">Explore featured web applications, student utilities, and interactive platforms.</p>
+        </header>
+
+        <!-- Category Filter Buttons -->
+        <div class="project-filters" style="display: flex; justify-content: center; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-2xl);">
+          <button type="button" class="btn btn-secondary project-filter-btn active" data-filter="all">All</button>
+          <button type="button" class="btn btn-secondary project-filter-btn" data-filter="Web">Web & AI</button>
+          <button type="button" class="btn btn-secondary project-filter-btn" data-filter="Academic">Academic</button>
+          <button type="button" class="btn btn-secondary project-filter-btn" data-filter="Full-Stack">Full-Stack</button>
+        </div>
+
+        <!-- Dynamic Projects Container (Populated via projects.js) -->
+        <div id="projects-container" class="projects-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-lg);">
+          <!-- Fallback initial card -->
+          <article class="bento-card project-card reveal-on-scroll">
+            <img src="assets/images/projects/portfolio-preview.svg" alt="Portfolio Preview" class="project-card-image" width="600" height="340" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: var(--space-md);">
+            <span class="badge badge-featured">Featured</span>
+            <h3 style="margin-top: var(--space-sm);">Portfolio with AI Chatbot</h3>
+            <p style="margin-top: var(--space-xs); font-size: 0.95rem;">Responsive portfolio with Bento Box UI and domain-bounded AI assistant for SE 236.</p>
+            <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm);">
+              <a href="https://github.com/shantopaul/Portfolio-Assignment" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section id="contact" class="section">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-badge">Communication</span>
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="section-subtitle">Have a question or interested in collaboration? Send a direct message.</p>
+        </header>
+
+        <div style="max-width: 640px; margin: 0 auto;">
+          <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="_gotcha" class="bento-card reveal-on-scroll">
+            <!-- Hidden inputs for Netlify Forms & Honeypot -->
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display: none;">
+              <label>Don’t fill this out if you're human: <input name="_gotcha"></label>
+            </p>
+
+            <div style="margin-bottom: var(--space-md);">
+              <label for="contact-name" style="display: block; font-weight: 600; margin-bottom: var(--space-xs);">Your Name</label>
+              <input type="text" id="contact-name" name="name" required class="chat-input" placeholder="e.g. John Doe" style="width: 100%; border-radius: var(--radius-md);">
+              <span class="field-error" style="display: none; color: var(--error); font-size: 0.8rem; margin-top: 4px;"></span>
+            </div>
+
+            <div style="margin-bottom: var(--space-md);">
+              <label for="contact-email" style="display: block; font-weight: 600; margin-bottom: var(--space-xs);">Email Address</label>
+              <input type="email" id="contact-email" name="email" required class="chat-input" placeholder="name@example.com" style="width: 100%; border-radius: var(--radius-md);">
+              <span class="field-error" style="display: none; color: var(--error); font-size: 0.8rem; margin-top: 4px;"></span>
+            </div>
+
+            <div style="margin-bottom: var(--space-lg);">
+              <label for="contact-message" style="display: block; font-weight: 600; margin-bottom: var(--space-xs);">Message</label>
+              <textarea id="contact-message" name="message" rows="5" required class="chat-input" placeholder="Write your message here..." style="width: 100%; border-radius: var(--radius-md); resize: vertical;"></textarea>
+              <span class="field-error" style="display: none; color: var(--error); font-size: 0.8rem; margin-top: 4px;"></span>
+            </div>
+
+            <div id="contact-status-msg" style="margin-bottom: var(--space-md);"></div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-content">
+      <div class="footer-socials">
+        <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </div>
+      <p>© <span id="current-year">2026</span> Shanto Paul. Built for SE 236 Lab at Daffodil International University.</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       AI CHATBOT ASSISTANT WIDGET (#chatbot-root)
+       ====================================================================== -->
+  <div id="chatbot-root">
+    <!-- Floating Action Launcher Button -->
+    <button class="chat-launcher" type="button" aria-label="Open AI Portfolio Assistant" aria-expanded="false" title="Ask Shanto's AI Assistant">
+      <i class="fa-solid fa-robot"></i>
+      <span class="chat-launcher-badge" aria-hidden="true"></span>
+    </button>
+
+    <!-- Floating Chat Modal / Mobile Bottom-Sheet -->
+    <div class="chat-panel" role="dialog" aria-modal="true" aria-labelledby="chat-heading">
+      <!-- Mobile Drag Handle -->
+      <div class="chat-drag-handle" aria-hidden="true"></div>
+
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-title">
+          <i class="fa-solid fa-sparkles"></i>
+          <h3 id="chat-heading">Shanto's AI Assistant</h3>
+        </div>
+        <div class="chat-header-actions">
+          <button class="chat-header-btn chat-close-btn" type="button" aria-label="Close Chat Window">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Domain-Bounded Scope Banner -->
+      <div class="chat-scope-banner">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Answers exclusively from verified portfolio data</span>
+      </div>
+
+      <!-- Message History Container -->
+      <div class="chat-body" aria-live="polite">
+        <div class="chat-bubble chat-bubble-bot">
+          Hi! I'm Shanto Paul's personal AI portfolio assistant. You can ask me about Shanto's studies at DIU, technical skills, or featured projects.
+        </div>
+      </div>
+
+      <!-- Suggested Question Pills -->
+      <div style="padding: 0 var(--space-md); background: var(--bg-secondary);">
+        <div class="chat-suggestions">
+          <button type="button" class="prompt-pill">What does Shanto study at DIU?</button>
+          <button type="button" class="prompt-pill">Which programming languages are verified?</button>
+          <button type="button" class="prompt-pill">What projects has Shanto built?</button>
+        </div>
+      </div>
+
+      <!-- Message Input Form -->
+      <div class="chat-footer">
+        <input type="text" class="chat-input" placeholder="Ask about Shanto..." aria-label="Type your question about Shanto Paul">
+        <button class="chat-send-btn" type="button" aria-label="Send message">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Orchestrator -->
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

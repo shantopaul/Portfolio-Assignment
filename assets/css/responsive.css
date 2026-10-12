@@ -1,0 +1,162 @@
+/* ==========================================================================
+   RESPONSIVE.CSS — MULTI-DEVICE BREAKPOINTS & VIEWPORT ADAPTATIONS
+   Project: Personal Portfolio Website — Shanto Paul (DIU)
+   Standards: Mobile-First Architecture, WCAG 2.1 AA Touch Targets
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Small Mobile Viewports (< 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 479.98px) {
+  :root {
+    --navbar-height: 60px;
+  }
+
+  .container {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-sm);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Mobile Viewports (< 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  /* Bento Box collapse to single column */
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: var(--space-md);
+  }
+
+  .bento-item--col-1,
+  .bento-item--col-2,
+  .bento-item--col-3,
+  .bento-item--col-4 {
+    grid-column: span 1;
+  }
+
+  .bento-item--row-1,
+  .bento-item--row-2 {
+    grid-row: span 1;
+  }
+
+  /* Navigation Drawer Setup */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    padding: calc(var(--navbar-height) + var(--space-lg)) var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    box-shadow: var(--shadow-xl);
+    transition: right var(--transition-normal);
+    z-index: 1001;
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-toggle {
+    display: flex !important;
+  }
+
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  }
+
+  .nav-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Prevent iOS automatic zoom on text inputs */
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Tablet Viewports (768px - 1023px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .container {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: var(--space-md);
+  }
+
+  .bento-item--col-3,
+  .bento-item--col-4 {
+    grid-column: span 2;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Desktop Viewports (>= 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+
+  .nav-toggle {
+    display: none !important;
+  }
+
+  .nav-menu {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+}

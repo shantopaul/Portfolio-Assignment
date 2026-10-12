@@ -1,0 +1,61 @@
+{
+  "categories": [
+    {
+      "id": "languages",
+      "title": "Programming Languages",
+      "icon": "fa-solid fa-code",
+      "skills": [
+        { "name": "JavaScript (ES6+)", "level": "Proficient", "verified": true, "icon": "fa-brands fa-js" },
+        { "name": "HTML5 & Semantic Web", "level": "Advanced", "verified": true, "icon": "fa-brands fa-html5" },
+        { "name": "CSS3 & Modern Layouts", "level": "Advanced", "verified": true, "icon": "fa-brands fa-css3-alt" },
+        { "name": "Python", "level": "Intermediate", "verified": true, "icon": "fa-brands fa-python" },
+        { "name": "C / C++", "level": "Academic Foundation", "verified": true, "icon": "fa-solid fa-laptop-code" },
+        { "name": "Java", "level": "Academic Foundation", "verified": true, "icon": "fa-brands fa-java" }
+      ]
+    },
+    {
+      "id": "frontend",
+      "title": "Frontend Development",
+      "icon": "fa-solid fa-layer-group",
+      "skills": [
+        { "name": "Responsive Web Design", "level": "Advanced", "verified": true, "icon": "fa-solid fa-mobile-screen-button" },
+        { "name": "DOM Manipulation & Events", "level": "Proficient", "verified": true, "icon": "fa-solid fa-bolt" },
+        { "name": "CSS Custom Properties & Theming", "level": "Advanced", "verified": true, "icon": "fa-solid fa-palette" },
+        { "name": "Bento Grid Architecture", "level": "Proficient", "verified": true, "icon": "fa-solid fa-table-cells-large" },
+        { "name": "Accessibility (WCAG 2.1 AA)", "level": "Practicing", "verified": true, "icon": "fa-solid fa-universal-access" }
+      ]
+    },
+    {
+      "id": "backend",
+      "title": "Backend & Cloud",
+      "icon": "fa-solid fa-server",
+      "skills": [
+        { "name": "Serverless Functions (Netlify)", "level": "Intermediate", "verified": true, "icon": "fa-solid fa-cloud" },
+        { "name": "RESTful API Integration", "level": "Proficient", "verified": true, "icon": "fa-solid fa-network-wired" },
+        { "name": "Node.js (Runtime)", "level": "Intermediate", "verified": true, "icon": "fa-brands fa-node" },
+        { "name": "JSON Architecture", "level": "Proficient", "verified": true, "icon": "fa-solid fa-database" }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": "Tools & Version Control",
+      "icon": "fa-solid fa-screwdriver-wrench",
+      "skills": [
+        { "name": "Git & GitHub", "level": "Proficient", "verified": true, "icon": "fa-brands fa-github" },
+        { "name": "VS Code / IDE Workflows", "level": "Proficient", "verified": true, "icon": "fa-solid fa-terminal" },
+        { "name": "Netlify CLI & Deployment", "level": "Intermediate", "verified": true, "icon": "fa-solid fa-upload" },
+        { "name": "Chrome DevTools & Audits", "level": "Proficient", "verified": true, "icon": "fa-brands fa-chrome" }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI & Chatbot Engineering",
+      "icon": "fa-solid fa-robot",
+      "skills": [
+        { "name": "Google Gemini API Integration", "level": "Intermediate", "verified": true, "icon": "fa-solid fa-brain" },
+        { "name": "Domain-Bounded System Prompts", "level": "Proficient", "verified": true, "icon": "fa-solid fa-shield-halved" },
+        { "name": "Prompt Injection Defense", "level": "Proficient", "verified": true, "icon": "fa-solid fa-lock" }
+      ]
+    }
+  ]
+}

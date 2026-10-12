@@ -1,0 +1,30 @@
+{
+  "name": "shanto-paul-portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio Website with AI Chatbot for Shanto Paul - Daffodil International University (DIU)",
+  "main": "assets/js/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "netlify dev",
+    "dev": "netlify dev",
+    "serve": "npx serve .",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "software-engineering",
+    "ai-chatbot",
+    "gemini-api",
+    "netlify-functions",
+    "diu"
+  ],
+  "author": "Shanto Paul",
+  "license": "MIT",
+  "devDependencies": {
+    "netlify-cli": "^17.37.0"
+  },
+  "dependencies": {
+    "@google/genai": "^0.1.1"
+  }
+}
