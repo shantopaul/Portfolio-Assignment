@@ -59,6 +59,7 @@ List of all project files and their status:
 | Date | Change | Details |
 |------|--------|---------|
 | 2026-10-12 | Project Initialized | Created all planning documents |
+| 2026-10-12 | Skill Installed | Added ui-ux-pro-max skill to `.agents/skills/` |
 
 ---
 
