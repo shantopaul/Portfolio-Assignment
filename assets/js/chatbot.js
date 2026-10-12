@@ -132,15 +132,15 @@ export async function initChatbot() {
     const typingIndicatorEl = appendTypingIndicator(chatBody);
 
     try {
-      // Dispatch to Netlify Serverless Backend (or fallback gracefully to verified local knowledge engine)
-      const assistantReply = await queryAssistant(userText);
+      // Dispatch to Netlify Serverless Backend with conversation history
+      const assistantReply = await queryAssistant(userText, chatState.messages);
       typingIndicatorEl.remove();
 
       appendMessage(chatBody, assistantReply, 'bot');
       chatState.messages.push({ role: 'assistant', content: assistantReply, timestamp: Date.now() });
       persistSession();
     } catch (err) {
-      console.warn('Backend proxy inactive. Answering via verified local knowledge engine:', err);
+      console.warn('Backend serverless unreachable or offline. Falling back to local verified knowledge engine:', err);
       typingIndicatorEl.remove();
 
       const fallbackReply = generateVerifiedLocalAnswer(userText, chatState.knowledgeBase);
@@ -188,27 +188,57 @@ async function loadVerifiedKnowledge() {
 }
 
 /**
- * Queries the Netlify Serverless chat endpoint.
+ * Queries the Netlify Serverless chat endpoint with conversation history and fallback retry.
  * @param {string} message
+ * @param {Array} history
  * @returns {Promise<string>}
  */
-async function queryAssistant(message) {
-  const response = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message })
-  });
+async function queryAssistant(message, history = []) {
+  const endpoints = ['/api/chat', '/.netlify/functions/chat'];
+  let lastError = null;
 
-  if (!response.ok) {
-    throw new Error(`Chat API responded with status ${response.status}`);
+  for (const endpoint of endpoints) {
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message,
+          conversationHistory: history.slice(-6)
+        })
+      });
+
+      // If rewrite didn't catch /api/chat, attempt direct netlify function endpoint
+      if (response.status === 404 && endpoint === '/api/chat') {
+        continue;
+      }
+
+      if (response.status === 429) {
+        const data = await response.json().catch(() => ({}));
+        return data.reply || data.error || '⚠️ Rate limit reached (maximum 10 requests per minute). Please wait a moment before asking another question.';
+      }
+
+      if (response.status === 400) {
+        const data = await response.json().catch(() => ({}));
+        return data.error || 'Please enter a valid message (1–500 characters).';
+      }
+
+      if (!response.ok) {
+        throw new Error(`Chat API responded with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!data || !data.reply) {
+        throw new Error('Invalid response structure from chat server');
+      }
+
+      return data.reply;
+    } catch (err) {
+      lastError = err;
+    }
   }
 
-  const data = await response.json();
-  if (!data || !data.reply) {
-    throw new Error('Invalid response structure from chat server');
-  }
-
-  return data.reply;
+  throw lastError || new Error('Network error connecting to chat service');
 }
 
 /**
@@ -251,13 +281,61 @@ function generateVerifiedLocalAnswer(query, kb) {
     return '📫 **Contact & Opportunities:** Shanto is based in **Dhaka, Bangladesh** and is actively seeking **Software Engineering internship opportunities** and academic collaborations. You can message him directly through the contact form on this page or connect via [GitHub](https://github.com/shantopaul) and [LinkedIn](https://linkedin.com/in/shantopaul).';
   }
 
-  // 6. Generic Out-of-Bounds Queries
+  // 6. Private / Unlisted Personal Detail Defense
+  if (q.includes('address') || q.includes('salary') || q.includes('phone') || q.includes('relationship') || q.includes('girlfriend') || q.includes('money')) {
+    return '🔒 I do not possess verified information regarding private personal details such as address, phone number, or salary. Please feel free to reach out to Shanto directly via the contact form on this page or through his LinkedIn profile.';
+  }
+
+  // 7. Generic Out-of-Bounds Queries
   if (q.includes('weather') || q.includes('recipe') || q.includes('president') || q.includes('movie') || q.includes('joke')) {
     return '⚠️ I am programmed strictly as Shanto Paul\'s portfolio assistant. I only provide verified facts regarding Shanto\'s education, skills, projects, and contact details.';
   }
 
   // Default helpful response
   return 'I can answer questions regarding Shanto Paul\'s **studies at Daffodil International University (DIU)**, **technical skills**, **SE 236 lab projects**, or **contact options**. How may I assist you?';
+}
+
+/**
+ * Formats markdown into safe semantic HTML.
+ * @param {string} rawText
+ * @returns {string}
+ */
+function formatMarkdown(rawText) {
+  if (!rawText) return '';
+
+  // 1. First escape HTML to defend against XSS
+  let html = escapeHtml(rawText);
+
+  // 2. Bold text: **text** or __text__
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+
+  // 3. Italic text: *text* or _text_
+  html = html.replace(/\*([^\*\n]+?)\*/g, '<em>$1</em>');
+
+  // 4. Inline code: `code`
+  html = html.replace(/`([^`]+)`/g, '<code class="chat-inline-code">$1</code>');
+
+  // 5. Links: [label](url)
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>');
+
+  // 6. Numbered lists: lines beginning with "1. " or "2. "
+  html = html.replace(/^[\s]*(\d+)\.\s+(.+)$/gm, '<li class="chat-ol-item"><span class="chat-num">$1.</span> $2</li>');
+  html = html.replace(/((?:<li class="chat-ol-item">.*?<\/li>\s*)+)/g, '<ol class="chat-ol">$1</ol>');
+
+  // 7. Bullet lists: lines beginning with • or - or *
+  html = html.replace(/^[\s]*[•\-\*]\s+(.+)$/gm, '<li class="chat-list-item">$1</li>');
+  html = html.replace(/((?:<li class="chat-list-item">.*?<\/li>\s*)+)/g, '<ul class="chat-list">$1</ul>');
+
+  // 8. Clean trailing newlines around lists
+  html = html.replace(/<\/ul>\s*<br>/g, '</ul>');
+  html = html.replace(/<\/ol>\s*<br>/g, '</ol>');
+
+  // 9. Convert remaining line breaks to <br>
+  html = html.replace(/\n/g, '<br>');
+  html = html.replace(/(<br>\s*){3,}/g, '<br><br>');
+
+  return html;
 }
 
 /**
@@ -272,13 +350,10 @@ function appendMessage(container, text, sender) {
   const bubble = document.createElement('div');
   bubble.className = `chat-bubble chat-bubble-${sender}`;
 
-  // Format bold markdown (**text**) and newlines
-  const formattedHtml = escapeHtml(text)
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n/g, '<br>');
+  const formattedContent = sender === 'bot' ? formatMarkdown(text) : escapeHtml(text).replace(/\n/g, '<br>');
 
   bubble.innerHTML = `
-    ${formattedHtml}
+    ${formattedContent}
     <span class="chat-msg-time">${formatTime(new Date())}</span>
   `;
 
