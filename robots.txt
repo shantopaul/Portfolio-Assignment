@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shantopaul-portfolio.netlify.app/sitemap.xml
+Sitemap: https://portfolio-assignment.shantopaul.com/sitemap.xml
