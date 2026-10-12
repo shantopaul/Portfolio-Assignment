@@ -47,6 +47,12 @@ function initScrollReveal() {
 export function runTypewriter(element, phrases, typingSpeed = 80, pauseDelay = 2000) {
   if (!element || phrases.length === 0) return;
 
+  // Check prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    element.textContent = phrases[0];
+    return;
+  }
+
   let phraseIndex = 0;
   let charIndex = 0;
   let isDeleting = false;

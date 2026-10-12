@@ -31,6 +31,26 @@
     width: 100%;
     gap: var(--space-sm);
   }
+
+  .hero-avatar-ring {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  .hero-floating-badge {
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.65rem !important;
+  }
+
+  .badge-pos-top-right {
+    top: -5px !important;
+    right: -5px !important;
+  }
+
+  .badge-pos-bottom-left {
+    bottom: -5px !important;
+    left: -5px !important;
+  }
 }
 
 /* --------------------------------------------------------------------------

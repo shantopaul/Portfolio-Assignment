@@ -51,10 +51,10 @@
        HEADER & NAVIGATION BAR
        ====================================================================== -->
   <header class="navbar" role="banner">
-    <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <div class="container navbar-container">
       <!-- Brand Logo / Monogram -->
       <a href="#hero" class="nav-brand" aria-label="Shanto Paul Portfolio Home">
-        <span class="text-gradient" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">SP.</span>
+        <span class="text-gradient nav-brand-text">SP.</span>
       </a>
 
       <!-- Desktop & Mobile Navigation Links -->
@@ -68,12 +68,12 @@
       </nav>
 
       <!-- Utility Actions (Theme Toggle & Mobile Trigger) -->
-      <div class="nav-actions" style="display: flex; align-items: center; gap: var(--space-sm);">
-        <button class="theme-toggle btn-icon" type="button" aria-label="Switch to Light Theme" style="background: none; border: 1px solid var(--border); width: 40px; height: 40px; border-radius: var(--radius-full); cursor: pointer; color: var(--text-primary); display: flex; align-items: center; justify-content: center;">
+      <div class="nav-actions">
+        <button class="theme-toggle btn-icon" type="button" aria-label="Switch to Light Theme">
           <i class="fa-solid fa-sun"></i>
         </button>
 
-        <button class="nav-toggle btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="false" style="display: none; background: none; border: 1px solid var(--border); width: 40px; height: 40px; border-radius: var(--radius-full); cursor: pointer; color: var(--text-primary); align-items: center; justify-content: center;">
+        <button class="nav-toggle btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
@@ -100,62 +100,104 @@
                 <span class="pulse-indicator"></span>
                 <span class="badge badge-verified">Available for Opportunities</span>
               </div>
-              <h1 style="margin-bottom: var(--space-sm);">
+              <h1 style="margin-bottom: var(--space-xs);">
                 Hi, I'm <span class="text-gradient">Shanto Paul</span>
               </h1>
-              <p style="font-size: 1.25rem; font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-md);">
-                Software Engineering Student & Full-Stack Web Developer
-              </p>
-              <p style="margin-bottom: var(--space-lg);">
-                Currently in 6th Semester at Daffodil International University (DIU). Specializing in modern web applications, scalable system architectures, and domain-bounded AI conversational assistants.
+              
+              <!-- Dynamic Typewriter Subtitle Container (Zero CLS) -->
+              <div class="hero-typewriter-container" aria-label="Professional Roles">
+                <span id="hero-typewriter">Software Engineering Student @ DIU</span>
+                <span class="typing-cursor" aria-hidden="true"></span>
+              </div>
+
+              <p style="margin-bottom: var(--space-md); font-size: 1.05rem;">
+                Undergraduate Software Engineering student in 6th Semester at <strong>Daffodil International University (DIU)</strong>. Passionate about desktop systems, modern web engineering, and domain-bounded AI conversational systems.
               </p>
             </div>
-            <div class="hero-cta-group" style="display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-md);">
-              <a href="#projects" class="btn btn-primary">
-                <i class="fa-solid fa-folder-open"></i> Explore Projects
-              </a>
-              <button type="button" class="btn btn-secondary" onclick="document.querySelector('.chat-launcher')?.click()">
-                <i class="fa-solid fa-robot"></i> Ask My AI
-              </button>
+
+            <div>
+              <div class="hero-cta-group" style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+                <a href="#projects" class="btn btn-primary">
+                  <i class="fa-solid fa-folder-open"></i> Explore Projects
+                </a>
+                <button type="button" class="btn btn-secondary" onclick="document.querySelector('.chat-launcher')?.click()">
+                  <i class="fa-solid fa-robot"></i> Ask My AI
+                </button>
+              </div>
+
+              <!-- Hero Social Links Row -->
+              <div class="hero-socials">
+                <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on GitHub" title="GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="#contact" class="hero-social-btn" aria-label="Send direct message" title="Email Contact">
+                  <i class="fa-solid fa-envelope"></i>
+                </a>
+              </div>
             </div>
           </article>
 
-          <!-- Bento Tile 2: Academic Credential Tile (Span 2x1) -->
-          <article class="bento-card bento-item--col-2 reveal-on-scroll delay-100">
+          <!-- Bento Tile 2: Visual Profile Avatar Card with Glowing Ring & Floating Badges (Span 2x2) -->
+          <article class="bento-card bento-item--col-2 bento-item--row-2 hero-avatar-card reveal-on-scroll delay-100">
+            <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 280px;">
+              <!-- Floating Badge 1 (Top-Right) -->
+              <div class="hero-floating-badge badge-pos-top-right float-anim-1">
+                <i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i>
+                <span>6th Semester • DIU</span>
+              </div>
+
+              <!-- Central Avatar with Glowing Ring -->
+              <div class="hero-avatar-ring">
+                <img src="assets/images/profile/avatar-placeholder.svg" alt="Shanto Paul profile portrait" class="hero-avatar-img" width="220" height="220">
+              </div>
+
+              <!-- Floating Badge 2 (Bottom-Left) -->
+              <div class="hero-floating-badge badge-pos-bottom-left float-anim-2">
+                <i class="fa-solid fa-code" style="color: var(--secondary);"></i>
+                <span>SE 236 Lab Project</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bento Tile 3: Academic Credential Tile (Span 2x1) -->
+          <article class="bento-card bento-item--col-2 reveal-on-scroll delay-200">
             <div>
-              <span class="badge"><i class="fa-solid fa-graduation-cap"></i> Academic Institution</span>
-              <h3 style="margin-top: var(--space-sm);">Daffodil International University</h3>
-              <p style="margin-top: var(--space-xs); font-size: 0.95rem;">
-                B.Sc. in Software Engineering • 6th Semester (Fall 2026)<br>
-                Course: SE 236 — Desktop & Web Programming Lab
+              <span class="badge"><i class="fa-solid fa-university"></i> Daffodil International University</span>
+              <h3 style="margin-top: var(--space-xs); font-size: 1.25rem;">Department of Software Engineering</h3>
+              <p style="margin-top: var(--space-2xs); font-size: 0.95rem;">
+                B.Sc. in Software Engineering • Fall 2026<br>
+                Core Course: SE 236 — Desktop & Web Programming Lab
               </p>
             </div>
-            <div style="margin-top: var(--space-md);">
+            <div style="margin-top: var(--space-sm);">
               <a href="#education" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">
                 View Coursework <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
           </article>
 
-          <!-- Bento Tile 3: AI Assistant Teaser (Span 1x1) -->
-          <article class="bento-card bento-item--col-1 reveal-on-scroll delay-200">
+          <!-- Bento Tile 4: AI Assistant Teaser (Span 1x1) -->
+          <article class="bento-card bento-item--col-1 reveal-on-scroll delay-300">
             <div>
               <span class="badge" style="background: rgba(124, 58, 237, 0.15); color: var(--accent);"><i class="fa-solid fa-brain"></i> AI Guardrails</span>
-              <h4 style="margin-top: var(--space-sm);">Verified AI Chatbot</h4>
-              <p style="font-size: 0.85rem; margin-top: var(--space-xs);">
+              <h4 style="margin-top: var(--space-xs); font-size: 1.05rem;">Verified AI Assistant</h4>
+              <p style="font-size: 0.825rem; margin-top: var(--space-2xs);">
                 Domain-bounded assistant answering solely from approved records.
               </p>
             </div>
-            <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;" onclick="document.querySelector('.chat-launcher')?.click()">
+            <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.85rem; padding: 0.45rem; margin-top: var(--space-sm);" onclick="document.querySelector('.chat-launcher')?.click()">
               Launch Assistant
             </button>
           </article>
 
-          <!-- Bento Tile 4: Tech Stack Quick Badges (Span 1x1) -->
-          <article class="bento-card bento-item--col-1 reveal-on-scroll delay-300">
+          <!-- Bento Tile 5: Tech Stack Quick Badges (Span 1x1) -->
+          <article class="bento-card bento-item--col-1 reveal-on-scroll delay-400">
             <div>
-              <span class="badge"><i class="fa-solid fa-code"></i> Core Stack</span>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: var(--space-sm);">
+              <span class="badge"><i class="fa-solid fa-layer-group"></i> Core Stack</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: var(--space-xs);">
                 <span class="badge">JS (ES6+)</span>
                 <span class="badge">HTML5</span>
                 <span class="badge">CSS3</span>
@@ -163,7 +205,7 @@
                 <span class="badge">Netlify</span>
               </div>
             </div>
-            <a href="#skills" style="font-size: 0.85rem; font-weight: 600; margin-top: var(--space-md); display: inline-flex; align-items: center; gap: 4px;">
+            <a href="#skills" style="font-size: 0.85rem; font-weight: 600; margin-top: var(--space-sm); display: inline-flex; align-items: center; gap: 4px;">
               All Skills <i class="fa-solid fa-arrow-right"></i>
             </a>
           </article>
