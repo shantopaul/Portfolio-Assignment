@@ -1,99 +1,228 @@
 /**
  * ============================================================================
- * CONTACT.JS — FORM VALIDATION & CLIENT-SIDE SANITIZATION
+ * CONTACT.JS — CLIENT-SIDE VALIDATION, ANTI-SPAM & SUBMISSION ENGINE
  * Project: Personal Portfolio Website — Shanto Paul (DIU)
+ * Course: SE 236 — Desktop & Web Programming Lab
+ * Standards: WCAG 2.1 AA Accessible Forms, RFC 5322 Email Validation
  * ============================================================================
  */
 
 export function initContactForm() {
   const form = document.getElementById('contact-form');
-  const statusMsg = document.getElementById('contact-status-msg');
-
   if (!form) return;
 
+  const nameInput = form.querySelector('#contact-name');
+  const emailInput = form.querySelector('#contact-email');
+  const subjectInput = form.querySelector('#contact-subject');
+  const messageInput = form.querySelector('#contact-message');
+  const charCounter = form.querySelector('#message-char-counter');
+  const statusMsg = document.getElementById('contact-status-msg');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  // Real-time character counter for message
+  if (messageInput && charCounter) {
+    const updateCharCount = () => {
+      const length = messageInput.value.length;
+      charCounter.textContent = `${length} / 1000 characters`;
+      if (length > 1000) {
+        charCounter.style.color = 'var(--error)';
+      } else {
+        charCounter.style.color = 'var(--text-muted)';
+      }
+    };
+    messageInput.addEventListener('input', updateCharCount);
+    updateCharCount();
+  }
+
+  // Real-time field validation listeners
+  if (nameInput) {
+    nameInput.addEventListener('blur', () => validateName(nameInput));
+    nameInput.addEventListener('input', () => {
+      if (nameInput.classList.contains('error')) validateName(nameInput);
+    });
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener('blur', () => validateEmail(emailInput));
+    emailInput.addEventListener('input', () => {
+      if (emailInput.classList.contains('error')) validateEmail(emailInput);
+    });
+  }
+
+  if (subjectInput) {
+    subjectInput.addEventListener('blur', () => validateSubject(subjectInput));
+    subjectInput.addEventListener('input', () => {
+      if (subjectInput.classList.contains('error')) validateSubject(subjectInput);
+    });
+  }
+
+  if (messageInput) {
+    messageInput.addEventListener('blur', () => validateMessage(messageInput));
+    messageInput.addEventListener('input', () => {
+      if (messageInput.classList.contains('error')) validateMessage(messageInput);
+    });
+  }
+
+  // Form submission handler
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Honeypot spam check
-    const honeypot = form.querySelector('input[name="_gotcha"]');
+    // 1. Anti-spam honeypot detection
+    const honeypot = form.querySelector('input[name="bot-field"], input[name="_gotcha"]');
     if (honeypot && honeypot.value.trim() !== '') {
-      console.warn('Bot submission blocked via honeypot field.');
+      console.warn('🛡️ Bot submission rejected by honeypot filter.');
       return;
     }
 
-    const nameInput = form.querySelector('#contact-name');
-    const emailInput = form.querySelector('#contact-email');
-    const messageInput = form.querySelector('#contact-message');
-    const submitBtn = form.querySelector('button[type="submit"]');
+    // 2. Validate all fields
+    const isNameValid = validateName(nameInput);
+    const isEmailValid = validateEmail(emailInput);
+    const isSubjectValid = validateSubject(subjectInput);
+    const isMessageValid = validateMessage(messageInput);
 
-    // Validation
-    let isValid = true;
-
-    if (!nameInput.value.trim()) {
-      showFieldError(nameInput, 'Please provide your name.');
-      isValid = false;
-    } else {
-      clearFieldError(nameInput);
+    if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+      // Focus first invalid input
+      if (!isNameValid) nameInput?.focus();
+      else if (!isEmailValid) emailInput?.focus();
+      else if (!isSubjectValid) subjectInput?.focus();
+      else if (!isMessageValid) messageInput?.focus();
+      return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailInput.value.trim())) {
-      showFieldError(emailInput, 'Please provide a valid email address.');
-      isValid = false;
-    } else {
-      clearFieldError(emailInput);
-    }
-
-    if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
-      showFieldError(messageInput, 'Message must be at least 10 characters.');
-      isValid = false;
-    } else {
-      clearFieldError(messageInput);
-    }
-
-    if (!isValid) return;
-
-    // Submission UI State
+    // 3. UI Loading state
+    const originalBtnContent = submitBtn ? submitBtn.innerHTML : 'Send Message';
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending...`;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending message...`;
+    }
+
+    if (statusMsg) {
+      statusMsg.style.display = 'none';
+      statusMsg.className = 'contact-status-msg';
+      statusMsg.textContent = '';
     }
 
     try {
       const formData = new FormData(form);
+      const encodedData = new URLSearchParams(formData).toString();
+
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
+        body: encodedData
       });
 
-      if (response.ok) {
+      if (response.ok || response.status === 200 || response.status === 204) {
         form.reset();
+        if (charCounter) charCounter.textContent = '0 / 1000 characters';
+
         if (statusMsg) {
           statusMsg.className = 'contact-status-msg success';
-          statusMsg.textContent = 'Thank you! Your message has been sent successfully.';
+          statusMsg.innerHTML = `<i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent successfully. I'll get back to you shortly.`;
+          statusMsg.style.display = 'flex';
         }
       } else {
-        throw new Error('Network response was not ok');
+        throw new Error(`Submission failed with status: ${response.status}`);
       }
     } catch (err) {
-      console.error('Contact submission error:', err);
+      console.warn('Notice: Form submission endpoint unavailable, providing graceful feedback.', err);
       if (statusMsg) {
         statusMsg.className = 'contact-status-msg error';
-        statusMsg.textContent = 'Unable to send message right now. Please email directly.';
+        statusMsg.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Unable to deliver message via form endpoint right now. Please email directly at <strong>your.email@example.com</strong>.`;
+        statusMsg.style.display = 'flex';
       }
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Send Message`;
+        submitBtn.innerHTML = originalBtnContent;
       }
     }
   });
 }
 
+function validateName(input) {
+  if (!input) return true;
+  const val = input.value.trim();
+  const namePattern = /^[A-Za-z\s.'-]+$/;
+
+  if (val.length === 0) {
+    showFieldError(input, 'Please enter your name.');
+    return false;
+  }
+  if (val.length < 2) {
+    showFieldError(input, 'Name must be at least 2 characters.');
+    return false;
+  }
+  if (!namePattern.test(val)) {
+    showFieldError(input, 'Name should contain letters and standard characters only.');
+    return false;
+  }
+
+  clearFieldError(input);
+  return true;
+}
+
+function validateEmail(input) {
+  if (!input) return true;
+  const val = input.value.trim();
+  const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+
+  if (val.length === 0) {
+    showFieldError(input, 'Please enter your email address.');
+    return false;
+  }
+  if (!emailPattern.test(val)) {
+    showFieldError(input, 'Please enter a valid email address (e.g., name@example.com).');
+    return false;
+  }
+
+  clearFieldError(input);
+  return true;
+}
+
+function validateSubject(input) {
+  if (!input) return true;
+  const val = input.value.trim();
+
+  if (val.length === 0) {
+    showFieldError(input, 'Please enter a subject.');
+    return false;
+  }
+  if (val.length < 3) {
+    showFieldError(input, 'Subject must be at least 3 characters.');
+    return false;
+  }
+
+  clearFieldError(input);
+  return true;
+}
+
+function validateMessage(input) {
+  if (!input) return true;
+  const val = input.value.trim();
+
+  if (val.length === 0) {
+    showFieldError(input, 'Please enter your message.');
+    return false;
+  }
+  if (val.length < 10) {
+    showFieldError(input, 'Message must be at least 10 characters.');
+    return false;
+  }
+  if (val.length > 1000) {
+    showFieldError(input, 'Message cannot exceed 1000 characters.');
+    return false;
+  }
+
+  clearFieldError(input);
+  return true;
+}
+
 function showFieldError(input, message) {
   input.classList.add('error');
-  const errorEl = input.parentElement.querySelector('.field-error');
+  input.setAttribute('aria-invalid', 'true');
+  const formGroup = input.closest('.form-group') || input.parentElement;
+  const errorEl = formGroup?.querySelector('.field-error');
   if (errorEl) {
     errorEl.textContent = message;
     errorEl.style.display = 'block';
@@ -102,7 +231,9 @@ function showFieldError(input, message) {
 
 function clearFieldError(input) {
   input.classList.remove('error');
-  const errorEl = input.parentElement.querySelector('.field-error');
+  input.setAttribute('aria-invalid', 'false');
+  const formGroup = input.closest('.form-group') || input.parentElement;
+  const errorEl = formGroup?.querySelector('.field-error');
   if (errorEl) {
     errorEl.textContent = '';
     errorEl.style.display = 'none';
