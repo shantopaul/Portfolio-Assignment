@@ -63,6 +63,7 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#education" class="nav-link">Education</a>
+        <a href="#experience" class="nav-link">Experience</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
@@ -219,26 +220,111 @@
         <header class="section-header reveal-on-scroll">
           <span class="section-badge">Background</span>
           <h2 class="section-title">About Me</h2>
-          <p class="section-subtitle">A brief overview of my engineering journey, academic focus, and career goals.</p>
+          <p class="section-subtitle">Undergraduate Software Engineering student at Daffodil International University passionate about building clean, accessible, and domain-bounded systems.</p>
         </header>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-xl); align-items: center;">
-          <div class="reveal-on-scroll">
-            <img src="assets/images/profile/avatar-placeholder.svg" alt="Profile avatar illustration for Shanto Paul" width="400" height="400" style="width: 100%; max-width: 360px; border-radius: var(--radius-2xl); border: 1px solid var(--border); box-shadow: var(--shadow-lg); display: block; margin: 0 auto;">
-          </div>
-          <div class="reveal-on-scroll delay-100">
-            <h3 style="margin-bottom: var(--space-md);">Aspiring Software Engineer</h3>
-            <p style="margin-bottom: var(--space-md);">
-              I am an undergraduate software engineering student at <strong>Daffodil International University (DIU)</strong>, currently navigating the 6th semester. My coursework centers on desktop systems, modern web engineering, database design, and intelligent computing.
-            </p>
-            <p style="margin-bottom: var(--space-lg);">
-              I believe in clean, maintainable software architecture, accessible user interfaces, and the practical application of AI technologies to solve real-world problems.
-            </p>
-            <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-              <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
-              <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+        <div class="about-grid">
+          <!-- Profile Quick Facts Card -->
+          <article class="about-profile-card reveal-left">
+            <div class="about-avatar-wrap">
+              <img src="assets/images/profile/avatar-placeholder.svg" alt="Portrait illustration for Shanto Paul" class="about-avatar-img" width="140" height="140">
             </div>
-          </div>
+
+            <h3 style="font-size: 1.35rem; margin-bottom: 2px;">Shanto Paul</h3>
+            <p style="font-size: 0.9rem; color: var(--primary); font-weight: 600; margin-bottom: var(--space-xs);">Software Engineering Student</p>
+            
+            <div style="display: flex; justify-content: center; margin-bottom: var(--space-md);">
+              <span class="badge badge-verified">
+                <span class="pulse-indicator"></span> Available for Opportunities
+              </span>
+            </div>
+
+            <div class="about-facts-list">
+              <div class="about-fact-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                  <strong>University:</strong> Daffodil Int'l University
+                </div>
+              </div>
+
+              <div class="about-fact-item">
+                <i class="fa-solid fa-laptop-code"></i>
+                <div>
+                  <strong>Program:</strong> B.Sc. in Software Engineering
+                </div>
+              </div>
+
+              <div class="about-fact-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div>
+                  <strong>Standing:</strong> 6th Semester (Fall 2026)
+                </div>
+              </div>
+
+              <div class="about-fact-item">
+                <i class="fa-solid fa-book-open"></i>
+                <div>
+                  <strong>Course:</strong> SE 236 Desktop & Web Lab
+                </div>
+              </div>
+
+              <div class="about-fact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Location:</strong> Dhaka, Bangladesh
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-xs);">
+              <a href="assets/documents/resume.pdf" download="Shanto_Paul_Resume.pdf" class="btn btn-primary" style="width: 100%;">
+                <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+              </a>
+              <a href="#contact" class="btn btn-secondary" style="width: 100%;">
+                <i class="fa-solid fa-envelope"></i> Get in Touch
+              </a>
+            </div>
+          </article>
+
+          <!-- Rich Biographical Description & Highlights -->
+          <article class="about-bio-card reveal-right">
+            <div>
+              <span class="badge" style="margin-bottom: var(--space-xs);"><i class="fa-solid fa-user-gear"></i> Engineering Mindset</span>
+              <h3 style="font-size: 1.6rem; margin-bottom: var(--space-sm);">Crafting Modern Web Solutions & Domain-Bounded Systems</h3>
+              <p style="margin-bottom: var(--space-md); font-size: 1.025rem; line-height: 1.7;">
+                I am an undergraduate software engineering student currently enrolled in the <strong>6th Semester (Fall 2026)</strong> at <strong>Daffodil International University (DIU)</strong>. My academic curriculum and self-driven explorations center on desktop programming, modern client architectures, serverless cloud solutions, and ethical AI integration.
+              </p>
+              <p style="margin-bottom: var(--space-md); font-size: 1.025rem; line-height: 1.7;">
+                As part of course <strong>SE 236 (Desktop & Web Programming Lab)</strong>, I focus on building high-performance, modular software systems that respect user agency, prioritize WCAG 2.1 AA accessibility standards, and eliminate artificial framework bloat in favor of native web capabilities.
+              </p>
+            </div>
+
+            <!-- Career Objective Callout -->
+            <div class="about-career-box">
+              <h4 style="font-size: 1.05rem; margin-bottom: var(--space-2xs); color: var(--primary);">
+                <i class="fa-solid fa-bullseye"></i> Career Ambition & Objective
+              </h4>
+              <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                Seeking software engineering internship opportunities and practical collaborative projects where I can leverage full-stack web engineering, API architecture, and rigorous problem-solving skills to build reliable, user-first software products.
+              </p>
+            </div>
+
+            <!-- Key Metric Counters -->
+            <div class="about-stats-grid">
+              <div class="stat-card">
+                <div class="stat-card-value">6th</div>
+                <div class="stat-card-label">Semester Standing (DIU)</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-value">15+</div>
+                <div class="stat-card-label">Technical Skills & Tools</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-value">100%</div>
+                <div class="stat-card-label">Verified Knowledge Base</div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -248,53 +334,244 @@
       <div class="container">
         <header class="section-header reveal-on-scroll">
           <span class="section-badge">Competencies</span>
-          <h2 class="section-title">Technical Skills</h2>
-          <p class="section-subtitle">Verified programming languages, tools, and platforms actively applied in academic and personal projects.</p>
+          <h2 class="section-title">Technical Skills Matrix</h2>
+          <p class="section-subtitle">Verified programming languages, frameworks, cloud tooling, and conversational AI engineering.</p>
         </header>
 
-        <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-          <!-- Skill Card 1 -->
-          <article class="bento-card reveal-on-scroll">
-            <div>
-              <span class="badge"><i class="fa-solid fa-code"></i> Languages</span>
-              <h3 style="margin-top: var(--space-sm); font-size: 1.25rem;">Programming</h3>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-md);">
-                <span class="badge"><i class="fa-brands fa-js"></i> JavaScript</span>
-                <span class="badge"><i class="fa-brands fa-html5"></i> HTML5</span>
-                <span class="badge"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-                <span class="badge"><i class="fa-brands fa-python"></i> Python</span>
-                <span class="badge"><i class="fa-solid fa-laptop-code"></i> C / C++</span>
-                <span class="badge"><i class="fa-brands fa-java"></i> Java</span>
+        <!-- Interactive Filter Tabs -->
+        <div class="skills-nav-tabs reveal-on-scroll" role="tablist" aria-label="Skill Categories">
+          <button type="button" class="skill-tab-btn active" data-category="all" role="tab" aria-selected="true">
+            <i class="fa-solid fa-table-cells"></i> All Skills
+          </button>
+          <button type="button" class="skill-tab-btn" data-category="languages" role="tab" aria-selected="false">
+            <i class="fa-solid fa-code"></i> Languages
+          </button>
+          <button type="button" class="skill-tab-btn" data-category="frontend" role="tab" aria-selected="false">
+            <i class="fa-solid fa-layer-group"></i> Frontend
+          </button>
+          <button type="button" class="skill-tab-btn" data-category="backend" role="tab" aria-selected="false">
+            <i class="fa-solid fa-server"></i> Backend & Cloud
+          </button>
+          <button type="button" class="skill-tab-btn" data-category="tools" role="tab" aria-selected="false">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Tools & DevOps
+          </button>
+          <button type="button" class="skill-tab-btn" data-category="ai" role="tab" aria-selected="false">
+            <i class="fa-solid fa-robot"></i> AI & Chatbots
+          </button>
+        </div>
+
+        <!-- Categorized Skills Grid -->
+        <div class="skills-categories-grid">
+          <!-- Category 1: Languages -->
+          <article class="skill-cat-card reveal-on-scroll" data-category="languages">
+            <div class="skill-cat-header">
+              <div class="skill-cat-title">
+                <i class="fa-solid fa-code"></i> Programming Languages
+              </div>
+              <span class="badge">6 Technologies</span>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-js skill-icon" style="color: #F7DF1E;"></i>
+                  <span>JavaScript (ES6+)</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-html5 skill-icon" style="color: #E34F26;"></i>
+                  <span>HTML5 & Semantic Web</span>
+                </div>
+                <span class="skill-level-badge advanced">Advanced</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-css3-alt skill-icon" style="color: #1572B6;"></i>
+                  <span>CSS3 & Modern Layouts</span>
+                </div>
+                <span class="skill-level-badge advanced">Advanced</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-python skill-icon" style="color: #3776AB;"></i>
+                  <span>Python</span>
+                </div>
+                <span class="skill-level-badge intermediate">Intermediate</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-laptop-code skill-icon"></i>
+                  <span>C / C++</span>
+                </div>
+                <span class="skill-level-badge foundation">Academic Foundation</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-java skill-icon" style="color: #ED8B00;"></i>
+                  <span>Java</span>
+                </div>
+                <span class="skill-level-badge foundation">Academic Foundation</span>
               </div>
             </div>
           </article>
 
-          <!-- Skill Card 2 -->
-          <article class="bento-card reveal-on-scroll delay-100">
-            <div>
-              <span class="badge"><i class="fa-solid fa-layer-group"></i> Frontend & UI</span>
-              <h3 style="margin-top: var(--space-sm); font-size: 1.25rem;">Web Technologies</h3>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-md);">
-                <span class="badge">Responsive Layouts</span>
-                <span class="badge">Bento Box Grid</span>
-                <span class="badge">CSS Variables & Theming</span>
-                <span class="badge">DOM Events</span>
-                <span class="badge">WCAG Accessibility</span>
+          <!-- Category 2: Frontend -->
+          <article class="skill-cat-card reveal-on-scroll delay-100" data-category="frontend">
+            <div class="skill-cat-header">
+              <div class="skill-cat-title">
+                <i class="fa-solid fa-layer-group"></i> Frontend Development
+              </div>
+              <span class="badge">5 Competencies</span>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-mobile-screen-button skill-icon"></i>
+                  <span>Responsive Web Design</span>
+                </div>
+                <span class="skill-level-badge advanced">Advanced</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-bolt skill-icon" style="color: #F59E0B;"></i>
+                  <span>DOM Manipulation & Events</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-palette skill-icon" style="color: #EC4899;"></i>
+                  <span>CSS Variables & Theming</span>
+                </div>
+                <span class="skill-level-badge advanced">Advanced</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-table-cells-large skill-icon" style="color: #3B82F6;"></i>
+                  <span>Bento Grid Architecture</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-universal-access skill-icon" style="color: #10B981;"></i>
+                  <span>Accessibility (WCAG 2.1 AA)</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
               </div>
             </div>
           </article>
 
-          <!-- Skill Card 3 -->
-          <article class="bento-card reveal-on-scroll delay-200">
-            <div>
-              <span class="badge"><i class="fa-solid fa-server"></i> Backend & AI</span>
-              <h3 style="margin-top: var(--space-sm); font-size: 1.25rem;">Services & Cloud</h3>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-md);">
-                <span class="badge">Netlify Functions</span>
-                <span class="badge">Google Gemini API</span>
-                <span class="badge">Prompt Injection Defense</span>
-                <span class="badge">RESTful JSON APIs</span>
-                <span class="badge">Node.js Runtime</span>
+          <!-- Category 3: Backend & Cloud -->
+          <article class="skill-cat-card reveal-on-scroll delay-200" data-category="backend">
+            <div class="skill-cat-header">
+              <div class="skill-cat-title">
+                <i class="fa-solid fa-server"></i> Backend & Cloud
+              </div>
+              <span class="badge">4 Competencies</span>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-cloud skill-icon" style="color: #00AD9F;"></i>
+                  <span>Serverless Functions (Netlify)</span>
+                </div>
+                <span class="skill-level-badge intermediate">Intermediate</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-network-wired skill-icon"></i>
+                  <span>RESTful API Integration</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-node skill-icon" style="color: #339933;"></i>
+                  <span>Node.js (Runtime)</span>
+                </div>
+                <span class="skill-level-badge intermediate">Intermediate</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-database skill-icon"></i>
+                  <span>JSON Architecture</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Category 4: Tools & Version Control -->
+          <article class="skill-cat-card reveal-on-scroll delay-300" data-category="tools">
+            <div class="skill-cat-header">
+              <div class="skill-cat-title">
+                <i class="fa-solid fa-screwdriver-wrench"></i> Tools & DevOps
+              </div>
+              <span class="badge">4 Tools</span>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-github skill-icon"></i>
+                  <span>Git & GitHub Workflows</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-terminal skill-icon"></i>
+                  <span>VS Code / IDE Workflows</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-upload skill-icon" style="color: #00AD9F;"></i>
+                  <span>Netlify CLI & Deployment</span>
+                </div>
+                <span class="skill-level-badge intermediate">Intermediate</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-brands fa-chrome skill-icon" style="color: #4285F4;"></i>
+                  <span>Chrome DevTools & Audits</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Category 5: AI & Chatbot Engineering -->
+          <article class="skill-cat-card reveal-on-scroll delay-400" data-category="ai">
+            <div class="skill-cat-header">
+              <div class="skill-cat-title">
+                <i class="fa-solid fa-robot"></i> AI & Chatbots
+              </div>
+              <span class="badge">3 Focus Areas</span>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-brain skill-icon" style="color: #7C3AED;"></i>
+                  <span>Google Gemini API</span>
+                </div>
+                <span class="skill-level-badge intermediate">Intermediate</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-shield-halved skill-icon" style="color: #10B981;"></i>
+                  <span>Domain-Bounded Prompts</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
+              </div>
+              <div class="skill-item">
+                <div class="skill-name-wrap">
+                  <i class="fa-solid fa-lock skill-icon" style="color: #EF4444;"></i>
+                  <span>Prompt Injection Defense</span>
+                </div>
+                <span class="skill-level-badge proficient">Proficient</span>
               </div>
             </div>
           </article>
@@ -307,51 +584,249 @@
       <div class="container">
         <header class="section-header reveal-on-scroll">
           <span class="section-badge">Academics</span>
-          <h2 class="section-title">Education</h2>
-          <p class="section-subtitle">Current university standing and coursework at Daffodil International University.</p>
+          <h2 class="section-title">Education Timeline</h2>
+          <p class="section-subtitle">Academic journey, university standing, and foundational coursework in Software Engineering.</p>
         </header>
 
-        <div style="max-width: 800px; margin: 0 auto;">
-          <article class="bento-card reveal-on-scroll">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-sm);">
-              <div>
-                <span class="badge badge-verified"><i class="fa-solid fa-check-circle"></i> Enrolled</span>
-                <h3 style="margin-top: var(--space-xs);">B.Sc. in Software Engineering</h3>
-                <p style="font-weight: 600; color: var(--primary);">Daffodil International University (DIU)</p>
-                <p style="font-size: 0.95rem; margin-top: var(--space-2xs);">Department of Software Engineering • Semester 6 (Fall 2026)</p>
+        <div class="timeline">
+          <!-- Milestone 1: B.Sc. in Software Engineering (DIU) -->
+          <div class="timeline-item reveal-on-scroll">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="timeline-card">
+              <div class="timeline-card-header">
+                <div>
+                  <span class="badge badge-verified" style="margin-bottom: var(--space-xs);">
+                    <i class="fa-solid fa-check-circle"></i> Enrolled • In Progress
+                  </span>
+                  <h3 class="timeline-degree">B.Sc. in Software Engineering</h3>
+                  <div class="timeline-institution">Daffodil International University (DIU)</div>
+                  <p style="font-size: 0.925rem; margin-top: 2px; color: var(--text-secondary);">
+                    Department of Software Engineering • 6th Semester (Fall 2026)
+                  </p>
+                </div>
+                <span class="timeline-period">
+                  <i class="fa-solid fa-calendar"></i> 2023 - Present
+                </span>
               </div>
-              <span class="badge" style="background: var(--bg-tertiary);">2023 - Present</span>
-            </div>
-            <div style="margin-top: var(--space-md); border-top: 1px solid var(--border); padding-top: var(--space-md);">
-              <h4 style="font-size: 1rem; margin-bottom: var(--space-xs);">Key Laboratory & Course Work:</h4>
-              <ul style="list-style-type: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.4rem;">
-                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> SE 236: Desktop & Web Programming Lab</li>
-                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> Object-Oriented Software Engineering</li>
-                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> Data Structures & Algorithms</li>
-                <li><i class="fa-solid fa-circle-check" style="color: var(--secondary); margin-right: 6px;"></i> Database Management Systems</li>
-              </ul>
-            </div>
-          </article>
+
+              <p style="font-size: 0.95rem; margin-top: var(--space-sm); line-height: 1.6;">
+                Pursuing an undergraduate software engineering degree focused on software design patterns, full-stack web computing, database architecture, and algorithms. Actively engaging in hands-on lab assignments and modern development methodologies.
+              </p>
+
+              <div class="timeline-courses-title">Key Laboratory & Core Coursework:</div>
+              <div class="timeline-course-tags">
+                <span class="badge"><i class="fa-solid fa-laptop-code"></i> SE 236: Desktop & Web Programming Lab</span>
+                <span class="badge"><i class="fa-solid fa-cubes"></i> Object-Oriented Software Engineering</span>
+                <span class="badge"><i class="fa-solid fa-code-fork"></i> Data Structures & Algorithms</span>
+                <span class="badge"><i class="fa-solid fa-database"></i> Database Management Systems</span>
+                <span class="badge"><i class="fa-solid fa-sitemap"></i> Software Architecture & Design Patterns</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Milestone 2: Higher Secondary Certificate (HSC) -->
+          <div class="timeline-item reveal-on-scroll delay-100">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="timeline-card">
+              <div class="timeline-card-header">
+                <div>
+                  <span class="badge" style="margin-bottom: var(--space-xs); background: rgba(37, 99, 235, 0.12); color: var(--primary);">
+                    <i class="fa-solid fa-circle-check"></i> Completed
+                  </span>
+                  <h3 class="timeline-degree">Higher Secondary Certificate (HSC)</h3>
+                  <div class="timeline-institution">[PLACEHOLDER: College Name]</div>
+                  <p style="font-size: 0.925rem; margin-top: 2px; color: var(--text-secondary);">
+                    Science Group • Higher Secondary Education
+                  </p>
+                </div>
+                <span class="timeline-period">
+                  <i class="fa-solid fa-calendar"></i> 2020 - 2022
+                </span>
+              </div>
+
+              <p style="font-size: 0.95rem; margin-top: var(--space-sm); line-height: 1.6;">
+                Built foundational academic competencies in mathematical reasoning, algorithmic logic, physics, and computer studies.
+              </p>
+
+              <div class="timeline-courses-title">Core Academic Subjects:</div>
+              <div class="timeline-course-tags">
+                <span class="badge">Higher Mathematics</span>
+                <span class="badge">Physics</span>
+                <span class="badge">Chemistry</span>
+                <span class="badge">Information & Communication Technology (ICT)</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Milestone 3: Secondary School Certificate (SSC) -->
+          <div class="timeline-item reveal-on-scroll delay-200">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <article class="timeline-card">
+              <div class="timeline-card-header">
+                <div>
+                  <span class="badge" style="margin-bottom: var(--space-xs); background: rgba(37, 99, 235, 0.12); color: var(--primary);">
+                    <i class="fa-solid fa-circle-check"></i> Completed
+                  </span>
+                  <h3 class="timeline-degree">Secondary School Certificate (SSC)</h3>
+                  <div class="timeline-institution">[PLACEHOLDER: School Name]</div>
+                  <p style="font-size: 0.925rem; margin-top: 2px; color: var(--text-secondary);">
+                    Science Group • Secondary Education
+                  </p>
+                </div>
+                <span class="timeline-period">
+                  <i class="fa-solid fa-calendar"></i> 2018 - 2020
+                </span>
+              </div>
+
+              <p style="font-size: 0.95rem; margin-top: var(--space-sm); line-height: 1.6;">
+                Completed secondary school education with strong emphasis on sciences and analytical reasoning.
+              </p>
+
+              <div class="timeline-courses-title">Foundational Subjects:</div>
+              <div class="timeline-course-tags">
+                <span class="badge">General Mathematics</span>
+                <span class="badge">Higher Mathematics</span>
+                <span class="badge">Physical Sciences</span>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. EXPERIENCE & ACHIEVEMENTS SECTION (Conditionally structured) -->
+    <!-- 5. EXPERIENCE & ACHIEVEMENTS SECTION -->
     <section id="experience" class="section">
       <div class="container">
         <header class="section-header reveal-on-scroll">
           <span class="section-badge">Milestones</span>
           <h2 class="section-title">Experience & Achievements</h2>
-          <p class="section-subtitle">Academic accomplishments and practical software laboratory projects.</p>
+          <p class="section-subtitle">Academic project leadership, laboratory engineering, and technical accomplishments.</p>
         </header>
 
-        <div style="max-width: 800px; margin: 0 auto;">
-          <article class="bento-card reveal-on-scroll">
-            <span class="badge"><i class="fa-solid fa-award"></i> Academic Laboratory Project</span>
-            <h3 style="margin-top: var(--space-sm);">SE 236: Personal Portfolio with Domain-Bounded AI</h3>
-            <p style="margin-top: var(--space-xs);">
-              Developed a full-stack personal portfolio integrating Netlify Serverless Functions and Google Gemini API, strictly bounded to prevent model hallucination and enforce factual verification.
-            </p>
+        <div class="experience-grid">
+          <!-- Card 1: SE 236 Lab Project Leadership -->
+          <article class="exp-card reveal-on-scroll">
+            <div>
+              <div class="exp-badge-row">
+                <span class="badge badge-verified">
+                  <i class="fa-solid fa-award"></i> Academic Laboratory Lead
+                </span>
+                <span class="badge" style="background: var(--bg-tertiary);">Fall 2026</span>
+              </div>
+
+              <h3 class="exp-role-title">Lead Architect & Developer</h3>
+              <div class="exp-org-name">SE 236: Desktop & Web Programming Lab • DIU</div>
+
+              <p class="exp-desc" style="margin-top: var(--space-sm);">
+                Architected and engineered a comprehensive developer portfolio platform featuring native client-side rendering, Bento Box interface design, and domain-bounded AI integration.
+              </p>
+
+              <ul class="exp-highlights-list" style="margin-top: var(--space-sm);">
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Constructed zero-CLS animated typewriter and light/dark theme persistence engine.</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Implemented Netlify Serverless Functions connecting to Google Gemini API with strict prompt guardrails.</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Engineered responsive mobile drawer and fully accessible keyboard focus flows (WCAG 2.1 AA).</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-tech-tags">
+              <span class="badge">JavaScript (ES6+)</span>
+              <span class="badge">CSS3 Custom Properties</span>
+              <span class="badge">Netlify Functions</span>
+              <span class="badge">Google Gemini API</span>
+              <span class="badge">WCAG 2.1 AA</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Academic Coursework & Laboratory Systems -->
+          <article class="exp-card reveal-on-scroll delay-100">
+            <div>
+              <div class="exp-badge-row">
+                <span class="badge" style="background: rgba(37, 99, 235, 0.12); color: var(--primary);">
+                  <i class="fa-solid fa-code-branch"></i> Coursework & Labs
+                </span>
+                <span class="badge" style="background: var(--bg-tertiary);">2023 - Present</span>
+              </div>
+
+              <h3 class="exp-role-title">Academic Software Lab Contributor</h3>
+              <div class="exp-org-name">Department of Software Engineering • DIU</div>
+
+              <p class="exp-desc" style="margin-top: var(--space-sm);">
+                Actively participated in university software engineering labs implementing algorithmic data structures, OOP paradigms, and relational database management.
+              </p>
+
+              <ul class="exp-highlights-list" style="margin-top: var(--space-sm);">
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Engineered normalized database schemas with relational query integrity and constraints.</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Developed clean OOP class hierarchies applying SOLID principles and modular design.</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Maintained Git repositories utilizing structured branches and conventional commit standards.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-tech-tags">
+              <span class="badge">Python</span>
+              <span class="badge">Java</span>
+              <span class="badge">C / C++</span>
+              <span class="badge">SQL / Databases</span>
+              <span class="badge">Git & GitHub</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Full-Stack & Security Engineering Practice -->
+          <article class="exp-card reveal-on-scroll delay-200">
+            <div>
+              <div class="exp-badge-row">
+                <span class="badge" style="background: rgba(124, 58, 237, 0.12); color: var(--accent);">
+                  <i class="fa-solid fa-shield-halved"></i> Security & Architecture
+                </span>
+                <span class="badge" style="background: var(--bg-tertiary);">Continuous</span>
+              </div>
+
+              <h3 class="exp-role-title">Web Security & Cloud Deployment</h3>
+              <div class="exp-org-name">Independent Technical Practice</div>
+
+              <p class="exp-desc" style="margin-top: var(--space-sm);">
+                Applied modern web security standards, defense-in-depth principles, and continuous deployment workflows across student development projects.
+              </p>
+
+              <ul class="exp-highlights-list" style="margin-top: var(--space-sm);">
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Isolated confidential API credentials within backend serverless environments.</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Engineered prompt injection defense restricting AI chatbot to verified knowledge records.</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Configured Content Security Policy (CSP) and automated continuous deployment via Netlify.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="exp-tech-tags">
+              <span class="badge">Prompt Injection Defense</span>
+              <span class="badge">Security Headers</span>
+              <span class="badge">Serverless Proxy</span>
+              <span class="badge">CI/CD Netlify</span>
+            </div>
           </article>
         </div>
       </div>

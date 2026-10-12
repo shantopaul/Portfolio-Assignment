@@ -9,17 +9,19 @@
 import { initTheme } from './theme.js';
 import { initNavigation } from './navigation.js';
 import { initAnimations, runTypewriter } from './animations.js';
+import { initSkills } from './skills.js';
 import { initProjects } from './projects.js';
 import { initContactForm } from './contact.js';
 import { initChatbot } from './chatbot.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 Initializing Shanto Paul Portfolio Application [Phase 2 Navigation & Hero Ready]');
+  console.log('🚀 Initializing Shanto Paul Portfolio Application [Phase 3 Content Sections Ready]');
 
   // Initialize Core Services
   initTheme();
   initNavigation();
   initAnimations();
+  initSkills();
   initProjects();
   initContactForm();
   initChatbot();

@@ -577,6 +577,505 @@ code, pre {
 }
 
 /* --------------------------------------------------------------------------
+   7.3 About Me Section Architecture
+   -------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.about-profile-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--gradient-hero);
+  opacity: 0.15;
+}
+
+.about-avatar-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: var(--space-md) auto var(--space-md);
+  border-radius: 50%;
+  padding: 4px;
+  background: var(--gradient-border);
+  box-shadow: var(--shadow-lg), var(--shadow-primary-glow);
+}
+
+.about-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-primary);
+  display: block;
+}
+
+.about-facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  text-align: left;
+}
+
+.about-fact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.about-fact-item i {
+  color: var(--primary);
+  font-size: 1rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.about-fact-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.about-bio-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.about-career-box {
+  background: rgba(37, 99, 235, 0.06);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-md) var(--space-lg);
+}
+
+[data-theme='dark'] .about-career-box {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  text-align: center;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.stat-card-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+.stat-card-label {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-2xs);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   7.4 Technical Skills Matrix Architecture
+   -------------------------------------------------------------------------- */
+.skills-nav-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-2xl);
+}
+
+.skill-tab-btn {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.skill-tab-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--primary);
+}
+
+.skill-tab-btn.active {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm), var(--shadow-primary-glow);
+}
+
+.skills-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+
+.skill-cat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.skill-cat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md), var(--shadow-primary-glow);
+}
+
+.skill-cat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-sm);
+}
+
+.skill-cat-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.skill-cat-title i {
+  color: var(--primary);
+  font-size: 1.25rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.skill-item:hover {
+  background: var(--surface-alt);
+  border-color: var(--primary-light);
+  transform: translateX(4px);
+}
+
+.skill-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.skill-icon {
+  font-size: 1.15rem;
+  width: 22px;
+  text-align: center;
+  color: var(--primary);
+}
+
+.skill-level-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.skill-level-badge.advanced {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--primary);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.skill-level-badge.proficient {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--secondary);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.skill-level-badge.intermediate {
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--accent);
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+.skill-level-badge.foundation {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   7.5 Education Timeline Architecture
+   -------------------------------------------------------------------------- */
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin: var(--space-xl) auto 0;
+  padding: var(--space-md) 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px;
+  width: 3px;
+  background: var(--gradient-hero);
+  border-radius: var(--radius-full);
+  opacity: 0.7;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 72px;
+  margin-bottom: var(--space-2xl);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 17px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 14px var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.2);
+  background: var(--primary);
+}
+
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.timeline-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md), var(--shadow-primary-glow);
+}
+
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-degree {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.timeline-institution {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+.timeline-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.timeline-courses-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-course-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   7.6 Experience & Achievements Section Architecture
+   -------------------------------------------------------------------------- */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1040px;
+  margin: var(--space-xl) auto 0;
+}
+
+.exp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-md);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.exp-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md), var(--shadow-primary-glow);
+}
+
+.exp-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.exp-role-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: var(--space-xs);
+}
+
+.exp-org-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.exp-desc {
+  font-size: 0.925rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.exp-highlights-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.exp-highlights-list li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.exp-highlights-list li i {
+  color: var(--secondary);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.exp-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+}
+
+/* --------------------------------------------------------------------------
    8. Button Component Specifications
    -------------------------------------------------------------------------- */
 .btn {

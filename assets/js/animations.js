@@ -13,7 +13,9 @@ export function initAnimations() {
  * Initializes IntersectionObserver to reveal elements as they scroll into view.
  */
 function initScrollReveal() {
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const revealElements = document.querySelectorAll(
+    '.reveal-on-scroll, .reveal, .reveal-left, .reveal-right, .reveal-scale'
+  );
 
   if (revealElements.length === 0) return;
 
@@ -23,6 +25,7 @@ function initScrollReveal() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-revealed');
+            entry.target.classList.add('is-visible');
             obs.unobserve(entry.target);
           }
         });
@@ -33,7 +36,10 @@ function initScrollReveal() {
     revealElements.forEach((el) => observer.observe(el));
   } else {
     // Fallback for older browsers
-    revealElements.forEach((el) => el.classList.add('is-revealed'));
+    revealElements.forEach((el) => {
+      el.classList.add('is-revealed');
+      el.classList.add('is-visible');
+    });
   }
 }
 
