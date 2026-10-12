@@ -1162,11 +1162,17 @@
       <!-- Chat Header -->
       <div class="chat-header">
         <div class="chat-header-title">
-          <i class="fa-solid fa-sparkles"></i>
-          <h3 id="chat-heading">Shanto's AI Assistant</h3>
+          <span class="chat-status-dot" aria-hidden="true"></span>
+          <div class="chat-header-text">
+            <h3 id="chat-heading">Shanto's AI Assistant</h3>
+            <span class="chat-header-model">Verified AI • Powered by Gemini</span>
+          </div>
         </div>
         <div class="chat-header-actions">
-          <button class="chat-header-btn chat-close-btn" type="button" aria-label="Close Chat Window">
+          <button class="chat-header-btn chat-clear-btn" type="button" aria-label="Restart Conversation" title="Restart Conversation">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button class="chat-header-btn chat-close-btn" type="button" aria-label="Close Chat Window" title="Close Window">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -1175,31 +1181,38 @@
       <!-- Domain-Bounded Scope Banner -->
       <div class="chat-scope-banner">
         <i class="fa-solid fa-shield-halved"></i>
-        <span>Answers exclusively from verified portfolio data</span>
+        <span>Answers exclusively from verified portfolio credentials</span>
       </div>
 
       <!-- Message History Container -->
       <div class="chat-body" aria-live="polite">
         <div class="chat-bubble chat-bubble-bot">
-          Hi! I'm Shanto Paul's personal AI portfolio assistant. You can ask me about Shanto's studies at DIU, technical skills, or featured projects.
+          Hi! I'm Shanto Paul's personal portfolio AI assistant. Ask me anything about Shanto's studies at DIU, technical competencies, or featured projects!
+          <span class="chat-msg-time">Just now</span>
         </div>
       </div>
 
       <!-- Suggested Question Pills -->
-      <div style="padding: 0 var(--space-md); background: var(--bg-secondary);">
-        <div class="chat-suggestions">
+      <div class="chat-suggestions-wrap">
+        <div class="chat-suggestions" role="toolbar" aria-label="Suggested Inquiries">
           <button type="button" class="prompt-pill">What does Shanto study at DIU?</button>
           <button type="button" class="prompt-pill">Which programming languages are verified?</button>
-          <button type="button" class="prompt-pill">What projects has Shanto built?</button>
+          <button type="button" class="prompt-pill">Tell me about the SE 236 project</button>
+          <button type="button" class="prompt-pill">How can I contact Shanto?</button>
         </div>
       </div>
 
       <!-- Message Input Form -->
       <div class="chat-footer">
-        <input type="text" class="chat-input" placeholder="Ask about Shanto..." aria-label="Type your question about Shanto Paul">
-        <button class="chat-send-btn" type="button" aria-label="Send message">
-          <i class="fa-solid fa-paper-plane"></i>
-        </button>
+        <div class="chat-input-row">
+          <input type="text" class="chat-input" placeholder="Ask about Shanto's skills, studies..." aria-label="Type your question about Shanto Paul" maxlength="500">
+          <button class="chat-send-btn" type="button" aria-label="Send message" title="Send Question">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+        <div class="chat-disclaimer">
+          <i class="fa-solid fa-lock"></i> Strictly bounded to Shanto Paul's verified records
+        </div>
       </div>
     </div>
   </div>

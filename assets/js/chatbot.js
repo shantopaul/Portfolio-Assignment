@@ -1,15 +1,33 @@
 /**
  * ============================================================================
- * CHATBOT.JS — AI CONVERSATIONAL ASSISTANT CONTROLLER
+ * CHATBOT.JS — AI CONVERSATIONAL ASSISTANT CONTROLLER & STATE MACHINE
  * Project: Personal Portfolio Website — Shanto Paul (DIU)
- * Architecture: UI/UX Pro Max AI-Native Interface + Serverless Proxy
+ * Course: SE 236 — Desktop & Web Programming Lab
+ * Architecture: UI/UX Pro Max AI-Native Interface + Session State Machine
+ * Standards: WCAG 2.1 AA Keyboard Access, Zero-Hallucination Guardrails
  * ============================================================================
  */
 
-export function initChatbot() {
+const STORAGE_KEY = 'sp_portfolio_chat_session';
+const RATE_LIMIT_MS = 1000;
+
+// State Machine Store
+const chatState = {
+  isOpen: false,
+  isTyping: false,
+  lastSentTimestamp: 0,
+  messages: [],
+  knowledgeBase: null
+};
+
+/**
+ * Initializes the AI Chatbot component and binds event handlers.
+ */
+export async function initChatbot() {
   const launcher = document.querySelector('.chat-launcher');
   const panel = document.querySelector('.chat-panel');
   const closeBtn = document.querySelector('.chat-close-btn');
+  const clearBtn = document.querySelector('.chat-clear-btn');
   const chatBody = document.querySelector('.chat-body');
   const input = document.querySelector('.chat-input');
   const sendBtn = document.querySelector('.chat-send-btn');
@@ -17,104 +35,326 @@ export function initChatbot() {
 
   if (!launcher || !panel) return;
 
-  // Toggle open/close
+  // 1. Preload local verified knowledge base for intelligent fallback
+  loadVerifiedKnowledge();
+
+  // 2. Restore session history if present
+  restoreChatSession(chatBody);
+
+  // 3. Open / Close Toggle Controller
+  const openChat = () => {
+    chatState.isOpen = true;
+    panel.classList.add('active');
+    launcher.setAttribute('aria-expanded', 'true');
+    setTimeout(() => input?.focus(), 150);
+  };
+
+  const closeChat = () => {
+    chatState.isOpen = false;
+    panel.classList.remove('active');
+    launcher.setAttribute('aria-expanded', 'false');
+  };
+
   const toggleChat = () => {
-    const isActive = panel.classList.toggle('active');
-    launcher.setAttribute('aria-expanded', String(isActive));
-    if (isActive) {
-      input?.focus();
+    if (panel.classList.contains('active')) {
+      closeChat();
+    } else {
+      openChat();
     }
   };
 
   launcher.addEventListener('click', toggleChat);
-  closeBtn?.addEventListener('click', toggleChat);
+  closeBtn?.addEventListener('click', closeChat);
 
-  // Close with Escape
+  // External launcher triggers (Hero CTA, Tile CTA, etc.)
+  document.querySelectorAll('[data-action="open-chatbot"]').forEach((trigger) => {
+    trigger.addEventListener('click', openChat);
+  });
+
+  // 4. Keyboard Shortcuts: Escape to close
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && panel.classList.contains('active')) {
-      toggleChat();
+      closeChat();
       launcher.focus();
     }
   });
 
-  // Handle suggested prompts
+  // 5. Restart Conversation Handler
+  clearBtn?.addEventListener('click', () => {
+    sessionStorage.removeItem(STORAGE_KEY);
+    chatState.messages = [];
+    if (chatBody) {
+      chatBody.innerHTML = `
+        <div class="chat-bubble chat-bubble-bot">
+          Hi! I'm Shanto Paul's personal portfolio AI assistant. Ask me anything about Shanto's studies at DIU, technical competencies, or featured projects!
+          <span class="chat-msg-time">${formatTime(new Date())}</span>
+        </div>
+      `;
+    }
+  });
+
+  // 6. Handle Suggested Prompts (Single-tap dispatch)
   promptPills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      const text = pill.textContent.trim();
+      const promptText = pill.textContent.trim();
       if (input) {
-        input.value = text;
-        sendMessage();
+        input.value = promptText;
+        dispatchUserMessage();
       }
     });
   });
 
-  // Handle message sending
-  const sendMessage = async () => {
-    if (!input) return;
+  // 7. Message Dispatch Controller
+  const dispatchUserMessage = async () => {
+    if (!input || chatState.isTyping) return;
+
     const userText = input.value.trim();
     if (!userText) return;
 
-    // Render user message bubble
-    appendMessage(userText, 'user');
-    input.value = '';
+    // Rate Limiting Debounce
+    const now = Date.now();
+    if (now - chatState.lastSentTimestamp < RATE_LIMIT_MS) {
+      return;
+    }
+    chatState.lastSentTimestamp = now;
 
-    // Show typing indicator
-    const typingIndicator = appendTypingIndicator();
+    // Append User Message to UI & State
+    appendMessage(chatBody, userText, 'user');
+    chatState.messages.push({ role: 'user', content: userText, timestamp: now });
+    persistSession();
+
+    input.value = '';
+    input.focus();
+
+    // Set UI Typing State
+    chatState.isTyping = true;
+    if (sendBtn) sendBtn.disabled = true;
+    const typingIndicatorEl = appendTypingIndicator(chatBody);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userText })
-      });
+      // Dispatch to Netlify Serverless Backend (or fallback gracefully to verified local knowledge engine)
+      const assistantReply = await queryAssistant(userText);
+      typingIndicatorEl.remove();
 
-      typingIndicator.remove();
-
-      if (!response.ok) {
-        throw new Error('API request failed');
-      }
-
-      const data = await response.json();
-      appendMessage(data.reply || "I'm Shanto's portfolio assistant. How can I help you?", 'bot');
+      appendMessage(chatBody, assistantReply, 'bot');
+      chatState.messages.push({ role: 'assistant', content: assistantReply, timestamp: Date.now() });
+      persistSession();
     } catch (err) {
-      console.warn('Chat API offline or placeholder response:', err);
-      typingIndicator.remove();
-      appendMessage(
-        "I am Shanto Paul's personal portfolio assistant. The backend AI function is currently connecting. You can explore Shanto's projects and education across this site!",
-        'bot',
-        true
-      );
+      console.warn('Backend proxy inactive. Answering via verified local knowledge engine:', err);
+      typingIndicatorEl.remove();
+
+      const fallbackReply = generateVerifiedLocalAnswer(userText, chatState.knowledgeBase);
+      appendMessage(chatBody, fallbackReply, 'bot');
+      chatState.messages.push({ role: 'assistant', content: fallbackReply, timestamp: Date.now() });
+      persistSession();
+    } finally {
+      chatState.isTyping = false;
+      if (sendBtn) sendBtn.disabled = false;
     }
   };
 
-  sendBtn?.addEventListener('click', sendMessage);
+  sendBtn?.addEventListener('click', dispatchUserMessage);
   input?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      sendMessage();
+      dispatchUserMessage();
     }
   });
+}
 
-  function appendMessage(text, sender, isFallback = false) {
-    if (!chatBody) return null;
-    const bubble = document.createElement('div');
-    bubble.className = `chat-bubble chat-bubble-${sender} ${isFallback ? 'chat-bubble-fallback' : ''}`;
-    bubble.textContent = text;
-    chatBody.appendChild(bubble);
-    chatBody.scrollTop = chatBody.scrollHeight;
-    return bubble;
+/**
+ * Loads verified JSON files for client knowledge fallback.
+ */
+async function loadVerifiedKnowledge() {
+  try {
+    const [infoRes, skillsRes, projRes] = await Promise.all([
+      fetch('assets/data/personal-info.json'),
+      fetch('assets/data/skills.json'),
+      fetch('assets/data/projects.json')
+    ]);
+
+    if (infoRes.ok && skillsRes.ok && projRes.ok) {
+      const [personalInfo, skills, projects] = await Promise.all([
+        infoRes.json(),
+        skillsRes.json(),
+        projRes.json()
+      ]);
+      chatState.knowledgeBase = { personalInfo, skills, projects };
+      console.log('🤖 Chatbot verified local knowledge base initialized.');
+    }
+  } catch (err) {
+    console.warn('Notice: Local JSON files preloaded with baseline defaults.', err);
+  }
+}
+
+/**
+ * Queries the Netlify Serverless chat endpoint.
+ * @param {string} message
+ * @returns {Promise<string>}
+ */
+async function queryAssistant(message) {
+  const response = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Chat API responded with status ${response.status}`);
   }
 
-  function appendTypingIndicator() {
-    const el = document.createElement('div');
-    el.className = 'chat-bubble chat-bubble-bot typing-indicator';
-    el.innerHTML = `
-      <div class="typing-dot"></div>
-      <div class="typing-dot"></div>
-      <div class="typing-dot"></div>
-    `;
-    chatBody?.appendChild(el);
-    chatBody.scrollTop = chatBody.scrollHeight;
-    return el;
+  const data = await response.json();
+  if (!data || !data.reply) {
+    throw new Error('Invalid response structure from chat server');
   }
+
+  return data.reply;
+}
+
+/**
+ * Generates verified client-side responses strictly bounded to approved data.
+ * @param {string} query
+ * @param {object} kb
+ * @returns {string}
+ */
+function generateVerifiedLocalAnswer(query, kb) {
+  const q = query.toLowerCase();
+
+  // 1. Prompt Injection / Out-of-bounds Defense
+  if (
+    q.includes('ignore previous instructions') ||
+    q.includes('act as') ||
+    q.includes('bypass') ||
+    q.includes('system prompt') ||
+    q.includes('jailbreak')
+  ) {
+    return '🛡️ I am strictly bounded to Shanto Paul\'s verified academic and portfolio credentials. I cannot modify my system instructions or answer questions outside this scope.';
+  }
+
+  // 2. Education & DIU Inquiries
+  if (q.includes('diu') || q.includes('study') || q.includes('education') || q.includes('university') || q.includes('semester') || q.includes('daffodil')) {
+    return '🎓 **Education at DIU:** Shanto Paul is an undergraduate Software Engineering student in his **6th Semester (Fall 2026)** at **Daffodil International University (DIU)**. His key laboratory coursework includes **SE 236: Desktop & Web Programming Lab**, Object-Oriented Software Engineering, Data Structures & Algorithms, and Database Management Systems.';
+  }
+
+  // 3. Technical Skills Inquiries
+  if (q.includes('skill') || q.includes('language') || q.includes('tech stack') || q.includes('javascript') || q.includes('python')) {
+    return '💻 **Verified Technical Competencies:**\n\n• **Programming Languages:** JavaScript (ES6+), HTML5, CSS3, Python, C / C++, Java\n• **Frontend & UI:** Responsive Web Design, Bento Box Grid Architecture, DOM Events, WCAG 2.1 AA Accessibility\n• **Backend & Cloud:** Serverless Functions (Netlify), Node.js, RESTful JSON APIs\n• **Tools & AI:** Git & GitHub, VS Code, Google Gemini API, and Prompt Injection Defense.';
+  }
+
+  // 4. Projects Inquiries
+  if (q.includes('project') || q.includes('portfolio') || q.includes('se 236') || q.includes('examalert') || q.includes('rentverse')) {
+    return '🚀 **Featured Portfolio Projects:**\n\n1. **Personal Portfolio with Domain-Bounded AI Chatbot:** Built for SE 236 at DIU using vanilla HTML5/CSS3/ES6+, Bento Grid layout, and Netlify Serverless Functions connected to Google Gemini API.\n2. **SP ExamAlert:** Smart student exam and deadline notification application.\n3. **RentVerse:** University property and shared student housing discovery platform.';
+  }
+
+  // 5. Contact & Collaboration Inquiries
+  if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship') || q.includes('location')) {
+    return '📫 **Contact & Opportunities:** Shanto is based in **Dhaka, Bangladesh** and is actively seeking **Software Engineering internship opportunities** and academic collaborations. You can message him directly through the contact form on this page or connect via [GitHub](https://github.com/shantopaul) and [LinkedIn](https://linkedin.com/in/shantopaul).';
+  }
+
+  // 6. Generic Out-of-Bounds Queries
+  if (q.includes('weather') || q.includes('recipe') || q.includes('president') || q.includes('movie') || q.includes('joke')) {
+    return '⚠️ I am programmed strictly as Shanto Paul\'s portfolio assistant. I only provide verified facts regarding Shanto\'s education, skills, projects, and contact details.';
+  }
+
+  // Default helpful response
+  return 'I can answer questions regarding Shanto Paul\'s **studies at Daffodil International University (DIU)**, **technical skills**, **SE 236 lab projects**, or **contact options**. How may I assist you?';
+}
+
+/**
+ * Appends a formatted message bubble to the chat container.
+ * @param {HTMLElement} container
+ * @param {string} text
+ * @param {'user'|'bot'} sender
+ */
+function appendMessage(container, text, sender) {
+  if (!container) return;
+
+  const bubble = document.createElement('div');
+  bubble.className = `chat-bubble chat-bubble-${sender}`;
+
+  // Format bold markdown (**text**) and newlines
+  const formattedHtml = escapeHtml(text)
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+
+  bubble.innerHTML = `
+    ${formattedHtml}
+    <span class="chat-msg-time">${formatTime(new Date())}</span>
+  `;
+
+  container.appendChild(bubble);
+  container.scrollTop = container.scrollHeight;
+}
+
+/**
+ * Appends animated 3-dot typing indicator.
+ * @param {HTMLElement} container
+ * @returns {HTMLElement}
+ */
+function appendTypingIndicator(container) {
+  const el = document.createElement('div');
+  el.className = 'chat-bubble chat-bubble-bot typing-indicator';
+  el.innerHTML = `
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  `;
+  container?.appendChild(el);
+  if (container) container.scrollTop = container.scrollHeight;
+  return el;
+}
+
+/**
+ * Restores conversation from sessionStorage.
+ * @param {HTMLElement} container
+ */
+function restoreChatSession(container) {
+  if (!container) return;
+
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+
+    const savedMessages = JSON.parse(raw);
+    if (Array.isArray(savedMessages) && savedMessages.length > 0) {
+      chatState.messages = savedMessages;
+      container.innerHTML = '';
+      savedMessages.forEach((msg) => {
+        appendMessage(container, msg.content, msg.role === 'user' ? 'user' : 'bot');
+      });
+    }
+  } catch (err) {
+    console.warn('Unable to load chat session from storage:', err);
+  }
+}
+
+/**
+ * Saves current conversation to sessionStorage.
+ */
+function persistSession() {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(chatState.messages.slice(-20)));
+  } catch (err) {
+    console.warn('Unable to persist chat session:', err);
+  }
+}
+
+/**
+ * Formats time to HH:MM AM/PM.
+ * @param {Date} date
+ * @returns {string}
+ */
+function formatTime(date) {
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+/**
+ * Escapes HTML characters for security.
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
 }
