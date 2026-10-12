@@ -449,3 +449,19 @@
     margin: 6px auto 4px auto;
   }
 }
+
+/* --------------------------------------------------------------------------
+   8. Injected Badge & Drawer Suppression
+   -------------------------------------------------------------------------- */
+[data-netlify-deploy-preview],
+.netlify-badge,
+#netlify-drawer,
+iframe#netlify-drawer,
+div[class*="netlify-badge"],
+a[href*="netlify.com"][style*="fixed"],
+div[data-testid*="netlify-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
