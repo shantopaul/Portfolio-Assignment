@@ -25,6 +25,63 @@
       ],
       "period": "2023 - Present",
       "status": "In Progress"
+    },
+    {
+      "id": "hsc-science",
+      "degree": "Higher Secondary Certificate (HSC)",
+      "institution": "[PLACEHOLDER: College Name]",
+      "department": "Science Group",
+      "period": "2020 - 2022",
+      "status": "Completed",
+      "relevant_courses": [
+        "Higher Mathematics",
+        "Physics",
+        "Chemistry",
+        "Information & Communication Technology (ICT)"
+      ]
+    },
+    {
+      "id": "ssc-science",
+      "degree": "Secondary School Certificate (SSC)",
+      "institution": "[PLACEHOLDER: School Name]",
+      "department": "Science Group",
+      "period": "2018 - 2020",
+      "status": "Completed",
+      "relevant_courses": [
+        "General Science & Mathematics",
+        "Higher Mathematics",
+        "Physical Sciences"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-se236",
+      "role": "Lead Architect & Developer — SE 236 Lab Project",
+      "organization": "Department of Software Engineering, DIU",
+      "period": "Fall 2026",
+      "type": "Academic Laboratory Project",
+      "description": "Architected and built a full-stack personal portfolio system featuring pure vanilla HTML5/CSS3/ES6+ client architecture, Bento Box design principles, and Netlify Serverless Functions connecting to Google Gemini API with strict domain-bounded prompt guardrails.",
+      "technologies": ["JavaScript (ES6+)", "CSS3 Custom Properties", "Netlify Functions", "Google Gemini API", "WCAG 2.1 AA"],
+      "highlights": [
+        "Implemented zero-CLS animated typewriter and light/dark theme persistence engine.",
+        "Engineered serverless proxy protecting API credentials with zero frontend secret leakage.",
+        "Built responsive mobile drawer navigation and accessible keyboard traversal."
+      ]
+    },
+    {
+      "id": "exp-academic-labs",
+      "role": "Academic Software Lab Contributor",
+      "organization": "Daffodil International University (DIU)",
+      "period": "2023 - Present",
+      "type": "Coursework & Laboratory Projects",
+      "description": "Engaged in hands-on programming labs encompassing Object-Oriented Software Engineering, Data Structures & Algorithms, and Relational Database Management Systems.",
+      "technologies": ["Python", "Java", "C/C++", "SQL / Relational DBs", "Git & GitHub"],
+      "highlights": [
+        "Designed clean object-oriented class hierarchies and modular code architectures.",
+        "Applied core algorithmic optimization and database schema normalization principles.",
+        "Maintained version-controlled repositories using conventional Git commit standards."
+      ]
     }
   ],
   "interests": [

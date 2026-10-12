@@ -7,17 +7,46 @@
 /* --------------------------------------------------------------------------
    1. Scroll Reveal Classes (IntersectionObserver)
    -------------------------------------------------------------------------- */
-.reveal-on-scroll {
+.reveal-on-scroll,
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
   opacity: 0;
-  transform: translateY(24px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.reveal-on-scroll.is-revealed {
+.reveal-on-scroll,
+.reveal {
+  transform: translateY(24px);
+}
+
+.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+.reveal-on-scroll.is-revealed,
+.reveal-on-scroll.is-visible,
+.reveal.is-revealed,
+.reveal.is-visible,
+.reveal-left.is-revealed,
+.reveal-left.is-visible,
+.reveal-right.is-revealed,
+.reveal-right.is-visible,
+.reveal-scale.is-revealed,
+.reveal-scale.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0) scale(1);
 }
 
 /* Stagger Delays */
@@ -167,7 +196,11 @@
     scroll-behavior: auto !important;
   }
 
-  .reveal-on-scroll {
+  .reveal-on-scroll,
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
     opacity: 1 !important;
     transform: none !important;
   }
