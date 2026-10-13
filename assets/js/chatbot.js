@@ -96,7 +96,7 @@ export async function initChatbot() {
   // 6. Handle Suggested Prompts (Single-tap dispatch)
   promptPills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      const promptText = pill.textContent.trim();
+      const promptText = pill.getAttribute('data-prompt') || pill.textContent.trim();
       if (input) {
         input.value = promptText;
         dispatchUserMessage();
@@ -128,7 +128,10 @@ export async function initChatbot() {
 
     // Set UI Typing State
     chatState.isTyping = true;
-    if (sendBtn) sendBtn.disabled = true;
+    if (sendBtn) {
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+    }
     const typingIndicatorEl = appendTypingIndicator(chatBody);
 
     try {
@@ -149,7 +152,10 @@ export async function initChatbot() {
       persistSession();
     } finally {
       chatState.isTyping = false;
-      if (sendBtn) sendBtn.disabled = false;
+      if (sendBtn) {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i>';
+      }
     }
   };
 
@@ -311,34 +317,53 @@ function formatMarkdown(rawText) {
   // 1. First escape HTML to defend against XSS
   let html = escapeHtml(rawText);
 
-  // 2. Bold text: **text** or __text__
+  // 2. Extract and preserve links via unique tokens
+  const linkPlaceholders = [];
+
+  // Markdown links: [label](url)
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, (match, label, url) => {
+    const idx = linkPlaceholders.length;
+    linkPlaceholders.push(`<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link">${label} <i class="fa-solid fa-arrow-up-right-from-square chat-link-icon" aria-hidden="true"></i></a>`);
+    return `@@LINK_${idx}@@`;
+  });
+
+  // Standalone raw URLs: https://...
+  html = html.replace(/(https?:\/\/[^\s<]+)/g, (url) => {
+    const cleanUrl = url.replace(/[.,;:!?)]+$/, '');
+    const trailing = url.slice(cleanUrl.length);
+    const idx = linkPlaceholders.length;
+    linkPlaceholders.push(`<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="chat-link">${cleanUrl} <i class="fa-solid fa-arrow-up-right-from-square chat-link-icon" aria-hidden="true"></i></a>` + trailing);
+    return `@@LINK_${idx}@@`;
+  });
+
+  // 3. Bold text: **text** or __text__
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
 
-  // 3. Italic text: *text* or _text_
+  // 4. Italic text: *text* or _text_
   html = html.replace(/\*([^\*\n]+?)\*/g, '<em>$1</em>');
 
-  // 4. Inline code: `code`
+  // 5. Inline code: `code`
   html = html.replace(/`([^`]+)`/g, '<code class="chat-inline-code">$1</code>');
 
-  // 5. Links: [label](url)
-  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>');
-
-  // 6. Numbered lists: lines beginning with "1. " or "2. "
+  // 6. Numbered lists: lines starting with numbers
   html = html.replace(/^[\s]*(\d+)\.\s+(.+)$/gm, '<li class="chat-ol-item"><span class="chat-num">$1.</span> $2</li>');
-  html = html.replace(/((?:<li class="chat-ol-item">.*?<\/li>\s*)+)/g, '<ol class="chat-ol">$1</ol>');
+  html = html.replace(/((?:<li class="chat-ol-item">.*?<\/li>[\r\n\s]*)+)/g, '<ol class="chat-ol">$1</ol>');
 
-  // 7. Bullet lists: lines beginning with • or - or *
+  // 7. Bullet lists: lines starting with •, -, or *
   html = html.replace(/^[\s]*[•\-\*]\s+(.+)$/gm, '<li class="chat-list-item">$1</li>');
-  html = html.replace(/((?:<li class="chat-list-item">.*?<\/li>\s*)+)/g, '<ul class="chat-list">$1</ul>');
+  html = html.replace(/((?:<li class="chat-list-item">.*?<\/li>[\r\n\s]*)+)/g, '<ul class="chat-list">$1</ul>');
 
-  // 8. Clean trailing newlines around lists
-  html = html.replace(/<\/ul>\s*<br>/g, '</ul>');
-  html = html.replace(/<\/ol>\s*<br>/g, '</ol>');
+  // 8. Clean trailing line breaks inside lists
+  html = html.replace(/(?:<ol class="chat-ol">.*?<\/ol>|<ul class="chat-list">.*?<\/ul>)/gs, (match) => {
+    return match.replace(/[\r\n]+/g, '');
+  });
 
-  // 9. Convert remaining line breaks to <br>
+  html = html.replace(/\n\n+/g, '<br><br>');
   html = html.replace(/\n/g, '<br>');
-  html = html.replace(/(<br>\s*){3,}/g, '<br><br>');
+
+  // 9. Restore links
+  html = html.replace(/@@LINK_(\d+)@@/g, (m, idx) => linkPlaceholders[Number(idx)]);
 
   return html;
 }

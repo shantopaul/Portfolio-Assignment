@@ -59,13 +59,20 @@ function updateToggleIcons(theme) {
   toggleBtns.forEach((btn) => {
     const icon = btn.querySelector('i');
     if (icon) {
-      if (theme === 'dark') {
-        icon.className = 'fa-solid fa-sun';
-        btn.setAttribute('aria-label', 'Switch to Light Theme');
-      } else {
-        icon.className = 'fa-solid fa-moon';
-        btn.setAttribute('aria-label', 'Switch to Dark Theme');
-      }
+      // Add subtle micro-interaction spin
+      icon.style.transform = 'rotate(180deg)';
+      setTimeout(() => {
+        if (theme === 'dark') {
+          icon.className = 'fa-solid fa-sun';
+          btn.setAttribute('aria-label', 'Switch to Light Theme');
+          btn.setAttribute('title', 'Switch to Light Theme');
+        } else {
+          icon.className = 'fa-solid fa-moon';
+          btn.setAttribute('aria-label', 'Switch to Dark Theme');
+          btn.setAttribute('title', 'Switch to Dark Theme');
+        }
+        icon.style.transform = 'rotate(0deg)';
+      }, 100);
     }
   });
 }
