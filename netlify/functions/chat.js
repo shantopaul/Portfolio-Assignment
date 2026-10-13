@@ -149,6 +149,11 @@ function loadVerifiedKnowledge() {
     academic_education: personalInfo.education || [],
     technical_skills: skills,
     featured_projects: projects,
+    websites: {
+      official_website: 'https://shantopaul.com',
+      real_website: 'https://shantopaul.com',
+      portfolio_assignment: 'https://portfolio-assignment.shantopaul.com'
+    },
     contact_options: personalInfo.contact || {},
     verified_guardrails: {
       institution: 'Daffodil International University (DIU)',
@@ -177,8 +182,15 @@ const verifiedKnowledge = loadVerifiedKnowledge();
 function buildSystemPrompt(kb) {
   return `You are the official, domain-bounded AI Portfolio Assistant representing Shanto Paul.
 
-ACADEMIC CONTEXT:
+ACADEMIC & PROFESSIONAL CONTEXT:
 Shanto Paul is currently an undergraduate student pursuing a B.Sc. in Software Engineering (6th Semester, Fall 2026) at Daffodil International University (DIU), Dhaka, Bangladesh. This portfolio website and AI assistant were architected as an academic project for the course "SE 236: Desktop & Web Programming Lab".
+
+OFFICIAL WEBSITES & LINKS:
+- Official / Real Website: https://shantopaul.com
+- Portfolio Assignment Live Site (SE 236): https://portfolio-assignment.shantopaul.com
+- GitHub Profile: https://github.com/shantopaul
+- LinkedIn Profile: https://linkedin.com/in/shantopaul
+CRITICAL RULE ON WEBSITES: When asked for Shanto's website, real website, web link, or portfolio, always provide his official website (https://shantopaul.com) and his assignment demo (https://portfolio-assignment.shantopaul.com).
 
 CORE MANDATE & OPERATING PRINCIPLES:
 1. SOLE SOURCE OF TRUTH: You must answer questions using EXCLUSIVELY the verified knowledge base provided below. Never extrapolate, hallucinate, invent dates, create unverified employers, or fabricate personal background.
@@ -234,6 +246,10 @@ function generateLocalVerifiedFallback(userMessage) {
     return "🚀 **Key Projects:**\n\n1. **Personal Portfolio with AI Chatbot (SE 236):** Pure HTML5/CSS3/ES6+ with Bento Box design and Netlify Serverless integration.\n2. **SP ExamAlert:** Student exam schedule and deadline reminder tool.\n3. **RentVerse:** Student housing and shared accommodation platform.";
   }
 
+  if (q.includes('website') || q.includes('web') || q.includes('link') || q.includes('lonk') || q.includes('site') || q.includes('url') || q.includes('domain')) {
+    return "🌐 **Shanto Paul's Web Links:**\n\n• **Official Website:** [shantopaul.com](https://shantopaul.com)\n• **Portfolio Assignment (SE 236):** [portfolio-assignment.shantopaul.com](https://portfolio-assignment.shantopaul.com)\n• **GitHub Profile:** [github.com/shantopaul](https://github.com/shantopaul)\n• **LinkedIn Profile:** [linkedin.com/in/shantopaul](https://linkedin.com/in/shantopaul)";
+  }
+
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship')) {
     return "📫 **Contact & Availability:** Shanto is open to **Software Engineering internships** and academic collaborations. You can message him directly through the contact form on this page or connect via [LinkedIn](https://linkedin.com/in/shantopaul) and [GitHub](https://github.com/shantopaul).";
   }
@@ -275,10 +291,11 @@ export const handler = async (event) => {
   }
 
   // 3. Rate Limiting Check
+  const reqHeaders = event.headers || {};
   const clientIp = 
-    event.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
-    event.headers['client-ip'] ||
-    event.headers['x-real-ip'] ||
+    reqHeaders['x-forwarded-for']?.split(',')[0]?.trim() ||
+    reqHeaders['client-ip'] ||
+    reqHeaders['x-real-ip'] ||
     'anonymous-client';
 
   if (!checkRateLimit(clientIp)) {
@@ -371,52 +388,71 @@ export const handler = async (event) => {
     };
   }
 
-  // 6. Invoke Google Gemini REST API
+  // 6. Invoke Google Gemini REST API (with automatic model failover)
   try {
     const systemPrompt = buildSystemPrompt(verifiedKnowledge);
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const candidateModels = [
+      process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+      'gemini-2.5-flash-lite',
+      'gemini-flash-latest'
+    ];
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+    let geminiResponse = null;
+    let selectedModel = candidateModels[0];
 
-    const geminiResponse = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      signal: controller.signal,
-      body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: systemPrompt }]
-        },
-        contents: geminiContents,
-        generationConfig: {
-          temperature: 0.2, // Strict factual adherence
-          maxOutputTokens: 350,
-          topP: 0.8
-        }
-      })
-    });
+    for (const model of candidateModels) {
+      selectedModel = model;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
-    clearTimeout(timeoutId);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-    if (!geminiResponse.ok) {
-      const errText = await geminiResponse.text().catch(() => '');
-      console.error(`Gemini API returned status ${geminiResponse.status}:`, errText);
-
-      if (geminiResponse.status === 429) {
-        return {
-          statusCode: 429,
-          headers: CORS_HEADERS,
+      try {
+        const resp = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
           body: JSON.stringify({
-            status: 'error',
-            error: 'Google Gemini API quota or rate limit exceeded. Please try again in a few moments.',
-            reply: "The AI assistant is temporarily resting due to API rate limits. Please reach out directly through Shanto's contact form!"
+            system_instruction: {
+              parts: [{ text: systemPrompt }]
+            },
+            contents: geminiContents,
+            generationConfig: {
+              temperature: 0.2,
+              maxOutputTokens: 350,
+              topP: 0.8
+            }
           })
-        };
-      }
+        });
 
-      // If upstream model errors, provide deterministic verified answer rather than failing user experience
+        clearTimeout(timeoutId);
+
+        if (resp.ok) {
+          geminiResponse = resp;
+          break;
+        } else if (resp.status === 429) {
+          return {
+            statusCode: 429,
+            headers: CORS_HEADERS,
+            body: JSON.stringify({
+              status: 'error',
+              error: 'Google Gemini API quota or rate limit exceeded. Please try again in a few moments.',
+              reply: "The AI assistant is temporarily resting due to API rate limits. Please reach out directly through Shanto's contact form!"
+            })
+          };
+        } else {
+          // Model busy (503) or not found, try next candidate model
+          const errText = await resp.text().catch(() => '');
+          console.warn(`Model ${model} returned status ${resp.status}:`, errText);
+        }
+      } catch (reqErr) {
+        clearTimeout(timeoutId);
+        console.warn(`Model ${model} request error:`, reqErr.message);
+      }
+    }
+
+    if (!geminiResponse || !geminiResponse.ok) {
+      // Deterministic verified fallback ensures zero user disruption
       const fallbackReply = generateLocalVerifiedFallback(cleanMessage);
       return {
         statusCode: 200,
@@ -440,7 +476,7 @@ export const handler = async (event) => {
       body: JSON.stringify({
         status: 'success',
         reply: sanitizedReply,
-        source: 'gemini-1.5-flash',
+        source: selectedModel,
         timestamp: Date.now()
       })
     };

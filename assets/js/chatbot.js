@@ -276,7 +276,12 @@ function generateVerifiedLocalAnswer(query, kb) {
     return '🚀 **Featured Portfolio Projects:**\n\n1. **Personal Portfolio with Domain-Bounded AI Chatbot:** Built for SE 236 at DIU using vanilla HTML5/CSS3/ES6+, Bento Grid layout, and Netlify Serverless Functions connected to Google Gemini API.\n2. **SP ExamAlert:** Smart student exam and deadline notification application.\n3. **RentVerse:** University property and shared student housing discovery platform.';
   }
 
-  // 5. Contact & Collaboration Inquiries
+  // 5. Official Website & Domain Inquiries
+  if (q.includes('website') || q.includes('web') || q.includes('link') || q.includes('lonk') || q.includes('site') || q.includes('url') || q.includes('domain')) {
+    return '🌐 **Shanto Paul\'s Web Links:**\n\n• **Official Website:** [shantopaul.com](https://shantopaul.com)\n• **Portfolio Assignment (SE 236):** [portfolio-assignment.shantopaul.com](https://portfolio-assignment.shantopaul.com)\n• **GitHub Profile:** [github.com/shantopaul](https://github.com/shantopaul)\n• **LinkedIn Profile:** [linkedin.com/in/shantopaul](https://linkedin.com/in/shantopaul)';
+  }
+
+  // 6. Contact & Collaboration Inquiries
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship') || q.includes('location')) {
     return '📫 **Contact & Opportunities:** Shanto is based in **Dhaka, Bangladesh** and is actively seeking **Software Engineering internship opportunities** and academic collaborations. You can message him directly through the contact form on this page or connect via [GitHub](https://github.com/shantopaul) and [LinkedIn](https://linkedin.com/in/shantopaul).';
   }

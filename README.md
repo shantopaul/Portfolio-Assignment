@@ -20,7 +20,7 @@ A modern, responsive, and professional personal portfolio website featuring an *
 
 <br />
 
-[View Live Demo](https://shantopaul.netlify.app) · [Report Bug](https://github.com/shantopaul/Portfolio-Assignment/issues) · [Request Feature](https://github.com/shantopaul/Portfolio-Assignment/issues)
+[View Live Demo](https://portfolio-assignment.shantopaul.com/) · [Report Bug](https://github.com/shantopaul/Portfolio-Assignment/issues) · [Request Feature](https://github.com/shantopaul/Portfolio-Assignment/issues)
 
 </div>
 

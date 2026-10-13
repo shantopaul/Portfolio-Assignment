@@ -99,15 +99,25 @@
       "Open Source Collaboration"
     ]
   },
+  "websites": {
+    "official_website": "https://shantopaul.com",
+    "real_website": "https://shantopaul.com",
+    "domain": "shantopaul.com",
+    "portfolio_assignment": "https://portfolio-assignment.shantopaul.com"
+  },
   "social_links": {
+    "website": "https://shantopaul.com",
+    "portfolio_assignment": "https://portfolio-assignment.shantopaul.com",
     "github": "https://github.com/shantopaul",
     "linkedin": "https://linkedin.com/in/shantopaul",
-    "twitter": "[PLACEHOLDER: https://x.com/yourhandle]",
-    "portfolio": "https://github.com/shantopaul/Portfolio-Assignment"
+    "twitter": "[PLACEHOLDER: https://x.com/yourhandle]"
   },
   "chatbot_knowledge": {
     "system_identity": "Shanto Paul's Personal Portfolio AI Assistant",
+    "official_website": "https://shantopaul.com",
+    "portfolio_url": "https://portfolio-assignment.shantopaul.com",
     "allowed_topics": [
+      "Shanto's real official website at shantopaul.com",
       "Shanto's education at Daffodil International University",
       "Current semester and academic courses (SE 236)",
       "Programming languages and technical skills",

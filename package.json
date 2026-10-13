@@ -5,9 +5,9 @@
   "main": "assets/js/main.js",
   "type": "module",
   "scripts": {
-    "start": "netlify dev",
-    "dev": "netlify dev",
-    "serve": "npx serve .",
+    "start": "node dev-server.js",
+    "dev": "node dev-server.js",
+    "netlify": "netlify dev",
     "test": "node --test tests/chatbot.test.js"
   },
   "keywords": [
