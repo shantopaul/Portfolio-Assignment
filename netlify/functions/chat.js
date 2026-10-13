@@ -149,6 +149,11 @@ function loadVerifiedKnowledge() {
     academic_education: personalInfo.education || [],
     technical_skills: skills,
     featured_projects: projects,
+    websites: {
+      official_website: 'https://shantopaul.com',
+      real_website: 'https://shantopaul.com',
+      portfolio_assignment: 'https://portfolio-assignment.shantopaul.com'
+    },
     contact_options: personalInfo.contact || {},
     verified_guardrails: {
       institution: 'Daffodil International University (DIU)',
@@ -177,8 +182,15 @@ const verifiedKnowledge = loadVerifiedKnowledge();
 function buildSystemPrompt(kb) {
   return `You are the official, domain-bounded AI Portfolio Assistant representing Shanto Paul.
 
-ACADEMIC CONTEXT:
+ACADEMIC & PROFESSIONAL CONTEXT:
 Shanto Paul is currently an undergraduate student pursuing a B.Sc. in Software Engineering (6th Semester, Fall 2026) at Daffodil International University (DIU), Dhaka, Bangladesh. This portfolio website and AI assistant were architected as an academic project for the course "SE 236: Desktop & Web Programming Lab".
+
+OFFICIAL WEBSITES & LINKS:
+- Official / Real Website: https://shantopaul.com
+- Portfolio Assignment Live Site (SE 236): https://portfolio-assignment.shantopaul.com
+- GitHub Profile: https://github.com/shantopaul
+- LinkedIn Profile: https://linkedin.com/in/shantopaul
+CRITICAL RULE ON WEBSITES: When asked for Shanto's website, real website, web link, or portfolio, always provide his official website (https://shantopaul.com) and his assignment demo (https://portfolio-assignment.shantopaul.com).
 
 CORE MANDATE & OPERATING PRINCIPLES:
 1. SOLE SOURCE OF TRUTH: You must answer questions using EXCLUSIVELY the verified knowledge base provided below. Never extrapolate, hallucinate, invent dates, create unverified employers, or fabricate personal background.
@@ -234,6 +246,10 @@ function generateLocalVerifiedFallback(userMessage) {
     return "🚀 **Key Projects:**\n\n1. **Personal Portfolio with AI Chatbot (SE 236):** Pure HTML5/CSS3/ES6+ with Bento Box design and Netlify Serverless integration.\n2. **SP ExamAlert:** Student exam schedule and deadline reminder tool.\n3. **RentVerse:** Student housing and shared accommodation platform.";
   }
 
+  if (q.includes('website') || q.includes('web') || q.includes('link') || q.includes('lonk') || q.includes('site') || q.includes('url') || q.includes('domain')) {
+    return "🌐 **Shanto Paul's Web Links:**\n\n• **Official Website:** [shantopaul.com](https://shantopaul.com)\n• **Portfolio Assignment (SE 236):** [portfolio-assignment.shantopaul.com](https://portfolio-assignment.shantopaul.com)\n• **GitHub Profile:** [github.com/shantopaul](https://github.com/shantopaul)\n• **LinkedIn Profile:** [linkedin.com/in/shantopaul](https://linkedin.com/in/shantopaul)";
+  }
+
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship')) {
     return "📫 **Contact & Availability:** Shanto is open to **Software Engineering internships** and academic collaborations. You can message him directly through the contact form on this page or connect via [LinkedIn](https://linkedin.com/in/shantopaul) and [GitHub](https://github.com/shantopaul).";
   }
@@ -275,10 +291,11 @@ export const handler = async (event) => {
   }
 
   // 3. Rate Limiting Check
+  const reqHeaders = event.headers || {};
   const clientIp = 
-    event.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
-    event.headers['client-ip'] ||
-    event.headers['x-real-ip'] ||
+    reqHeaders['x-forwarded-for']?.split(',')[0]?.trim() ||
+    reqHeaders['client-ip'] ||
+    reqHeaders['x-real-ip'] ||
     'anonymous-client';
 
   if (!checkRateLimit(clientIp)) {

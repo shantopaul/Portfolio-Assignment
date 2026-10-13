@@ -169,4 +169,16 @@ test('Standardized 8-Scenario Evaluation Matrix', async (t) => {
 
     assert.equal(throttled, true, 'Rate limiter should have triggered 429 status code');
   });
+
+  await t.test('Scenario 9 (Website Inquiry): Returns verified official domain shantopaul.com and assignment link', async () => {
+    const res = await handler({
+      httpMethod: 'POST',
+      headers: { 'client-ip': 'suite-s9' },
+      body: JSON.stringify({ message: 'What is Shanto real web link or website domain?' })
+    });
+    assert.equal(res.statusCode, 200);
+    const body = JSON.parse(res.body);
+    assert.equal(body.status, 'success');
+    assert.ok(body.reply.includes('shantopaul.com'));
+  });
 });
