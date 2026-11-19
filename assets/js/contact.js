@@ -128,7 +128,7 @@ export function initContactForm() {
       console.warn('Notice: Form submission endpoint unavailable, providing graceful feedback.', err);
       if (statusMsg) {
         statusMsg.className = 'contact-status-msg error';
-        statusMsg.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Unable to deliver message via form endpoint right now. Please email directly at <strong>your.email@example.com</strong>.`;
+        statusMsg.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Unable to deliver message via form endpoint right now. Please email directly at <strong>shanto@shantopaul.com</strong>.`;
         statusMsg.style.display = 'flex';
       }
     } finally {
