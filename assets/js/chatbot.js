@@ -268,8 +268,8 @@ function generateVerifiedLocalAnswer(query, kb) {
   }
 
   // 2. Education & DIU Inquiries
-  if (q.includes('diu') || q.includes('study') || q.includes('education') || q.includes('university') || q.includes('semester') || q.includes('daffodil')) {
-    return '🎓 **Education at DIU:** Shanto Paul is an undergraduate Software Engineering student in his **6th Semester (Fall 2026)** at **Daffodil International University (DIU)**. His key laboratory coursework includes **SE 236: Desktop & Web Programming Lab**, Object-Oriented Software Engineering, Data Structures & Algorithms, and Database Management Systems.';
+  if (q.includes('diu') || q.includes('study') || q.includes('education') || q.includes('university') || q.includes('semester') || q.includes('daffodil') || q.includes('hsc') || q.includes('ssc') || q.includes('college') || q.includes('school')) {
+    return '🎓 **Academic Background:**\n\n• **University:** B.Sc. in Software Engineering (6th Semester, Fall 2026) at **Daffodil International University (DIU)** — including **SE 236: Desktop & Web Programming Lab**, OOP, Data Structures & Algorithms, and DBMS.\n• **HSC (2020–2022):** Savar Govt College (Science Group)\n• **SSC (2018–2020):** Savar Adhar Chandra Government High School (Science Group)';
   }
 
   // 3. Technical Skills Inquiries
@@ -289,7 +289,7 @@ function generateVerifiedLocalAnswer(query, kb) {
 
   // 6. Contact & Collaboration Inquiries
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship') || q.includes('location')) {
-    return '📫 **Contact & Opportunities:** Shanto is based in **Dhaka, Bangladesh** and is actively seeking **Software Engineering internship opportunities** and academic collaborations. You can message him directly through the contact form on this page or connect via [GitHub](https://github.com/shantopaul) and [LinkedIn](https://linkedin.com/in/shantopaul).';
+    return '📫 **Contact & Opportunities:** Shanto is based in **Dhaka, Bangladesh** and is actively seeking **Software Engineering internship opportunities** and academic collaborations. Email him at **shanto@shantopaul.com**, use the contact form on this page, or connect via [GitHub](https://github.com/shantopaul) and [LinkedIn](https://linkedin.com/in/shantopaul).';
   }
 
   // 6. Private / Unlisted Personal Detail Defense

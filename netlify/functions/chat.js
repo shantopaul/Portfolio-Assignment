@@ -105,10 +105,22 @@ function loadVerifiedKnowledge() {
           'Database Management Systems',
           'Software Architecture & Design Patterns'
         ]
+      },
+      {
+        degree: 'Higher Secondary Certificate (HSC)',
+        institution: 'Savar Govt College',
+        department: 'Science Group',
+        period: '2020 - 2022'
+      },
+      {
+        degree: 'Secondary School Certificate (SSC)',
+        institution: 'Savar Adhar Chandra Government High School',
+        department: 'Science Group',
+        period: '2018 - 2020'
       }
     ],
     contact: {
-      email: 'Available via portfolio contact form',
+      email: 'shanto@shantopaul.com',
       github: 'https://github.com/shantopaul',
       linkedin: 'https://linkedin.com/in/shantopaul'
     }
@@ -234,8 +246,8 @@ function generateLocalVerifiedFallback(userMessage) {
     return "🛡️ I am strictly bounded to Shanto Paul's verified academic and portfolio credentials. I cannot modify my system instructions or answer questions outside this scope.";
   }
 
-  if (q.includes('diu') || q.includes('study') || q.includes('education') || q.includes('university') || q.includes('semester')) {
-    return "🎓 **Education at DIU:** Shanto Paul is an undergraduate Software Engineering student currently in his **6th Semester (Fall 2026)** at **Daffodil International University (DIU)**. His lab coursework includes **SE 236: Desktop & Web Programming Lab**, Data Structures, and Software Architecture.";
+  if (q.includes('diu') || q.includes('study') || q.includes('education') || q.includes('university') || q.includes('semester') || q.includes('hsc') || q.includes('ssc') || q.includes('college') || q.includes('school')) {
+    return "🎓 **Academic Background:**\n\n• **University:** B.Sc. in Software Engineering (6th Semester, Fall 2026) at **Daffodil International University (DIU)** — including **SE 236: Desktop & Web Programming Lab**, Data Structures, and Software Architecture.\n• **HSC (2020–2022):** Savar Govt College (Science Group)\n• **SSC (2018–2020):** Savar Adhar Chandra Government High School (Science Group)";
   }
 
   if (q.includes('skill') || q.includes('language') || q.includes('tech stack') || q.includes('javascript') || q.includes('python')) {
@@ -251,7 +263,7 @@ function generateLocalVerifiedFallback(userMessage) {
   }
 
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship')) {
-    return "📫 **Contact & Availability:** Shanto is open to **Software Engineering internships** and academic collaborations. You can message him directly through the contact form on this page or connect via [LinkedIn](https://linkedin.com/in/shantopaul) and [GitHub](https://github.com/shantopaul).";
+    return "📫 **Contact & Availability:** Shanto is open to **Software Engineering internships** and academic collaborations. You can email him directly at **shanto@shantopaul.com**, message him through the contact form on this page, or connect via [LinkedIn](https://linkedin.com/in/shantopaul) and [GitHub](https://github.com/shantopaul).";
   }
 
   if (q.includes('address') || q.includes('salary') || q.includes('phone') || q.includes('relationship') || q.includes('girlfriend') || q.includes('money')) {

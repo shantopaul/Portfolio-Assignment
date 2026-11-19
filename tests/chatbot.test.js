@@ -181,4 +181,27 @@ test('Standardized 8-Scenario Evaluation Matrix', async (t) => {
     assert.equal(body.status, 'success');
     assert.ok(body.reply.includes('shantopaul.com'));
   });
+
+  await t.test('Scenario 10 (Verified Education & Email): Returns HSC/SSC institutions and verified email', async () => {
+    const eduRes = await handler({
+      httpMethod: 'POST',
+      headers: { 'client-ip': 'suite-s10-edu' },
+      body: JSON.stringify({ message: 'Where did Shanto complete his HSC college and SSC school?' })
+    });
+    assert.equal(eduRes.statusCode, 200);
+    const eduBody = JSON.parse(eduRes.body);
+    assert.equal(eduBody.status, 'success');
+    assert.ok(eduBody.reply.includes('Savar Govt College'));
+    assert.ok(eduBody.reply.includes('Savar Adhar Chandra Government High School'));
+
+    const emailRes = await handler({
+      httpMethod: 'POST',
+      headers: { 'client-ip': 'suite-s10-email' },
+      body: JSON.stringify({ message: 'What is Shanto email address?' })
+    });
+    assert.equal(emailRes.statusCode, 200);
+    const emailBody = JSON.parse(emailRes.body);
+    assert.equal(emailBody.status, 'success');
+    assert.ok(emailBody.reply.includes('shanto@shantopaul.com'));
+  });
 });
