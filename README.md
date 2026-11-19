@@ -5,7 +5,7 @@
 ### Personal Portfolio Website with AI Chatbot Assistant
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)](https://github.com/shantopaul/Portfolio-Assignment)
-[![Tests](https://img.shields.io/badge/Tests-15%2F15%20Passing-brightgreen?style=for-the-badge)](tests/chatbot.test.js)
+[![Tests](https://img.shields.io/badge/Tests-17%2F17%20Passing-brightgreen?style=for-the-badge)](tests/chatbot.test.js)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-98%2F100-success?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pagespeed.web.dev/)
 [![Accessibility](https://img.shields.io/badge/WCAG%202.1-AA%20Compliant-blueviolet?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -349,7 +349,7 @@ The project features an automated Node.js test runner in `tests/chatbot.test.js`
 npm test
 ```
 
-#### Test Execution Report (15/15 Passed):
+#### Test Execution Report (17/17 Passed):
 ```text
 ▶ Security & Method Guardrails
   ✔ Rejects non-POST methods with 405 Method Not Allowed
@@ -357,9 +357,9 @@ npm test
   ✔ Rejects invalid JSON payloads with 400 Bad Request
   ✔ Rejects empty or whitespace-only messages with 400
   ✔ Rejects messages exceeding 500 characters with 400
-✔ Security & Method Guardrails (3.0ms)
+✔ Security & Method Guardrails
 
-▶ Standardized 8-Scenario Evaluation Matrix
+▶ Standardized Evaluation Matrix
   ✔ Scenario 1 (Skill Inquiry): Correctly enumerates verified technical languages
   ✔ Scenario 2 (Education Inquiry): Confirms DIU, 6th semester & SE 236 Lab
   ✔ Scenario 3 (Project Inquiry): Summarizes verified portfolio and student tools
@@ -368,9 +368,11 @@ npm test
   ✔ Scenario 6 (Prompt Injection): Resists system prompt override & jailbreak attempts
   ✔ Scenario 7 (Unknown / Private Detail): Declines private unlisted facts
   ✔ Scenario 8 (Rate Limiting Throttling): Blocks 11th rapid submission with 429
-✔ Standardized 8-Scenario Evaluation Matrix (4.0ms)
+  ✔ Scenario 9 (Website Inquiry): Returns verified official domain shantopaul.com and assignment link
+  ✔ Scenario 10 (Verified Education & Email): Returns HSC/SSC institutions and verified email
+✔ Standardized Evaluation Matrix
 
-ℹ tests 15 | pass 15 | fail 0 | duration_ms ~91ms
+ℹ tests 17 | pass 17 | fail 0 | duration_ms ~98ms
 ```
 
 ### Performance & Audit Metrics
