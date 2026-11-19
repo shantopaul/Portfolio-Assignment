@@ -10,7 +10,7 @@
       "tags": ["HTML5", "CSS3", "JavaScript", "Netlify Functions", "Gemini API", "UI/UX Pro Max"],
       "image": "assets/images/projects/portfolio-preview.svg",
       "github_url": "https://github.com/shantopaul/Portfolio-Assignment",
-      "demo_url": "https://shantopaul.netlify.app",
+      "demo_url": "https://portfolio-assignment.shantopaul.com/",
       "highlights": [
         "Domain-bounded AI assistant answering personal queries only",
         "Mobile-first Bento Box Grid layout with dark/light themes",
