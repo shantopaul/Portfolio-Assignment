@@ -4,7 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Synchronous Auto-System / Saved Theme Bootstrap (Zero FOUC) -->
+  <script>
+    (function () {
+      try {
+        localStorage.removeItem('sp_portfolio_theme');
+        var mode = localStorage.getItem('sp_portfolio_theme_mode') || 'system';
+        if (mode !== 'system' && mode !== 'light' && mode !== 'dark') mode = 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-mode', mode);
+        document.documentElement.style.colorScheme = resolved;
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Primary SEO Metadata -->
   <title>Shanto Paul | Software Engineering Student & Full-Stack Developer</title>
@@ -99,22 +115,83 @@
         </span>
       </a>
 
-      <!-- Desktop & Mobile Navigation Links -->
+      <!-- Desktop Navigation & Professional Mobile Slide-Out Drawer -->
       <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
-        <a href="#hero" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <!-- Mobile Drawer Header -->
+        <div class="nav-drawer-header">
+          <div class="nav-drawer-brand">
+            <img src="assets/images/logo/sp-logo.svg" alt="" class="nav-brand-logo" width="36" height="36" aria-hidden="true">
+            <div class="nav-brand-text">
+              <span class="brand-name">Shanto Paul</span>
+              <span class="brand-sub">SWE Student • DIU</span>
+            </div>
+          </div>
+          <button class="nav-drawer-close btn-icon" type="button" aria-label="Close navigation menu" title="Close Menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Primary Section Links -->
+        <div class="nav-links-group">
+          <a href="#hero" class="nav-link active"><i class="fa-solid fa-house nav-link-icon" aria-hidden="true"></i><span>Home</span></a>
+          <a href="#about" class="nav-link"><i class="fa-solid fa-user nav-link-icon" aria-hidden="true"></i><span>About</span></a>
+          <a href="#skills" class="nav-link"><i class="fa-solid fa-code nav-link-icon" aria-hidden="true"></i><span>Skills</span></a>
+          <a href="#education" class="nav-link"><i class="fa-solid fa-graduation-cap nav-link-icon" aria-hidden="true"></i><span>Education</span></a>
+          <a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase nav-link-icon" aria-hidden="true"></i><span>Experience</span></a>
+          <a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open nav-link-icon" aria-hidden="true"></i><span>Projects</span></a>
+          <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope nav-link-icon" aria-hidden="true"></i><span>Contact</span></a>
+        </div>
+
+        <!-- Mobile Drawer Footer (Theme Switcher, Quick Actions & Socials) -->
+        <div class="nav-drawer-footer">
+          <div class="nav-drawer-section-label">Appearance</div>
+          <div class="nav-theme-segmented" role="group" aria-label="Choose color theme">
+            <button type="button" class="nav-theme-pill" data-theme-choice="system" aria-pressed="true">
+              <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Auto
+            </button>
+            <button type="button" class="nav-theme-pill" data-theme-choice="light" aria-pressed="false">
+              <i class="fa-solid fa-sun" aria-hidden="true"></i> Light
+            </button>
+            <button type="button" class="nav-theme-pill" data-theme-choice="dark" aria-pressed="false">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i> Dark
+            </button>
+          </div>
+
+          <div class="nav-drawer-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-action="open-chatbot" data-drawer-close>
+              <i class="fa-solid fa-robot" aria-hidden="true"></i> Ask AI Assistant
+            </button>
+            <a href="assets/documents/resume.pdf" download="Shanto_Paul_Resume.pdf" class="btn btn-secondary btn-sm" data-drawer-close>
+              <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Resume
+            </a>
+          </div>
+
+          <div class="nav-drawer-socials">
+            <a href="https://shantopaul.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Official Website" title="shantopaul.com">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+            <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/shantopauldev" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:shanto@shantopaul.com" class="footer-social-link" aria-label="Email Shanto" title="shanto@shantopaul.com">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </nav>
 
-      <!-- Utility Actions (AI Assistant Quick Trigger & Mobile Menu) -->
+      <!-- Utility Actions (AI Quick Trigger, Theme Toggle & Mobile Menu) -->
       <div class="nav-actions">
         <button class="btn-nav-ai" type="button" data-action="open-chatbot" aria-label="Open Shanto's AI Assistant" title="Chat with Shanto's AI Assistant">
           <i class="fa-solid fa-robot" aria-hidden="true"></i>
           <span>Ask AI</span>
+        </button>
+
+        <button class="theme-toggle btn-icon" type="button" aria-label="Theme: Auto (System)" title="Theme: Auto (System)">
+          <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
         </button>
 
         <button class="nav-toggle btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
