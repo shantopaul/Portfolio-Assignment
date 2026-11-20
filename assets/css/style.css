@@ -254,6 +254,7 @@ code, pre {
 .section {
   padding: var(--space-4xl) 0;
   position: relative;
+  overflow-x: clip;
 }
 
 .section-alt {
@@ -804,7 +805,7 @@ code, pre {
 
 .skills-categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: var(--space-xl);
 }
 
@@ -1044,7 +1045,7 @@ code, pre {
    -------------------------------------------------------------------------- */
 .experience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: var(--space-xl);
   max-width: 1040px;
   margin: var(--space-xl) auto 0;
@@ -1333,7 +1334,7 @@ code, pre {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: var(--space-xl);
 }
 
