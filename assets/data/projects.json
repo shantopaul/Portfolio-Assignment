@@ -25,7 +25,7 @@
       "short_description": "Academic exam and schedule notification application developed to assist university students with test preparation deadlines.",
       "full_description": "A specialized student utility designed to track semester courses, exam schedules, and deadlines with automated alerts and reminders.",
       "tags": ["JavaScript", "HTML5", "CSS3", "Academic"],
-      "image": "assets/images/projects/project-placeholder.svg",
+      "image": "assets/images/projects/sp-examalert.svg",
       "github_url": "[PLACEHOLDER: https://github.com/shantopaul/exam-alert]",
       "demo_url": "[PLACEHOLDER: Demo URL if available]",
       "highlights": [
@@ -41,7 +41,7 @@
       "short_description": "Platform facilitating university housing, student rental discovery, and shared asset management.",
       "full_description": "Project addressing student housing logistics around campus with listings, filterable categories, and booking inquiries.",
       "tags": ["Web Development", "Database", "UI/UX"],
-      "image": "assets/images/projects/project-placeholder.svg",
+      "image": "assets/images/projects/rentverse.svg",
       "github_url": "[PLACEHOLDER: https://github.com/shantopaul/rentverse]",
       "demo_url": "[PLACEHOLDER: Demo URL if available]",
       "highlights": [

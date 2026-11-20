@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340" role="img" aria-label="SP ExamAlert Smart Exam Notification System preview">
+  <defs>
+    <linearGradient id="ex-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070B14"/>
+      <stop offset="55%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="ex-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <radialGradient id="ex-glow" cx="78%" cy="22%" r="52%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="340" fill="url(#ex-bg)"/>
+  <rect width="600" height="340" fill="url(#ex-glow)"/>
+
+  <!-- App Shell -->
+  <rect x="34" y="26" width="532" height="288" rx="14" fill="#0B1120" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Left Sidebar -->
+  <rect x="34" y="26" width="136" height="288" rx="14" fill="#111C33"/>
+  <rect x="150" y="26" width="20" height="288" fill="#111C33"/>
+  <line x1="170" y1="26" x2="170" y2="314" stroke="#1E293B"/>
+
+  <rect x="50" y="44" width="26" height="26" rx="7" fill="url(#ex-accent)"/>
+  <path d="M58 58 L62 62 L69 53" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="84" y="56" font-family="Space Grotesk, sans-serif" font-size="10.5" font-weight="700" fill="#F8FAFC">ExamAlert</text>
+  <text x="84" y="67" font-family="Inter, sans-serif" font-size="7.5" fill="#94A3B8">Student Planner</text>
+
+  <!-- Sidebar Nav Items -->
+  <rect x="48" y="90" width="108" height="28" rx="7" fill="#1E3A8A" fill-opacity="0.55" stroke="#3B82F6" stroke-opacity="0.45"/>
+  <text x="64" y="107" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#93C5FD">Upcoming Exams</text>
+  <rect x="48" y="126" width="108" height="24" rx="6" fill="transparent"/>
+  <text x="64" y="141" font-family="Inter, sans-serif" font-size="8.5" fill="#94A3B8">Course Deadlines</text>
+  <rect x="48" y="156" width="108" height="24" rx="6" fill="transparent"/>
+  <text x="64" y="171" font-family="Inter, sans-serif" font-size="8.5" fill="#94A3B8">Alert Preferences</text>
+
+  <!-- Alert Summary Pill Bottom Left -->
+  <rect x="48" y="242" width="108" height="54" rx="9" fill="#0F172A" stroke="#1E293B"/>
+  <text x="58" y="261" font-family="Inter, sans-serif" font-size="7.5" font-weight="600" fill="#94A3B8">ACTIVE REMINDERS</text>
+  <text x="58" y="282" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700" fill="#34D399">4 Alerts On</text>
+
+  <!-- Main Dashboard Area -->
+  <text x="190" y="58" font-family="Space Grotesk, sans-serif" font-size="13.5" font-weight="700" fill="#F8FAFC">Semester Schedule &amp; Deadlines</text>
+  <rect x="476" y="42" width="72" height="22" rx="11" fill="#064E3B" stroke="#10B981" stroke-opacity="0.5"/>
+  <circle cx="488" cy="53" r="3" fill="#10B981"/>
+  <text x="496" y="56" font-family="Inter, sans-serif" font-size="8" font-weight="600" fill="#6EE7B7">Synced</text>
+
+  <!-- Exam Card 1 (Urgent Countdown) -->
+  <rect x="190" y="78" width="358" height="68" rx="10" fill="#141F35" stroke="#3B82F6" stroke-opacity="0.45"/>
+  <rect x="190" y="78" width="4" height="68" rx="2" fill="#3B82F6"/>
+  <text x="208" y="100" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="700" fill="#F8FAFC">SE 236 — Desktop &amp; Web Lab Final</text>
+  <text x="208" y="116" font-family="Inter, sans-serif" font-size="8.2" fill="#94A3B8">DIU Software Engineering • Lab Submission &amp; Viva</text>
+  <rect x="208" y="126" width="180" height="6" rx="3" fill="#1E293B"/>
+  <rect x="208" y="126" width="144" height="6" rx="3" fill="#3B82F6"/>
+  <rect x="454" y="92" width="80" height="26" rx="13" fill="#1E3A8A"/>
+  <text x="494" y="108" font-family="JetBrains Mono, monospace" font-size="8.5" font-weight="700" fill="#93C5FD" text-anchor="middle">02d : 14h</text>
+
+  <!-- Exam Card 2 -->
+  <rect x="190" y="158" width="358" height="66" rx="10" fill="#111C33" stroke="#1E293B"/>
+  <rect x="190" y="158" width="4" height="66" rx="2" fill="#10B981"/>
+  <text x="208" y="180" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#F8FAFC">Algorithm Analysis &amp; Design Quiz</text>
+  <text x="208" y="196" font-family="Inter, sans-serif" font-size="8.2" fill="#94A3B8">Chapter 4: Dynamic Programming • Room AB4-302</text>
+  <rect x="208" y="206" width="180" height="6" rx="3" fill="#1E293B"/>
+  <rect x="208" y="206" width="108" height="6" rx="3" fill="#10B981"/>
+  <rect x="454" y="172" width="80" height="26" rx="13" fill="#064E3B"/>
+  <text x="494" y="188" font-family="JetBrains Mono, monospace" font-size="8.5" font-weight="700" fill="#6EE7B7" text-anchor="middle">05d : 08h</text>
+
+  <!-- Bottom Toast Notification -->
+  <rect x="190" y="240" width="358" height="56" rx="10" fill="#1E1B4B" fill-opacity="0.55" stroke="#8B5CF6" stroke-opacity="0.45"/>
+  <circle cx="216" cy="268" r="14" fill="#7C3AED" fill-opacity="0.25" stroke="#A78BFA" stroke-opacity="0.5"/>
+  <path d="M216 261 C213 261 211 263 211 267 L210 270 L222 270 L221 267 C221 263 219 261 216 261 Z" fill="#C4B5FD"/>
+  <text x="240" y="264" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#E9D5FF">Smart Alert Triggered</text>
+  <text x="240" y="279" font-family="Inter, sans-serif" font-size="8" fill="#CBD5E1">Daily revision reminder scheduled for 8:00 PM</text>
+</svg>
