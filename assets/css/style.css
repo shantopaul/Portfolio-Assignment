@@ -185,9 +185,13 @@ body {
 body,
 .navbar,
 .bento-card,
-.project-card,
-.experience-card,
+.about-profile-card,
+.stat-card,
+.skill-cat-card,
+.skill-item,
 .timeline-card,
+.exp-card,
+.project-card,
 .contact-info-card,
 .contact-form-card,
 .form-control,
@@ -277,6 +281,14 @@ a:hover {
   color: var(--primary-dark);
 }
 
+[data-theme='dark'] a {
+  color: #60A5FA;
+}
+
+[data-theme='dark'] a:hover {
+  color: #93C5FD;
+}
+
 code, pre {
   font-family: var(--font-mono);
 }
@@ -309,6 +321,11 @@ code, pre {
 
 .section-alt {
   background-color: var(--bg-secondary);
+}
+
+[data-theme='dark'] .section-alt {
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
 }
 
 .section-header {
@@ -796,7 +813,7 @@ code, pre {
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
   padding: var(--space-xl);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md), var(--shadow-card-inset);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -914,12 +931,15 @@ code, pre {
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   text-align: center;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: var(--shadow-sm), var(--shadow-card-inset);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .stat-card:hover {
+  background: var(--surface-elevated);
   transform: translateY(-3px);
-  border-color: var(--primary);
+  border-color: rgba(96, 165, 250, 0.45);
+  box-shadow: var(--shadow-md), var(--shadow-primary-glow), var(--shadow-card-inset);
 }
 
 .stat-card-value {
@@ -928,6 +948,14 @@ code, pre {
   font-weight: 700;
   color: var(--primary);
   line-height: 1.1;
+}
+
+[data-theme='dark'] .stat-card-value,
+[data-theme='dark'] .timeline-institution,
+[data-theme='dark'] .exp-org-name,
+[data-theme='dark'] .skill-cat-title i,
+[data-theme='dark'] .about-fact-item i {
+  color: #60A5FA;
 }
 
 .stat-card-label {
@@ -987,17 +1015,18 @@ code, pre {
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md), var(--shadow-card-inset);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .skill-cat-card:hover {
+  background: var(--surface-elevated);
   transform: translateY(-4px);
-  border-color: var(--primary);
-  box-shadow: var(--shadow-md), var(--shadow-primary-glow);
+  border-color: rgba(96, 165, 250, 0.45);
+  box-shadow: var(--shadow-lg), var(--shadow-primary-glow), var(--shadow-card-inset);
 }
 
 .skill-cat-header {
@@ -1092,6 +1121,30 @@ code, pre {
 .skill-level-badge.foundation {
   background: var(--bg-secondary);
   color: var(--text-muted);
+}
+
+[data-theme='dark'] .skill-level-badge.advanced {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93C5FD;
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+[data-theme='dark'] .skill-level-badge.proficient {
+  background: rgba(16, 185, 129, 0.16);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+[data-theme='dark'] .skill-level-badge.intermediate {
+  background: rgba(139, 92, 246, 0.16);
+  color: #C4B5FD;
+  border-color: rgba(167, 139, 250, 0.35);
+}
+
+[data-theme='dark'] .skill-level-badge.foundation {
+  background: rgba(148, 163, 184, 0.12);
+  color: #CBD5E1;
+  border-color: rgba(148, 163, 184, 0.25);
 }
 
 /* --------------------------------------------------------------------------
@@ -1554,6 +1607,7 @@ code, pre {
   height: 210px;
   overflow: hidden;
   background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
 }
 
 .project-card-image {
@@ -1645,7 +1699,7 @@ code, pre {
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
   padding: var(--space-xl);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md), var(--shadow-card-inset);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
@@ -1715,7 +1769,7 @@ code, pre {
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
   padding: var(--space-2xl);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md), var(--shadow-card-inset);
 }
 
 .form-group {
@@ -1749,12 +1803,28 @@ code, pre {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   outline: none;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
 }
 
 .form-control:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+[data-theme='dark'] .form-control {
+  background: rgba(7, 11, 20, 0.8);
+  border-color: rgba(148, 163, 184, 0.22);
+}
+
+[data-theme='dark'] .form-control:focus {
+  border-color: #60A5FA;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.24);
 }
 
 .form-control.error {
