@@ -13,6 +13,7 @@
    2. Design Tokens & CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
+  color-scheme: light;
   /* Color System — Light Theme (Default) */
   --primary: #2563EB;
   --primary-dark: #1D4ED8;
@@ -98,6 +99,7 @@
    3. Dark Theme Tokens
    -------------------------------------------------------------------------- */
 [data-theme='dark'] {
+  color-scheme: dark;
   --primary: #3B82F6;
   --primary-dark: #60A5FA;
   --primary-light: rgba(59, 130, 246, 0.15);
@@ -451,6 +453,35 @@ code, pre {
   color: var(--primary);
   border-color: var(--primary);
   transform: scale(1.05);
+}
+
+.theme-toggle {
+  position: relative;
+}
+
+.theme-toggle i {
+  transition: transform var(--transition-fast);
+}
+
+[data-theme-mode='system'] .theme-toggle::after {
+  content: 'A';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 15px;
+  height: 15px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: #FFFFFF;
+  font-size: 0.55rem;
+  font-weight: 800;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--surface);
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------

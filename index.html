@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Synchronous Auto-System Theme Bootstrap (Zero FOUC) -->
+  <script>
+    (function () {
+      try {
+        localStorage.removeItem('sp_portfolio_theme');
+        var mode = localStorage.getItem('sp_portfolio_theme_mode') || 'system';
+        if (mode !== 'system' && mode !== 'light' && mode !== 'dark') mode = 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-mode', mode);
+        document.documentElement.style.colorScheme = resolved;
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
 
   <!-- Primary SEO Metadata -->
   <title>Shanto Paul | Software Engineering Student & Full-Stack Developer</title>
@@ -105,8 +124,8 @@
 
       <!-- Utility Actions (Theme Toggle & Mobile Trigger) -->
       <div class="nav-actions">
-        <button class="theme-toggle btn-icon" type="button" aria-label="Switch to Light Theme" title="Switch Theme (Light / Dark)">
-          <i class="fa-solid fa-sun"></i>
+        <button class="theme-toggle btn-icon" type="button" aria-label="Theme: Auto (System)" title="Theme: Auto (System)">
+          <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
         </button>
 
         <button class="nav-toggle btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
