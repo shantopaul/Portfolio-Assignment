@@ -437,7 +437,7 @@ This is an academic assignment project. However, suggestions and feedback are we
 Software Engineering Student @ Daffodil International University
 
 [![GitHub](https://img.shields.io/badge/GitHub-shantopaul-181717?style=for-the-badge&logo=github)](https://github.com/shantopaul)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/shantopaul)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/shantopauldev)
 
 </div>
 

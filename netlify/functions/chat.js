@@ -122,7 +122,7 @@ function loadVerifiedKnowledge() {
     contact: {
       email: 'shanto@shantopaul.com',
       github: 'https://github.com/shantopaul',
-      linkedin: 'https://linkedin.com/in/shantopaul'
+      linkedin: 'https://linkedin.com/in/shantopauldev'
     }
   };
 
@@ -171,7 +171,7 @@ function loadVerifiedKnowledge() {
     social_links: personalInfo.social_links || {
       website: 'https://shantopaul.com',
       github: 'https://github.com/shantopaul',
-      linkedin: 'https://linkedin.com/in/shantopaul'
+      linkedin: 'https://linkedin.com/in/shantopauldev'
     },
     contact_options: personalInfo.contact || {},
     verified_guardrails: {
@@ -208,7 +208,7 @@ OFFICIAL WEBSITES & LINKS:
 - Official / Real Website: https://shantopaul.com
 - Portfolio Assignment Live Site (SE 236): https://portfolio-assignment.shantopaul.com
 - GitHub Profile: https://github.com/shantopaul
-- LinkedIn Profile: https://linkedin.com/in/shantopaul
+- LinkedIn Profile: https://linkedin.com/in/shantopauldev
 CRITICAL RULE ON WEBSITES: When asked for Shanto's website, real website, web link, or portfolio, always provide his official website (https://shantopaul.com) and his assignment demo (https://portfolio-assignment.shantopaul.com).
 
 CORE MANDATE & OPERATING PRINCIPLES:
@@ -314,7 +314,7 @@ function generateLocalVerifiedFallback(userMessage, kb = verifiedKnowledge) {
     const official = websites.official_website || 'https://shantopaul.com';
     const assignment = websites.portfolio_assignment || 'https://portfolio-assignment.shantopaul.com';
     const github = socials.github || 'https://github.com/shantopaul';
-    const linkedin = socials.linkedin || 'https://linkedin.com/in/shantopaul';
+    const linkedin = socials.linkedin || 'https://linkedin.com/in/shantopauldev';
     return `🌐 **Shanto Paul's Verified Web Links:**\n\n• **Official Website:** ${official}\n• **Portfolio Assignment (SE 236):** ${assignment}\n• **GitHub:** ${github}\n• **LinkedIn:** ${linkedin}`;
   }
 
@@ -430,7 +430,7 @@ function generateLocalVerifiedFallback(userMessage, kb = verifiedKnowledge) {
     const email = contact.email || 'shanto@shantopaul.com';
     const location = contact.location || profile.location || 'Dhaka, Bangladesh';
     const openTo = Array.isArray(contact.open_to) ? contact.open_to.join(', ') : 'Software Engineering internships & academic collaborations';
-    return `📫 **Contact & Availability:**\n\n• **Email:** ${email}\n• **Location:** ${location}\n• **Open To:** ${openTo}\n• **Resume:** Available via the **Download Resume** button in the About section\n• **Links:** [LinkedIn](${socials.linkedin || 'https://linkedin.com/in/shantopaul'}) · [GitHub](${socials.github || 'https://github.com/shantopaul'}) · Contact Form on this page`;
+    return `📫 **Contact & Availability:**\n\n• **Email:** ${email}\n• **Location:** ${location}\n• **Open To:** ${openTo}\n• **Resume:** Available via the **Download Resume** button in the About section\n• **Links:** [LinkedIn](${socials.linkedin || 'https://linkedin.com/in/shantopauldev'}) · [GitHub](${socials.github || 'https://github.com/shantopaul'}) · Contact Form on this page`;
   }
 
   // 10. Profile / Bio / Basic Dataset Overview (handles "Who is Shanto?", "About", Greetings, or general portfolio queries)

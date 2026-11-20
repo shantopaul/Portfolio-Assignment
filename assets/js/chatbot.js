@@ -316,8 +316,8 @@ function generateVerifiedLocalAnswer(query, kb) {
     const official = websites.official_website || 'https://shantopaul.com';
     const assignment = websites.portfolio_assignment || 'https://portfolio-assignment.shantopaul.com';
     const github = socials.github || 'https://github.com/shantopaul';
-    const linkedin = socials.linkedin || 'https://linkedin.com/in/shantopaul';
-    return `🌐 **Shanto Paul's Verified Web Links:**\n\n• **Official Website:** [shantopaul.com](${official})\n• **Portfolio Assignment (SE 236):** [portfolio-assignment.shantopaul.com](${assignment})\n• **GitHub Profile:** [github.com/shantopaul](${github})\n• **LinkedIn Profile:** [linkedin.com/in/shantopaul](${linkedin})`;
+    const linkedin = socials.linkedin || 'https://linkedin.com/in/shantopauldev';
+    return `🌐 **Shanto Paul's Verified Web Links:**\n\n• **Official Website:** [shantopaul.com](${official})\n• **Portfolio Assignment (SE 236):** [portfolio-assignment.shantopaul.com](${assignment})\n• **GitHub Profile:** [github.com/shantopaul](${github})\n• **LinkedIn Profile:** [linkedin.com/in/shantopauldev](${linkedin})`;
   }
 
   // 5. Education & DIU / HSC / SSC Inquiries
@@ -373,7 +373,7 @@ function generateVerifiedLocalAnswer(query, kb) {
     const email = contact.email || 'shanto@shantopaul.com';
     const location = contact.location || profile.location || 'Dhaka, Bangladesh';
     const openTo = Array.isArray(contact.open_to) ? contact.open_to.join(', ') : 'Software Engineering internships and academic collaborations';
-    return `📫 **Contact & Opportunities:**\n\n• **Email:** ${email}\n• **Location:** ${location}\n• **Open To:** ${openTo}\n• **Resume:** Available via the **Download Resume** button in the About section\n• **Profiles:** [GitHub](${socials.github || 'https://github.com/shantopaul'}) · [LinkedIn](${socials.linkedin || 'https://linkedin.com/in/shantopaul'})`;
+    return `📫 **Contact & Opportunities:**\n\n• **Email:** ${email}\n• **Location:** ${location}\n• **Open To:** ${openTo}\n• **Resume:** Available via the **Download Resume** button in the About section\n• **Profiles:** [GitHub](${socials.github || 'https://github.com/shantopaul'}) · [LinkedIn](${socials.linkedin || 'https://linkedin.com/in/shantopauldev'})`;
   }
 
   // 10. Profile / Bio / Basic Dataset Overview (always returns verified info)
