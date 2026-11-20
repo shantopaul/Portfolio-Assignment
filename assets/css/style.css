@@ -687,8 +687,51 @@ code, pre {
 .hero-socials {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   margin-top: var(--space-lg);
+}
+
+.hero-site-pill {
+  height: 42px;
+  padding: 0 1rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.hero-site-pill i:first-child {
+  color: var(--primary);
+}
+
+.hero-site-pill:hover {
+  background: var(--primary);
+  color: #FFFFFF !important;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm), var(--shadow-primary-glow);
+  transform: translateY(-3px);
+}
+
+.hero-site-pill:hover i:first-child {
+  color: #FFFFFF;
+}
+
+[data-theme='dark'] .hero-site-pill {
+  background: rgba(30, 41, 59, 0.8);
+  color: #F8FAFC;
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+[data-theme='dark'] .hero-site-pill i:first-child {
+  color: #60A5FA;
 }
 
 .hero-social-btn {
