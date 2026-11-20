@@ -1,162 +1,188 @@
 /* ==========================================================================
-   RESPONSIVE.CSS — MULTI-DEVICE BREAKPOINTS & VIEWPORT ADAPTATIONS
+   RESPONSIVE.CSS — COMPREHENSIVE MOBILE-FIRST BREAKPOINTS & TOUCH OPTIMIZATION
    Project: Personal Portfolio Website — Shanto Paul (DIU)
-   Standards: Mobile-First Architecture, WCAG 2.1 AA Touch Targets
+   Standards: Zero Horizontal Overflow (320px+), WCAG 2.1 AA 44px Touch Targets
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Small Mobile Viewports (< 480px)
+   1. Navigation Drawer & Tablet Stack (<= 1023.98px)
    -------------------------------------------------------------------------- */
-@media (max-width: 479.98px) {
-  :root {
-    --navbar-height: 60px;
-  }
-
-  .container {
-    padding-left: var(--space-sm);
-    padding-right: var(--space-sm);
-  }
-
-  .section {
-    padding: var(--space-2xl) 0;
-  }
-
-  .btn {
-    width: 100%;
-    padding: 0.75rem 1rem;
-  }
-
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
-    gap: var(--space-sm);
-  }
-
-  .hero-avatar-ring {
-    width: 180px !important;
-    height: 180px !important;
-  }
-
-  .hero-floating-badge {
-    font-size: 0.75rem !important;
-    padding: 0.35rem 0.65rem !important;
-  }
-
-  .badge-pos-top-right {
-    top: -5px !important;
-    right: -5px !important;
-  }
-
-  .badge-pos-bottom-left {
-    bottom: -5px !important;
-    left: -5px !important;
-  }
-
-  .about-stats-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   2. Mobile Viewports (< 768px)
-   -------------------------------------------------------------------------- */
-@media (max-width: 767.98px) {
-  /* Bento Box collapse to single column */
-  .bento-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    gap: var(--space-md);
-  }
-
-  /* Content Sections Mobile Adaptations */
-  .about-grid {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-xl) !important;
-  }
-
-  .timeline::before {
-    left: 18px !important;
-  }
-
-  .timeline-marker {
-    left: 8px !important;
-    width: 22px !important;
-    height: 22px !important;
-  }
-
-  .timeline-item {
-    padding-left: 48px !important;
-  }
-
-  .timeline-card {
-    padding: var(--space-lg) !important;
-  }
-
-  .skills-categories-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .experience-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Projects & Contact Mobile Adaptations */
-  .contact-grid {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-xl) !important;
-  }
-
-  .contact-form-card {
-    padding: var(--space-xl) !important;
-  }
-
-  .footer-top {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: var(--space-xl) !important;
-  }
-
-  .footer-bottom {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: var(--space-lg) !important;
-  }
-
-  .bento-item--col-1,
-  .bento-item--col-2,
-  .bento-item--col-3,
-  .bento-item--col-4 {
-    grid-column: span 1;
-  }
-
-  .bento-item--row-1,
-  .bento-item--row-2 {
-    grid-row: span 1;
-  }
-
-  /* Navigation Drawer Setup */
+@media (max-width: 1023.98px) {
+  /* Professional Mobile & Tablet Slide-Out Navigation Drawer */
   .nav-menu {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 320px;
+    width: 85%;
+    max-width: 340px;
     height: 100vh;
     height: 100dvh;
     background: var(--surface);
     border-left: 1px solid var(--border);
-    padding: calc(var(--navbar-height) + var(--space-lg)) var(--space-lg) var(--space-lg);
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 0;
     box-shadow: var(--shadow-xl);
     transition: right var(--transition-normal);
-    z-index: 1001;
+    z-index: 1002;
     overflow-y: auto;
   }
 
   .nav-menu.active {
     right: 0;
+  }
+
+  .nav-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .nav-drawer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .nav-drawer-close {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-links-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+    padding: 1rem 1.15rem;
+    flex: 1;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-md);
+    font-size: 0.975rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .nav-link-icon {
+    display: inline-flex;
+    width: 20px;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: var(--primary-light);
+    color: var(--primary-hover);
+  }
+
+  .nav-link:hover .nav-link-icon,
+  .nav-link.active .nav-link-icon {
+    color: var(--primary-hover);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  /* Drawer Footer: Appearance Selector, Quick CTAs & Socials */
+  .nav-drawer-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.1rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--border);
+    background: var(--bg-secondary);
+  }
+
+  .nav-drawer-section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .nav-theme-segmented {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
+    padding: 0.25rem;
+    border-radius: var(--radius-lg);
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+  }
+
+  .nav-theme-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 36px;
+    padding: 0.35rem 0.4rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .nav-theme-pill:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-theme-pill.active {
+    background: var(--primary);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-drawer-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+  }
+
+  .nav-drawer-actions .btn {
+    min-height: 42px;
+    font-size: 0.84rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .nav-drawer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+
+  .nav-drawer-socials .footer-social-link {
+    flex: 1;
+    height: 38px;
+    border-radius: var(--radius-md);
   }
 
   .nav-toggle {
@@ -166,9 +192,10 @@
   .nav-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(2, 6, 23, 0.65);
     backdrop-filter: blur(4px);
-    z-index: 1000;
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1001;
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--transition-normal), visibility var(--transition-normal);
@@ -178,23 +205,10 @@
     opacity: 1;
     visibility: visible;
   }
-
-  /* Projects Grid */
-  .projects-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Prevent iOS automatic zoom on text inputs */
-  input[type="text"],
-  input[type="email"],
-  textarea,
-  select {
-    font-size: 16px !important;
-  }
 }
 
 /* --------------------------------------------------------------------------
-   3. Tablet Viewports (768px - 1023px)
+   2. Tablet Multi-Column Adaptations (768px - 1023.98px)
    -------------------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .container {
@@ -213,13 +227,399 @@
     grid-column: span 2;
   }
 
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
+  }
+
   .projects-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
 /* --------------------------------------------------------------------------
-   4. Desktop Viewports (>= 1024px)
+   3. Mobile Viewports — All Sections (<= 767.98px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  /* Global Vertical Rhythm */
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-subtitle {
+    font-size: 0.975rem;
+  }
+
+  /* Hero Bento Grid */
+  .hero-section {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .bento-item--col-1,
+  .bento-item--col-2,
+  .bento-item--col-3,
+  .bento-item--col-4 {
+    grid-column: span 1;
+  }
+
+  .bento-item--row-1,
+  .bento-item--row-2 {
+    grid-row: span 1;
+  }
+
+  .hero-socials {
+    margin-top: var(--space-md);
+  }
+
+  /* About Me Section */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
+  }
+
+  .about-profile-card {
+    padding: var(--space-lg);
+  }
+
+  .about-fact-item {
+    align-items: flex-start;
+    word-break: break-word;
+  }
+
+  .about-career-box {
+    padding: var(--space-md);
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xs);
+  }
+
+  .stat-card {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .stat-card-value {
+    font-size: 1.45rem;
+  }
+
+  .stat-card-label {
+    font-size: 0.72rem;
+  }
+
+  /* Technical Skills Matrix — Swipeable Filter Chips */
+  .skills-nav-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0.25rem 0.15rem 0.5rem;
+    margin-bottom: var(--space-xl);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .skills-nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .skill-tab-btn {
+    flex-shrink: 0;
+    min-height: 40px;
+  }
+
+  .skills-categories-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-md);
+  }
+
+  .skill-cat-card {
+    padding: var(--space-lg);
+  }
+
+  /* Education Timeline */
+  .timeline::before {
+    left: 14px !important;
+  }
+
+  .timeline-marker {
+    left: 5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    top: 22px;
+  }
+
+  .timeline-item {
+    padding-left: 38px !important;
+    margin-bottom: var(--space-lg);
+  }
+
+  .timeline-card {
+    padding: var(--space-lg) !important;
+  }
+
+  /* Experience Section */
+  .experience-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-md);
+  }
+
+  .exp-card {
+    padding: var(--space-lg);
+  }
+
+  /* Projects Showcase — Swipeable Filter Chips */
+  .project-filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0.25rem 0.15rem 0.5rem;
+    margin-bottom: var(--space-xl);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-filter-btn {
+    flex-shrink: 0;
+    min-height: 40px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg);
+  }
+
+  .project-card-body {
+    padding: var(--space-md);
+  }
+
+  .project-card-footer {
+    padding: var(--space-sm) var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .project-card-footer .btn-sm {
+    flex: 1 1 120px;
+    min-height: 40px;
+  }
+
+  /* Contact Section */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg) !important;
+  }
+
+  .contact-info-card,
+  .contact-form-card {
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-xl);
+  }
+
+  .contact-info-val {
+    word-break: break-word;
+    font-size: 0.9rem;
+  }
+
+  /* Prevent iOS automatic zoom on text inputs */
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  /* Footer (extra bottom clearance for floating chatbot launcher) */
+  .footer {
+    padding: var(--space-2xl) 0 5.5rem;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--space-lg) !important;
+  }
+
+  .footer-nav {
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  .footer-nav-link {
+    padding: 0.25rem 0;
+  }
+
+  .back-to-top-btn {
+    min-height: 42px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Small Mobile Viewports (< 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 479.98px) {
+  :root {
+    --navbar-height: 60px;
+  }
+
+  .container {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  .section {
+    padding: var(--space-xl) 0;
+  }
+
+  .nav-brand {
+    gap: 0.5rem;
+  }
+
+  .nav-brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .brand-name {
+    font-size: 1.02rem;
+  }
+
+  .nav-actions {
+    gap: 0.4rem;
+  }
+
+  .btn-nav-ai {
+    padding: 0.38rem 0.72rem;
+    height: 36px;
+    font-size: 0.78rem;
+  }
+
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Hero Section Compactness */
+  .bento-card {
+    padding: var(--space-md);
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-sm);
+  }
+
+  .hero-cta-group .btn,
+  .about-profile-card .btn,
+  .contact-form-card .btn {
+    width: 100%;
+  }
+
+  .hero-typewriter-container {
+    min-height: 3rem;
+    font-size: 1.08rem;
+    line-height: 1.3;
+    flex-wrap: wrap;
+  }
+
+  .hero-avatar-stage {
+    min-height: 295px;
+    max-width: 320px;
+  }
+
+  .hero-avatar-ring {
+    width: min(100%, 248px) !important;
+    height: auto !important;
+    aspect-ratio: 7 / 8;
+    border-radius: 22px !important;
+  }
+
+  .hero-avatar-ring::after,
+  .hero-avatar-img {
+    border-radius: 18px !important;
+  }
+
+  .hero-floating-badge {
+    font-size: 0.72rem !important;
+    padding: 0.34rem 0.68rem !important;
+  }
+
+  .badge-pos-top-right {
+    top: 6px !important;
+    right: 2px !important;
+  }
+
+  .badge-pos-bottom-left {
+    bottom: 6px !important;
+    left: 2px !important;
+  }
+
+  /* About Avatar */
+  .about-avatar-wrap {
+    width: 160px;
+    height: 178px;
+  }
+
+  /* Wrap long course/skill badges cleanly on narrow phones */
+  .badge {
+    white-space: normal;
+    text-align: left;
+    line-height: 1.35;
+  }
+
+  .skill-item {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .timeline-card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-card-image-wrap {
+    height: 180px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Ultra-Narrow Devices (< 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 359.98px) {
+  .about-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-nav-ai span {
+    display: none;
+  }
+
+  .btn-nav-ai {
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Desktop Viewports (>= 1024px)
    -------------------------------------------------------------------------- */
 @media (min-width: 1024px) {
   .container {

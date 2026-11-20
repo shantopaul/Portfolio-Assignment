@@ -1,23 +1,96 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340" role="img" aria-label="Personal Portfolio with Domain-Bounded AI Chatbot UI preview">
   <defs>
-    <linearGradient id="pGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E1B4B"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+    <linearGradient id="pf-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070B14"/>
+      <stop offset="55%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#172554"/>
     </linearGradient>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563EB"/>
-      <stop offset="100%" stop-color="#7C3AED"/>
+    <linearGradient id="pf-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
     </linearGradient>
+    <radialGradient id="pf-glow" cx="28%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="pf-dots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#94A3B8" fill-opacity="0.14"/>
+    </pattern>
   </defs>
-  <rect width="600" height="340" fill="url(#pGrad)"/>
-  <rect x="40" y="40" width="520" height="260" rx="16" fill="#1E293B" stroke="#334155" stroke-width="2"/>
-  <circle cx="70" cy="70" r="6" fill="#EF4444"/>
-  <circle cx="90" cy="70" r="6" fill="#F59E0B"/>
-  <circle cx="110" cy="70" r="6" fill="#10B981"/>
-  <rect x="140" y="62" width="220" height="16" rx="8" fill="#334155"/>
-  <!-- Bento grid preview illustration -->
-  <rect x="70" y="105" width="220" height="155" rx="10" fill="url(#glow)" opacity="0.3"/>
-  <rect x="310" y="105" width="220" height="70" rx="10" fill="#334155" opacity="0.5"/>
-  <rect x="310" y="190" width="220" height="70" rx="10" fill="#334155" opacity="0.5"/>
-  <text x="300" y="325" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="600" fill="#A78BFA" text-anchor="middle">Personal Portfolio with AI Chatbot</text>
+
+  <!-- Canvas -->
+  <rect width="600" height="340" fill="url(#pf-bg)"/>
+  <rect width="600" height="340" fill="url(#pf-dots)"/>
+  <rect width="600" height="340" fill="url(#pf-glow)"/>
+
+  <!-- Browser Window Frame -->
+  <rect x="28" y="24" width="544" height="292" rx="14" fill="#0B1120" stroke="#334155" stroke-width="1.2"/>
+  <rect x="28" y="24" width="544" height="34" rx="14" fill="#111C33"/>
+  <rect x="28" y="44" width="544" height="14" fill="#111C33"/>
+  <line x1="28" y1="58" x2="572" y2="58" stroke="#1E293B" stroke-width="1"/>
+
+  <!-- Window Controls & Brand -->
+  <circle cx="48" cy="41" r="4.5" fill="#EF4444"/>
+  <circle cx="63" cy="41" r="4.5" fill="#F59E0B"/>
+  <circle cx="78" cy="41" r="4.5" fill="#10B981"/>
+  <rect x="195" y="33" width="210" height="16" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <text x="300" y="44" font-family="Inter, system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#94A3B8" text-anchor="middle">portfolio-assignment.shantopaul.com</text>
+
+  <!-- Left Bento Hero Card -->
+  <rect x="46" y="74" width="232" height="156" rx="10" fill="#111C33" stroke="#1E293B"/>
+  <rect x="60" y="88" width="92" height="16" rx="8" fill="#064E3B" stroke="#10B981" stroke-opacity="0.5"/>
+  <circle cx="70" cy="96" r="3" fill="#10B981"/>
+  <text x="79" y="99" font-family="Inter, system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#6EE7B7">Available</text>
+
+  <text x="60" y="126" font-family="Space Grotesk, Inter, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC">Shanto Paul</text>
+  <rect x="60" y="135" width="142" height="7" rx="3.5" fill="url(#pf-accent)" opacity="0.85"/>
+  <rect x="60" y="152" width="188" height="6" rx="3" fill="#334155"/>
+  <rect x="60" y="164" width="162" height="6" rx="3" fill="#334155"/>
+
+  <rect x="60" y="186" width="84" height="26" rx="6" fill="#2563EB"/>
+  <text x="102" y="202" font-family="Inter, system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#FFFFFF" text-anchor="middle">Projects</text>
+  <rect x="152" y="186" width="80" height="26" rx="6" fill="#1E293B" stroke="#334155"/>
+  <text x="192" y="202" font-family="Inter, system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#E2E8F0" text-anchor="middle">Ask AI</text>
+
+  <!-- Bottom Mini Bento Tiles -->
+  <rect x="46" y="242" width="112" height="58" rx="9" fill="#111C33" stroke="#1E293B"/>
+  <text x="58" y="262" font-family="Inter, system-ui, sans-serif" font-size="8" font-weight="700" fill="#60A5FA">DIU • SE 236</text>
+  <rect x="58" y="272" width="82" height="5" rx="2.5" fill="#334155"/>
+  <rect x="58" y="282" width="60" height="5" rx="2.5" fill="#334155"/>
+
+  <rect x="166" y="242" width="112" height="58" rx="9" fill="#111C33" stroke="#1E293B"/>
+  <rect x="178" y="254" width="38" height="12" rx="6" fill="#1E293B"/>
+  <rect x="222" y="254" width="42" height="12" rx="6" fill="#1E293B"/>
+  <rect x="178" y="273" width="46" height="12" rx="6" fill="#1E293B"/>
+  <rect x="230" y="273" width="34" height="12" rx="6" fill="#1E293B"/>
+
+  <!-- Right Floating AI Assistant Panel -->
+  <rect x="294" y="74" width="260" height="226" rx="12" fill="#0F172A" stroke="#3B82F6" stroke-opacity="0.45" stroke-width="1.2"/>
+  <rect x="294" y="74" width="260" height="42" rx="12" fill="url(#pf-accent)"/>
+  <rect x="294" y="102" width="260" height="14" fill="url(#pf-accent)"/>
+  <circle cx="316" cy="95" r="10" fill="#0F172A" fill-opacity="0.35"/>
+  <text x="316" y="98.5" font-family="Space Grotesk, sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">SP</text>
+  <text x="334" y="93" font-family="Inter, system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#FFFFFF">Shanto's AI Assistant</text>
+  <text x="334" y="105" font-family="Inter, system-ui, sans-serif" font-size="7.2" fill="#E0E7FF">Verified Portfolio Guardrails</text>
+
+  <!-- Guardrail Bar -->
+  <rect x="306" y="124" width="236" height="20" rx="5" fill="#111C33" stroke="#10B981" stroke-opacity="0.3"/>
+  <circle cx="318" cy="134" r="3" fill="#10B981"/>
+  <text x="326" y="137" font-family="Inter, system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#94A3B8">Strictly bounded to verified records</text>
+
+  <!-- Chat Bubbles -->
+  <rect x="366" y="154" width="174" height="28" rx="9" fill="#2563EB"/>
+  <text x="378" y="171" font-family="Inter, system-ui, sans-serif" font-size="8" font-weight="500" fill="#FFFFFF">What stack does Shanto build with?</text>
+
+  <rect x="308" y="190" width="212" height="58" rx="9" fill="#1E293B" stroke="#334155"/>
+  <text x="320" y="207" font-family="Inter, system-ui, sans-serif" font-size="8" font-weight="700" fill="#93C5FD">Verified Core Competencies:</text>
+  <rect x="320" y="216" width="175" height="5.5" rx="2.5" fill="#475569"/>
+  <rect x="320" y="227" width="142" height="5.5" rx="2.5" fill="#475569"/>
+  <rect x="320" y="238" width="90" height="4" rx="2" fill="#10B981" fill-opacity="0.7"/>
+
+  <!-- Input Row -->
+  <rect x="308" y="260" width="204" height="26" rx="13" fill="#070B14" stroke="#334155"/>
+  <text x="322" y="276" font-family="Inter, system-ui, sans-serif" font-size="7.5" fill="#64748B">Ask about skills, DIU, projects...</text>
+  <circle cx="530" cy="273" r="13" fill="url(#pf-accent)"/>
+  <path d="M525 273 L535 273 M531 269 L535 273 L531 277" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

@@ -105,12 +105,24 @@ function loadVerifiedKnowledge() {
           'Database Management Systems',
           'Software Architecture & Design Patterns'
         ]
+      },
+      {
+        degree: 'Higher Secondary Certificate (HSC)',
+        institution: 'Savar Govt College',
+        department: 'Science Group',
+        period: '2020 - 2022'
+      },
+      {
+        degree: 'Secondary School Certificate (SSC)',
+        institution: 'Savar Adhar Chandra Government High School',
+        department: 'Science Group',
+        period: '2018 - 2020'
       }
     ],
     contact: {
-      email: 'Available via portfolio contact form',
+      email: 'shanto@shantopaul.com',
       github: 'https://github.com/shantopaul',
-      linkedin: 'https://linkedin.com/in/shantopaul'
+      linkedin: 'https://linkedin.com/in/shantopauldev'
     }
   };
 
@@ -147,12 +159,19 @@ function loadVerifiedKnowledge() {
   return {
     student_profile: personalInfo.profile || personalInfo,
     academic_education: personalInfo.education || [],
+    experience: personalInfo.experience || [],
+    interests: personalInfo.interests || [],
     technical_skills: skills,
     featured_projects: projects,
-    websites: {
+    websites: personalInfo.websites || {
       official_website: 'https://shantopaul.com',
       real_website: 'https://shantopaul.com',
       portfolio_assignment: 'https://portfolio-assignment.shantopaul.com'
+    },
+    social_links: personalInfo.social_links || {
+      website: 'https://shantopaul.com',
+      github: 'https://github.com/shantopaul',
+      linkedin: 'https://linkedin.com/in/shantopauldev'
     },
     contact_options: personalInfo.contact || {},
     verified_guardrails: {
@@ -189,7 +208,7 @@ OFFICIAL WEBSITES & LINKS:
 - Official / Real Website: https://shantopaul.com
 - Portfolio Assignment Live Site (SE 236): https://portfolio-assignment.shantopaul.com
 - GitHub Profile: https://github.com/shantopaul
-- LinkedIn Profile: https://linkedin.com/in/shantopaul
+- LinkedIn Profile: https://linkedin.com/in/shantopauldev
 CRITICAL RULE ON WEBSITES: When asked for Shanto's website, real website, web link, or portfolio, always provide his official website (https://shantopaul.com) and his assignment demo (https://portfolio-assignment.shantopaul.com).
 
 CORE MANDATE & OPERATING PRINCIPLES:
@@ -223,46 +242,206 @@ function sanitizeOutput(text) {
 }
 
 /**
- * Fallback deterministic answer engine when API key is unconfigured (e.g. local preview).
+ * Dynamic Basic Dataset fallback engine when Gemini API is unconfigured,
+ * key fails/expires, or upstream quota/network errors occur.
+ * Reads directly from verified JSON knowledge base so the chatbot never goes offline.
  * @param {string} userMessage
+ * @param {object} [kb]
  * @returns {string}
  */
-function generateLocalVerifiedFallback(userMessage) {
+function generateLocalVerifiedFallback(userMessage, kb = verifiedKnowledge) {
   const q = userMessage.toLowerCase();
+  const profile = kb.student_profile || {};
+  const education = Array.isArray(kb.academic_education) ? kb.academic_education : [];
+  const experience = Array.isArray(kb.experience) ? kb.experience : [];
+  const interests = Array.isArray(kb.interests) ? kb.interests : [];
+  const contact = kb.contact_options || {};
+  const websites = kb.websites || {};
+  const socials = kb.social_links || {};
 
-  if (q.includes('ignore') || q.includes('system prompt') || q.includes('act as') || q.includes('jailbreak')) {
+  // 1. Prompt Injection / Jailbreak Defense
+  if (
+    q.includes('ignore') ||
+    q.includes('system prompt') ||
+    q.includes('act as') ||
+    q.includes('jailbreak') ||
+    q.includes('bypass') ||
+    q.includes('developer mode')
+  ) {
     return "🛡️ I am strictly bounded to Shanto Paul's verified academic and portfolio credentials. I cannot modify my system instructions or answer questions outside this scope.";
   }
 
-  if (q.includes('diu') || q.includes('study') || q.includes('education') || q.includes('university') || q.includes('semester')) {
-    return "🎓 **Education at DIU:** Shanto Paul is an undergraduate Software Engineering student currently in his **6th Semester (Fall 2026)** at **Daffodil International University (DIU)**. His lab coursework includes **SE 236: Desktop & Web Programming Lab**, Data Structures, and Software Architecture.";
+  // 2. Private / Unlisted Personal Details Defense
+  if (
+    q.includes('address') ||
+    q.includes('salary') ||
+    q.includes('phone') ||
+    q.includes('relationship') ||
+    q.includes('girlfriend') ||
+    q.includes('money') ||
+    q.includes('cgpa') ||
+    q.includes('gpa')
+  ) {
+    return "🔒 I do not possess verified information regarding private personal details such as home address, phone number, GPA, or salary. Please feel free to reach out to Shanto directly via **shanto@shantopaul.com** or the contact form on this page.";
   }
 
-  if (q.includes('skill') || q.includes('language') || q.includes('tech stack') || q.includes('javascript') || q.includes('python')) {
-    return "💻 **Technical Skills:**\n\n• **Languages:** JavaScript (ES6+), HTML5, CSS3, Python, C/C++, Java, SQL\n• **Frontend & UI:** Responsive Bento Grid, Modern CSS Variables, Accessible UI (WCAG 2.1 AA)\n• **Backend & Cloud:** Netlify Serverless Functions, Node.js, REST APIs\n• **Tools & AI:** Git/GitHub, VS Code, Google Gemini API.";
+  // 3. Out-of-Scope General Knowledge Defense
+  if (
+    q.includes('weather') ||
+    q.includes('capital') ||
+    q.includes('math') ||
+    q.includes('homework') ||
+    q.includes('recipe') ||
+    q.includes('president') ||
+    q.includes('movie') ||
+    q.includes('joke')
+  ) {
+    return "⚠️ I am strictly bounded as Shanto Paul's portfolio assistant and can only answer questions from Shanto's verified portfolio dataset (education at DIU, skills, projects, experience, and contact details).";
   }
 
-  if (q.includes('project') || q.includes('portfolio') || q.includes('examalert') || q.includes('rentverse')) {
+  // 4. Official Website & Web Links
+  if (
+    q.includes('website') ||
+    q.includes('web') ||
+    q.includes('link') ||
+    q.includes('lonk') ||
+    q.includes('site') ||
+    q.includes('url') ||
+    q.includes('domain') ||
+    q.includes('github') ||
+    q.includes('linkedin')
+  ) {
+    const official = websites.official_website || 'https://shantopaul.com';
+    const assignment = websites.portfolio_assignment || 'https://portfolio-assignment.shantopaul.com';
+    const github = socials.github || 'https://github.com/shantopaul';
+    const linkedin = socials.linkedin || 'https://linkedin.com/in/shantopauldev';
+    return `🌐 **Shanto Paul's Verified Web Links:**\n\n• **Official Website:** ${official}\n• **Portfolio Assignment (SE 236):** ${assignment}\n• **GitHub:** ${github}\n• **LinkedIn:** ${linkedin}`;
+  }
+
+  // 5. Academic Education (DIU + HSC + SSC)
+  if (
+    q.includes('diu') ||
+    q.includes('study') ||
+    q.includes('education') ||
+    q.includes('university') ||
+    q.includes('semester') ||
+    q.includes('daffodil') ||
+    q.includes('hsc') ||
+    q.includes('ssc') ||
+    q.includes('college') ||
+    q.includes('school') ||
+    q.includes('course') ||
+    q.includes('degree')
+  ) {
+    if (education.length > 0) {
+      const lines = education.map((edu) => {
+        const standing = edu.current_standing || edu.standing ? ` (${edu.current_standing || edu.standing})` : edu.period ? ` (${edu.period})` : '';
+        const courses = Array.isArray(edu.relevant_courses) && edu.relevant_courses.length > 0
+          ? ` — Key subjects: ${edu.relevant_courses.slice(0, 3).join(', ')}`
+          : '';
+        return `• **${edu.degree}${standing}:** ${edu.institution}${courses}`;
+      });
+      return `🎓 **Academic Background:**\n\n${lines.join('\n')}`;
+    }
+    return "🎓 **Academic Background:** Shanto Paul is pursuing a B.Sc. in Software Engineering (6th Semester, Fall 2026) at **Daffodil International University (DIU)**, including **SE 236: Desktop & Web Programming Lab**, with HSC from **Savar Govt College** and SSC from **Savar Adhar Chandra Government High School**.";
+  }
+
+  // 6. Technical Skills Matrix
+  if (
+    q.includes('skill') ||
+    q.includes('language') ||
+    q.includes('tech') ||
+    q.includes('stack') ||
+    q.includes('javascript') ||
+    q.includes('python') ||
+    q.includes('html') ||
+    q.includes('css') ||
+    q.includes('java') ||
+    q.includes('c++') ||
+    q.includes('netlify') ||
+    q.includes('tool') ||
+    q.includes('frontend') ||
+    q.includes('backend')
+  ) {
+    const categories = kb.technical_skills?.categories;
+    if (Array.isArray(categories) && categories.length > 0) {
+      const catLines = categories.map((cat) => {
+        const names = (cat.skills || []).map((s) => s.name).join(', ');
+        return `• **${cat.title}:** ${names}`;
+      });
+      return `💻 **Verified Technical Skills:**\n\n${catLines.join('\n')}`;
+    }
+    return "💻 **Technical Skills:**\n\n• **Languages:** JavaScript (ES6+), HTML5, CSS3, Python, C/C++, Java\n• **Frontend & UI:** Responsive Bento Grid, Modern CSS Variables, WCAG 2.1 AA\n• **Backend & Cloud:** Netlify Serverless Functions, Node.js, REST APIs\n• **Tools & AI:** Git/GitHub, VS Code, Google Gemini API.";
+  }
+
+  // 7. Featured Projects
+  if (
+    q.includes('project') ||
+    q.includes('portfolio') ||
+    q.includes('se 236') ||
+    q.includes('examalert') ||
+    q.includes('rentverse') ||
+    q.includes('demo') ||
+    q.includes('built')
+  ) {
+    const projList = kb.featured_projects?.projects || kb.featured_projects?.featured || [];
+    if (Array.isArray(projList) && projList.length > 0) {
+      const projLines = projList.map((p, i) => {
+        const title = p.title || p.name;
+        const desc = p.short_description || p.description || '';
+        const tags = Array.isArray(p.tags || p.technologies) ? ` [${(p.tags || p.technologies).slice(0, 4).join(', ')}]` : '';
+        return `${i + 1}. **${title}**${tags}: ${desc}`;
+      });
+      return `🚀 **Featured Portfolio Projects:**\n\n${projLines.join('\n')}`;
+    }
     return "🚀 **Key Projects:**\n\n1. **Personal Portfolio with AI Chatbot (SE 236):** Pure HTML5/CSS3/ES6+ with Bento Box design and Netlify Serverless integration.\n2. **SP ExamAlert:** Student exam schedule and deadline reminder tool.\n3. **RentVerse:** Student housing and shared accommodation platform.";
   }
 
-  if (q.includes('website') || q.includes('web') || q.includes('link') || q.includes('lonk') || q.includes('site') || q.includes('url') || q.includes('domain')) {
-    return "🌐 **Shanto Paul's Web Links:**\n\n• **Official Website:** [shantopaul.com](https://shantopaul.com)\n• **Portfolio Assignment (SE 236):** [portfolio-assignment.shantopaul.com](https://portfolio-assignment.shantopaul.com)\n• **GitHub Profile:** [github.com/shantopaul](https://github.com/shantopaul)\n• **LinkedIn Profile:** [linkedin.com/in/shantopaul](https://linkedin.com/in/shantopaul)";
+  // 8. Experience & Roles
+  if (
+    q.includes('experience') ||
+    q.includes('role') ||
+    q.includes('architect') ||
+    q.includes('lab') ||
+    q.includes('responsibility') ||
+    q.includes('responsibilities')
+  ) {
+    if (experience.length > 0) {
+      const expLines = experience.map((exp) => `• **${exp.role}** (${exp.organization}, ${exp.period}): ${exp.description}`);
+      return `💼 **Verified Experience & Roles:**\n\n${expLines.join('\n')}`;
+    }
+    return "💼 **Experience:** Lead Architect & Developer for the **SE 236: Desktop & Web Programming Lab** portfolio project at DIU and Academic Software Lab Contributor across OOP, DSA, and DBMS coursework.";
   }
 
-  if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('internship')) {
-    return "📫 **Contact & Availability:** Shanto is open to **Software Engineering internships** and academic collaborations. You can message him directly through the contact form on this page or connect via [LinkedIn](https://linkedin.com/in/shantopaul) and [GitHub](https://github.com/shantopaul).";
+  // 9. Contact, Email, Resume & Location
+  if (
+    q.includes('contact') ||
+    q.includes('email') ||
+    q.includes('mail') ||
+    q.includes('hire') ||
+    q.includes('internship') ||
+    q.includes('location') ||
+    q.includes('dhaka') ||
+    q.includes('resume') ||
+    q.includes('cv') ||
+    q.includes('available') ||
+    q.includes('opportunity')
+  ) {
+    const email = contact.email || 'shanto@shantopaul.com';
+    const location = contact.location || profile.location || 'Dhaka, Bangladesh';
+    const openTo = Array.isArray(contact.open_to) ? contact.open_to.join(', ') : 'Software Engineering internships & academic collaborations';
+    return `📫 **Contact & Availability:**\n\n• **Email:** ${email}\n• **Location:** ${location}\n• **Open To:** ${openTo}\n• **Resume:** Available via the **Download Resume** button in the About section\n• **Links:** [LinkedIn](${socials.linkedin || 'https://linkedin.com/in/shantopauldev'}) · [GitHub](${socials.github || 'https://github.com/shantopaul'}) · Contact Form on this page`;
   }
 
-  if (q.includes('address') || q.includes('salary') || q.includes('phone') || q.includes('relationship') || q.includes('girlfriend') || q.includes('money')) {
-    return "🔒 I do not possess verified information regarding private personal details such as address, phone number, or salary. Please feel free to reach out to Shanto directly via the contact form on this page or through his LinkedIn profile.";
-  }
+  // 10. Profile / Bio / Basic Dataset Overview (handles "Who is Shanto?", "About", Greetings, or general portfolio queries)
+  const name = profile.name || 'Shanto Paul';
+  const title = profile.display_title || 'Software Engineering Student & Full-Stack Developer';
+  const bio = profile.short_bio || '6th-semester Software Engineering student at Daffodil International University (DIU).';
+  const officialSite = websites.official_website || 'https://shantopaul.com';
+  const email = contact.email || 'shanto@shantopaul.com';
+  const interestText = interests.length > 0 ? `\n• **Focus Areas:** ${interests.join(', ')}` : '';
 
-  if (q.includes('weather') || q.includes('capital') || q.includes('math') || q.includes('homework') || q.includes('recipe')) {
-    return "⚠️ I am strictly bounded as Shanto Paul's portfolio assistant. I cannot answer general knowledge or external queries. Please ask about Shanto's education at DIU, skills, projects, or contact options.";
-  }
-
-  return "Hello! I am Shanto Paul's portfolio assistant. I can answer questions about Shanto's **6th-semester studies at DIU**, **technical skills**, **SE 236 lab projects**, or **contact options**. How may I help you today?";
+  return `👤 **${name} — Verified Portfolio Dataset Summary**\n\n• **Role:** ${title}\n• **Profile:** ${bio}${interestText}\n• **Education:** B.Sc. in Software Engineering at DIU (6th Semester) · HSC: Savar Govt College · SSC: Savar Adhar Chandra Government High School\n• **Official Website:** ${officialSite}\n• **Email:** ${email}\n\nFeel free to ask specifically about **skills**, **projects**, **education**, **experience**, or **contact details**!`;
 }
 
 /**
@@ -430,18 +609,13 @@ export const handler = async (event) => {
         if (resp.ok) {
           geminiResponse = resp;
           break;
-        } else if (resp.status === 429) {
-          return {
-            statusCode: 429,
-            headers: CORS_HEADERS,
-            body: JSON.stringify({
-              status: 'error',
-              error: 'Google Gemini API quota or rate limit exceeded. Please try again in a few moments.',
-              reply: "The AI assistant is temporarily resting due to API rate limits. Please reach out directly through Shanto's contact form!"
-            })
-          };
+        } else if (resp.status === 400 || resp.status === 401 || resp.status === 403) {
+          // API key invalid, expired, or blocked — immediately serve verified Basic Dataset
+          const errText = await resp.text().catch(() => '');
+          console.warn(`Gemini API key rejected (${resp.status}), switching to Basic Dataset fallback:`, errText);
+          break;
         } else {
-          // Model busy (503) or not found, try next candidate model
+          // Quota limit (429), busy (503), or not found — try next candidate model before Basic Dataset fallback
           const errText = await resp.text().catch(() => '');
           console.warn(`Model ${model} returned status ${resp.status}:`, errText);
         }
@@ -452,15 +626,15 @@ export const handler = async (event) => {
     }
 
     if (!geminiResponse || !geminiResponse.ok) {
-      // Deterministic verified fallback ensures zero user disruption
-      const fallbackReply = generateLocalVerifiedFallback(cleanMessage);
+      // Continuous availability guarantee: always answer from verified Basic Dataset
+      const fallbackReply = generateLocalVerifiedFallback(cleanMessage, verifiedKnowledge);
       return {
         statusCode: 200,
         headers: CORS_HEADERS,
         body: JSON.stringify({
           status: 'success',
           reply: fallbackReply,
-          source: 'upstream-fallback',
+          source: 'basic-dataset-fallback',
           timestamp: Date.now()
         })
       };
@@ -468,6 +642,20 @@ export const handler = async (event) => {
 
     const data = await geminiResponse.json();
     const rawReply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!rawReply || !rawReply.trim()) {
+      const fallbackReply = generateLocalVerifiedFallback(cleanMessage, verifiedKnowledge);
+      return {
+        statusCode: 200,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({
+          status: 'success',
+          reply: fallbackReply,
+          source: 'basic-dataset-fallback',
+          timestamp: Date.now()
+        })
+      };
+    }
+
     const sanitizedReply = sanitizeOutput(rawReply);
 
     return {

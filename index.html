@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Synchronous Auto-System / Saved Theme Bootstrap (Zero FOUC) -->
+  <script>
+    (function () {
+      try {
+        localStorage.removeItem('sp_portfolio_theme');
+        var mode = localStorage.getItem('sp_portfolio_theme_mode') || 'system';
+        if (mode !== 'system' && mode !== 'light' && mode !== 'dark') mode = 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-mode', mode);
+        document.documentElement.style.colorScheme = resolved;
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Primary SEO Metadata -->
   <title>Shanto Paul | Software Engineering Student & Full-Stack Developer</title>
@@ -18,20 +35,22 @@
   <meta property="og:url" content="https://portfolio-assignment.shantopaul.com/">
   <meta property="og:title" content="Shanto Paul | Software Engineering Portfolio with AI Chatbot">
   <meta property="og:description" content="Discover Shanto Paul's software engineering projects, technical skill matrix, and interact with the personal portfolio AI assistant.">
-  <meta property="og:image" content="assets/images/favicon/favicon.svg">
+  <meta property="og:image" content="https://portfolio-assignment.shantopaul.com/assets/images/profile/shanto-paul.webp">
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Shanto Paul | Software Engineering Portfolio with AI Chatbot">
   <meta name="twitter:description" content="Software Engineering student at DIU showcasing web development projects and personal AI chatbot.">
-  <meta name="twitter:image" content="assets/images/favicon/favicon.svg">
+  <meta name="twitter:image" content="https://portfolio-assignment.shantopaul.com/assets/images/profile/shanto-paul.webp">
 
   <!-- Canonical URL & Mobile Theme Color -->
   <link rel="canonical" href="https://portfolio-assignment.shantopaul.com/">
-  <meta name="theme-color" content="#0A0E17">
+  <meta name="theme-color" content="#070B14">
 
-  <!-- Favicon -->
+  <!-- Favicon & App Icons -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon/favicon.svg">
 
   <!-- Structured Data (JSON-LD) for SEO -->
   <script type="application/ld+json">
@@ -40,6 +59,7 @@
     "@type": "Person",
     "name": "Shanto Paul",
     "url": "https://portfolio-assignment.shantopaul.com/",
+    "image": "https://portfolio-assignment.shantopaul.com/assets/images/profile/shanto-paul.webp",
     "jobTitle": "Software Engineering Student & Full-Stack Developer",
     "worksFor": {
       "@type": "EducationalOrganization",
@@ -59,24 +79,28 @@
     "sameAs": [
       "https://shantopaul.com",
       "https://github.com/shantopaul",
-      "https://linkedin.com/in/shantopaul"
+      "https://linkedin.com/in/shantopauldev"
     ]
   }
   </script>
 
-  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <!-- Google Fonts & Icon CDN Preconnect + Non-Blocking Async Load -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  </noscript>
 
-  <!-- Font Awesome 6 Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-  <!-- Modular Stylesheets -->
+  <!-- Modular Stylesheets & Core Script Preload -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/chatbot.css">
+  <link rel="modulepreload" href="assets/js/main.js">
 </head>
 <body>
   <!-- Accessible Skip Navigation Link -->
@@ -87,26 +111,91 @@
        ====================================================================== -->
   <header class="navbar" role="banner">
     <div class="container navbar-container">
-      <!-- Brand Logo / Monogram -->
+      <!-- Brand Logo / Full Name -->
       <a href="#hero" class="nav-brand" aria-label="Shanto Paul Portfolio Home">
-        <span class="text-gradient nav-brand-text">SP.</span>
+        <img src="assets/images/logo/sp-logo.svg" alt="" class="nav-brand-logo" width="38" height="38" aria-hidden="true">
+        <span class="nav-brand-text">
+          <span class="text-gradient brand-name">Shanto Paul</span>
+        </span>
       </a>
 
-      <!-- Desktop & Mobile Navigation Links -->
+      <!-- Desktop Navigation & Professional Mobile Slide-Out Drawer -->
       <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
-        <a href="#hero" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <!-- Mobile Drawer Header -->
+        <div class="nav-drawer-header">
+          <div class="nav-drawer-brand">
+            <img src="assets/images/logo/sp-logo.svg" alt="" class="nav-brand-logo" width="36" height="36" aria-hidden="true">
+            <div class="nav-brand-text">
+              <span class="brand-name">Shanto Paul</span>
+              <span class="brand-sub">SWE Student • DIU</span>
+            </div>
+          </div>
+          <button class="nav-drawer-close btn-icon" type="button" aria-label="Close navigation menu" title="Close Menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Primary Section Links -->
+        <div class="nav-links-group">
+          <a href="#hero" class="nav-link active"><i class="fa-solid fa-house nav-link-icon" aria-hidden="true"></i><span>Home</span></a>
+          <a href="#about" class="nav-link"><i class="fa-solid fa-user nav-link-icon" aria-hidden="true"></i><span>About</span></a>
+          <a href="#skills" class="nav-link"><i class="fa-solid fa-code nav-link-icon" aria-hidden="true"></i><span>Skills</span></a>
+          <a href="#education" class="nav-link"><i class="fa-solid fa-graduation-cap nav-link-icon" aria-hidden="true"></i><span>Education</span></a>
+          <a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase nav-link-icon" aria-hidden="true"></i><span>Experience</span></a>
+          <a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open nav-link-icon" aria-hidden="true"></i><span>Projects</span></a>
+          <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope nav-link-icon" aria-hidden="true"></i><span>Contact</span></a>
+        </div>
+
+        <!-- Mobile Drawer Footer (Theme Switcher, Quick Actions & Socials) -->
+        <div class="nav-drawer-footer">
+          <div class="nav-drawer-section-label">Appearance</div>
+          <div class="nav-theme-segmented" role="group" aria-label="Choose color theme">
+            <button type="button" class="nav-theme-pill" data-theme-choice="system" aria-pressed="true">
+              <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Auto
+            </button>
+            <button type="button" class="nav-theme-pill" data-theme-choice="light" aria-pressed="false">
+              <i class="fa-solid fa-sun" aria-hidden="true"></i> Light
+            </button>
+            <button type="button" class="nav-theme-pill" data-theme-choice="dark" aria-pressed="false">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i> Dark
+            </button>
+          </div>
+
+          <div class="nav-drawer-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-action="open-chatbot" data-drawer-close>
+              <i class="fa-solid fa-robot" aria-hidden="true"></i> Ask AI Assistant
+            </button>
+            <a href="assets/documents/resume.pdf" download="Shanto_Paul_Resume.pdf" class="btn btn-secondary btn-sm" data-drawer-close>
+              <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Resume
+            </a>
+          </div>
+
+          <div class="nav-drawer-socials">
+            <a href="https://shantopaul.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Official Website" title="shantopaul.com">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+            <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/shantopauldev" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:shanto@shantopaul.com" class="footer-social-link" aria-label="Email Shanto" title="shanto@shantopaul.com">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </nav>
 
-      <!-- Utility Actions (Theme Toggle & Mobile Trigger) -->
+      <!-- Utility Actions (AI Quick Trigger, Theme Toggle & Mobile Menu) -->
       <div class="nav-actions">
-        <button class="theme-toggle btn-icon" type="button" aria-label="Switch to Light Theme" title="Switch Theme (Light / Dark)">
-          <i class="fa-solid fa-sun"></i>
+        <button class="btn-nav-ai" type="button" data-action="open-chatbot" aria-label="Open Shanto's AI Assistant" title="Chat with Shanto's AI Assistant">
+          <i class="fa-solid fa-robot" aria-hidden="true"></i>
+          <span>Ask AI</span>
+        </button>
+
+        <button class="theme-toggle btn-icon" type="button" aria-label="Theme: Auto (System)" title="Theme: Auto (System)">
+          <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
         </button>
 
         <button class="nav-toggle btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -132,9 +221,8 @@
           <!-- Bento Tile 1: Primary Profile & Hero Introduction (Span 2x2) -->
           <article class="bento-card bento-item--col-2 bento-item--row-2 reveal-on-scroll">
             <div>
-              <div style="display: flex; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-sm);">
-                <span class="pulse-indicator"></span>
-                <span class="badge badge-verified">Available for Opportunities</span>
+              <div style="display: flex; align-items: center; margin-bottom: var(--space-sm);">
+                <span class="badge badge-verified"><span class="pulse-indicator"></span> Available for Opportunities</span>
               </div>
               <h1 style="margin-bottom: var(--space-xs);">
                 Hi, I'm <span class="text-gradient">Shanto Paul</span>
@@ -147,7 +235,7 @@
               </div>
 
               <p style="margin-bottom: var(--space-md); font-size: 1.05rem;">
-                Undergraduate Software Engineering student in 6th Semester at <strong>Daffodil International University (DIU)</strong>. Passionate about desktop systems, modern web engineering, and domain-bounded AI conversational systems.
+                Software Engineering undergraduate at <strong>Daffodil International University (DIU)</strong> crafting scalable full-stack web apps, intuitive desktop software, and verified AI-powered user experiences.
               </p>
             </div>
 
@@ -161,12 +249,17 @@
                 </button>
               </div>
 
-              <!-- Hero Social Links Row -->
+              <!-- Hero Social Links & Official Site Pill Row -->
               <div class="hero-socials">
+                <a href="https://shantopaul.com/" target="_blank" rel="noopener noreferrer" class="hero-site-pill" aria-label="Visit Shanto Paul official website at shantopaul.com" title="Official Website — shantopaul.com">
+                  <i class="fa-solid fa-globe"></i>
+                  <span>shantopaul.com</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.72em; opacity: 0.78;"></i>
+                </a>
                 <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on GitHub" title="GitHub">
                   <i class="fa-brands fa-github"></i>
                 </a>
-                <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
+                <a href="https://linkedin.com/in/shantopauldev" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
                   <i class="fa-brands fa-linkedin-in"></i>
                 </a>
                 <a href="#contact" class="hero-social-btn" aria-label="Send direct message" title="Email Contact">
@@ -176,18 +269,19 @@
             </div>
           </article>
 
-          <!-- Bento Tile 2: Visual Profile Avatar Card with Glowing Ring & Floating Badges (Span 2x2) -->
+          <!-- Bento Tile 2: Visual Studio Portrait Card with Glowing Frame & Floating Badges (Span 2x2) -->
           <article class="bento-card bento-item--col-2 bento-item--row-2 hero-avatar-card reveal-on-scroll delay-100">
-            <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 280px;">
+            <div class="hero-avatar-stage">
               <!-- Floating Badge 1 (Top-Right) -->
               <div class="hero-floating-badge badge-pos-top-right float-anim-1">
                 <i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i>
                 <span>6th Semester • DIU</span>
               </div>
 
-              <!-- Central Avatar with Glowing Ring -->
+              <!-- Central Editorial Portrait Frame (Theme-Aware Studio Backdrop) -->
               <div class="hero-avatar-ring">
-                <img src="assets/images/profile/avatar-placeholder.svg" alt="Shanto Paul profile portrait" class="hero-avatar-img" width="220" height="220">
+                <img src="assets/images/profile/shanto-paul.webp" alt="Shanto Paul portrait in navy suit" class="hero-avatar-img portrait-light" width="320" height="366" decoding="async" fetchpriority="high">
+                <img src="assets/images/profile/shanto-paul-dark.webp" alt="Shanto Paul studio portrait in navy suit" class="hero-avatar-img portrait-dark" width="320" height="366" decoding="async" fetchpriority="high">
               </div>
 
               <!-- Floating Badge 2 (Bottom-Left) -->
@@ -262,7 +356,8 @@
           <!-- Profile Quick Facts Card -->
           <article class="about-profile-card reveal-left">
             <div class="about-avatar-wrap">
-              <img src="assets/images/profile/avatar-placeholder.svg" alt="Portrait illustration for Shanto Paul" class="about-avatar-img" width="140" height="140">
+              <img src="assets/images/profile/shanto-paul.webp" alt="Portrait photo of Shanto Paul" class="about-avatar-img portrait-light" width="184" height="204" loading="lazy" decoding="async" fetchpriority="low">
+              <img src="assets/images/profile/shanto-paul-dark.webp" alt="Studio portrait photo of Shanto Paul" class="about-avatar-img portrait-dark" width="184" height="204" loading="lazy" decoding="async" fetchpriority="low">
             </div>
 
             <h3 style="font-size: 1.35rem; margin-bottom: 2px;">Shanto Paul</h3>
@@ -309,11 +404,21 @@
                   <strong>Location:</strong> Dhaka, Bangladesh
                 </div>
               </div>
+
+              <div class="about-fact-item">
+                <i class="fa-solid fa-globe"></i>
+                <div>
+                  <strong>Official Site:</strong> <a href="https://shantopaul.com/" target="_blank" rel="noopener noreferrer">shantopaul.com</a>
+                </div>
+              </div>
             </div>
 
             <div style="margin-top: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-xs);">
               <a href="assets/documents/resume.pdf" download="Shanto_Paul_Resume.pdf" class="btn btn-primary" style="width: 100%;">
                 <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+              </a>
+              <a href="https://shantopaul.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%;">
+                <i class="fa-solid fa-globe"></i> Visit shantopaul.com
               </a>
               <a href="#contact" class="btn btn-secondary" style="width: 100%;">
                 <i class="fa-solid fa-envelope"></i> Get in Touch
@@ -669,7 +774,7 @@
                     <i class="fa-solid fa-circle-check"></i> Completed
                   </span>
                   <h3 class="timeline-degree">Higher Secondary Certificate (HSC)</h3>
-                  <div class="timeline-institution">[PLACEHOLDER: College Name]</div>
+                  <div class="timeline-institution">Savar Govt College</div>
                   <p style="font-size: 0.925rem; margin-top: 2px; color: var(--text-secondary);">
                     Science Group • Higher Secondary Education
                   </p>
@@ -703,7 +808,7 @@
                     <i class="fa-solid fa-circle-check"></i> Completed
                   </span>
                   <h3 class="timeline-degree">Secondary School Certificate (SSC)</h3>
-                  <div class="timeline-institution">[PLACEHOLDER: School Name]</div>
+                  <div class="timeline-institution">Savar Adhar Chandra Government High School</div>
                   <p style="font-size: 0.925rem; margin-top: 2px; color: var(--text-secondary);">
                     Science Group • Secondary Education
                   </p>
@@ -897,7 +1002,7 @@
           <!-- Project 1: Portfolio with Domain-Bounded AI -->
           <article class="bento-card project-card reveal-on-scroll is-revealed" data-category="Web & AI">
             <div class="project-card-image-wrap">
-              <img src="assets/images/projects/portfolio-preview.svg" alt="Personal Portfolio with Domain-Bounded AI Chatbot preview" loading="lazy" class="project-card-image" width="600" height="340">
+              <img src="assets/images/projects/portfolio-preview.svg" alt="Personal Portfolio with Domain-Bounded AI Chatbot preview" loading="lazy" decoding="async" fetchpriority="low" class="project-card-image" width="600" height="340">
               <span class="badge badge-featured"><i class="fa-solid fa-star"></i> Featured</span>
             </div>
             <div class="project-card-body">
@@ -922,7 +1027,7 @@
               <a href="https://github.com/shantopaul/Portfolio-Assignment" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="View source code on GitHub for Personal Portfolio">
                 <i class="fa-brands fa-github"></i> View Code
               </a>
-              <a href="https://shantopaul.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="View live demo for Personal Portfolio">
+              <a href="https://portfolio-assignment.shantopaul.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" aria-label="View live demo for Personal Portfolio">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
               </a>
             </div>
@@ -931,7 +1036,7 @@
           <!-- Project 2: SP ExamAlert -->
           <article class="bento-card project-card reveal-on-scroll delay-100 is-revealed" data-category="Academic">
             <div class="project-card-image-wrap">
-              <img src="assets/images/projects/project-placeholder.svg" alt="SP ExamAlert student application preview" loading="lazy" class="project-card-image" width="600" height="340">
+              <img src="assets/images/projects/sp-examalert.svg" alt="SP ExamAlert Smart Exam Notification System preview" loading="lazy" decoding="async" fetchpriority="low" class="project-card-image" width="600" height="340">
             </div>
             <div class="project-card-body">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs);">
@@ -958,7 +1063,7 @@
           <!-- Project 3: RentVerse -->
           <article class="bento-card project-card reveal-on-scroll delay-200 is-revealed" data-category="Full-Stack">
             <div class="project-card-image-wrap">
-              <img src="assets/images/projects/project-placeholder.svg" alt="RentVerse university asset platform preview" loading="lazy" class="project-card-image" width="600" height="340">
+              <img src="assets/images/projects/rentverse.svg" alt="RentVerse University Property and Asset Management preview" loading="lazy" decoding="async" fetchpriority="low" class="project-card-image" width="600" height="340">
             </div>
             <div class="project-card-body">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs);">
@@ -1007,6 +1112,19 @@
             </div>
 
             <div class="contact-info-list">
+              <!-- Official Website -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <div>
+                  <div class="contact-info-label">Official Website</div>
+                  <div class="contact-info-val">
+                    <a href="https://shantopaul.com/" target="_blank" rel="noopener noreferrer">https://shantopaul.com/</a>
+                  </div>
+                </div>
+              </div>
+
               <!-- Email -->
               <div class="contact-info-item">
                 <div class="contact-info-icon">
@@ -1015,7 +1133,7 @@
                 <div>
                   <div class="contact-info-label">Email</div>
                   <div class="contact-info-val">
-                    <a href="mailto:your.email@example.com">[PLACEHOLDER: your.email@example.com]</a>
+                    <a href="mailto:shanto@shantopaul.com">shanto@shantopaul.com</a>
                   </div>
                 </div>
               </div>
@@ -1047,10 +1165,13 @@
             <div style="border-top: 1px solid var(--border); padding-top: var(--space-md);">
               <div class="contact-info-label" style="margin-bottom: var(--space-xs);">Social Channels</div>
               <div class="hero-socials" style="margin-top: 0;">
+                <a href="https://shantopaul.com/" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul Official Website" title="Official Website (shantopaul.com)">
+                  <i class="fa-solid fa-globe"></i>
+                </a>
                 <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on GitHub" title="GitHub">
                   <i class="fa-brands fa-github"></i>
                 </a>
-                <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
+                <a href="https://linkedin.com/in/shantopauldev" target="_blank" rel="noopener noreferrer" class="hero-social-btn" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
                   <i class="fa-brands fa-linkedin-in"></i>
                 </a>
                 <button type="button" class="hero-social-btn" onclick="document.querySelector('.chat-launcher')?.click()" aria-label="Open AI Assistant" title="AI Assistant">
@@ -1133,14 +1254,15 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#hero" class="nav-brand" style="text-decoration: none;">
-            <span class="nav-brand-badge">SP</span>
+            <img src="assets/images/logo/sp-logo.svg" alt="" class="nav-brand-logo" width="40" height="40" aria-hidden="true">
             <span class="nav-brand-text">
               <span class="brand-name">Shanto Paul</span>
               <span class="brand-sub">SWE Student • DIU</span>
             </span>
           </a>
           <p class="footer-tagline">
-            Building robust web applications, intuitive interfaces, and domain-bounded AI solutions.
+            Building robust web applications, intuitive interfaces, and domain-bounded AI solutions.<br>
+            Official Hub: <a href="https://shantopaul.com/" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">shantopaul.com</a>
           </p>
         </div>
 
@@ -1163,7 +1285,7 @@
           <a href="https://github.com/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on GitHub" title="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
-          <a href="https://linkedin.com/in/shantopaul" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
+          <a href="https://linkedin.com/in/shantopauldev" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Shanto Paul on LinkedIn" title="LinkedIn">
             <i class="fa-brands fa-linkedin-in"></i>
           </a>
           <a href="#contact" class="footer-social-link" aria-label="Email Contact" title="Contact Shanto">
@@ -1172,7 +1294,7 @@
         </div>
 
         <p style="margin: 0; font-size: 0.875rem;">
-          © <span id="current-year">2026</span> Shanto Paul. Built for <strong>SE 236: Desktop & Web Programming Lab</strong> at Daffodil International University.
+          © <span id="current-year">2026</span> Shanto Paul. All rights reserved.
         </p>
 
         <a href="#hero" class="back-to-top-btn" aria-label="Back to top of page">
@@ -1200,7 +1322,10 @@
       <!-- Chat Header -->
       <div class="chat-header">
         <div class="chat-header-title">
-          <span class="chat-status-dot" aria-hidden="true"></span>
+          <div class="chat-avatar-brand" aria-hidden="true">
+            <img src="assets/images/logo/sp-logo.svg" alt="" class="chat-header-logo" width="36" height="36">
+            <span class="chat-status-dot"></span>
+          </div>
           <div class="chat-header-text">
             <h3 id="chat-heading">Shanto's AI Assistant</h3>
             <span class="chat-header-model">Verified AI • Powered by Gemini</span>

@@ -10,6 +10,7 @@ export function initNavigation() {
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
   const navBackdrop = document.querySelector('.nav-backdrop');
+  const navDrawerClose = document.querySelector('.nav-drawer-close');
   const navLinks = document.querySelectorAll('.nav-link');
 
   // Sticky Navbar shadow on scroll
@@ -21,25 +22,45 @@ export function initNavigation() {
     }
   });
 
-  // Mobile menu toggle
-  if (navToggle && navMenu) {
-    const toggleMenu = () => {
-      const isOpen = navMenu.classList.toggle('active');
-      navBackdrop?.classList.toggle('active', isOpen);
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-      const icon = navToggle.querySelector('i');
-      if (icon) {
-        icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-      }
-    };
+  const setDrawerState = (open) => {
+    if (!navMenu) return;
+    navMenu.classList.toggle('active', open);
+    navBackdrop?.classList.toggle('active', open);
+    navToggle?.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
 
-    navToggle.addEventListener('click', toggleMenu);
-    navBackdrop?.addEventListener('click', toggleMenu);
+    const icon = navToggle?.querySelector('i');
+    if (icon) {
+      icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    }
+  };
+
+  // Mobile & Tablet Drawer Toggle
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.contains('active');
+      setDrawerState(!isOpen);
+    });
+
+    navBackdrop?.addEventListener('click', () => setDrawerState(false));
+    navDrawerClose?.addEventListener('click', () => setDrawerState(false));
+
+    document.querySelectorAll('[data-drawer-close]').forEach((el) => {
+      el.addEventListener('click', () => setDrawerState(false));
+    });
 
     // Close on Escape key
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        toggleMenu();
+        setDrawerState(false);
+        navToggle.focus();
+      }
+    });
+
+    // Ensure body scroll lock resets if resized up to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024 && navMenu.classList.contains('active')) {
+        setDrawerState(false);
       }
     });
   }
@@ -48,11 +69,7 @@ export function initNavigation() {
   navLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       if (navMenu && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        navBackdrop?.classList.remove('active');
-        navToggle?.setAttribute('aria-expanded', 'false');
-        const icon = navToggle?.querySelector('i');
-        if (icon) icon.className = 'fa-solid fa-bars';
+        setDrawerState(false);
       }
 
       const targetId = link.getAttribute('href');
@@ -69,7 +86,6 @@ export function initNavigation() {
             behavior: 'smooth'
           });
 
-          // Update URL hash cleanly
           history.pushState(null, null, targetId);
         }
       }

@@ -5,7 +5,7 @@
 ### Personal Portfolio Website with AI Chatbot Assistant
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)](https://github.com/shantopaul/Portfolio-Assignment)
-[![Tests](https://img.shields.io/badge/Tests-15%2F15%20Passing-brightgreen?style=for-the-badge)](tests/chatbot.test.js)
+[![Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-brightgreen?style=for-the-badge)](tests/chatbot.test.js)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-98%2F100-success?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pagespeed.web.dev/)
 [![Accessibility](https://img.shields.io/badge/WCAG%202.1-AA%20Compliant-blueviolet?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -20,7 +20,7 @@ A modern, responsive, and professional personal portfolio website featuring an *
 
 <br />
 
-[View Live Demo](https://portfolio-assignment.shantopaul.com/) · [Report Bug](https://github.com/shantopaul/Portfolio-Assignment/issues) · [Request Feature](https://github.com/shantopaul/Portfolio-Assignment/issues)
+[Official Website](https://shantopaul.com/) · [View Live Demo](https://portfolio-assignment.shantopaul.com/) · [Report Bug](https://github.com/shantopaul/Portfolio-Assignment/issues) · [Request Feature](https://github.com/shantopaul/Portfolio-Assignment/issues)
 
 </div>
 
@@ -212,8 +212,10 @@ Portfolio-Assignment/
 │   │   ├── contact.js                # Form validation & submission
 │   │   └── theme.js                  # Dark/light theme toggle
 │   ├── 📂 images/
-│   │   ├── 📂 profile/               # Profile photos
-│   │   ├── 📂 projects/              # Project screenshots
+│   │   ├── 📂 profile/               # Profile portraits (light & dark studio)
+│   │   ├── 📂 projects/              # Project UI vector thumbnails
+│   │   ├── 📂 logo/                  # Brand vector logo (SP)
+│   │   ├── 📂 screenshots/           # UI showcase captures (dark, light, chatbot)
 │   │   ├── 📂 icons/                 # Custom icons
 │   │   └── 📂 favicon/               # Favicon files
 │   └── 📂 data/
@@ -349,7 +351,7 @@ The project features an automated Node.js test runner in `tests/chatbot.test.js`
 npm test
 ```
 
-#### Test Execution Report (15/15 Passed):
+#### Test Execution Report (18/18 Passed):
 ```text
 ▶ Security & Method Guardrails
   ✔ Rejects non-POST methods with 405 Method Not Allowed
@@ -357,9 +359,9 @@ npm test
   ✔ Rejects invalid JSON payloads with 400 Bad Request
   ✔ Rejects empty or whitespace-only messages with 400
   ✔ Rejects messages exceeding 500 characters with 400
-✔ Security & Method Guardrails (3.0ms)
+✔ Security & Method Guardrails
 
-▶ Standardized 8-Scenario Evaluation Matrix
+▶ Standardized Evaluation Matrix
   ✔ Scenario 1 (Skill Inquiry): Correctly enumerates verified technical languages
   ✔ Scenario 2 (Education Inquiry): Confirms DIU, 6th semester & SE 236 Lab
   ✔ Scenario 3 (Project Inquiry): Summarizes verified portfolio and student tools
@@ -368,9 +370,12 @@ npm test
   ✔ Scenario 6 (Prompt Injection): Resists system prompt override & jailbreak attempts
   ✔ Scenario 7 (Unknown / Private Detail): Declines private unlisted facts
   ✔ Scenario 8 (Rate Limiting Throttling): Blocks 11th rapid submission with 429
-✔ Standardized 8-Scenario Evaluation Matrix (4.0ms)
+  ✔ Scenario 9 (Website Inquiry): Returns verified official domain shantopaul.com and assignment link
+  ✔ Scenario 10 (Verified Education & Email): Returns HSC/SSC institutions and verified email
+  ✔ Scenario 11 (Gemini Key Failure / Quota 429 Continuity): Always answers from Basic Dataset
+✔ Standardized Evaluation Matrix
 
-ℹ tests 15 | pass 15 | fail 0 | duration_ms ~91ms
+ℹ tests 18 | pass 18 | fail 0 | duration_ms ~126ms
 ```
 
 ### Performance & Audit Metrics
@@ -384,6 +389,38 @@ npm test
 | **First Contentful Paint (FCP)** | < 1.5s | **0.8s** | 🟢 Passed |
 | **Cumulative Layout Shift (CLS)** | < 0.1 | **0.00** | 🟢 Passed |
 | **WCAG 2.1 AA Color Contrast** | ≥ 4.5:1 | **Pass (All Themes)** | 🟢 Passed |
+
+---
+
+## 📸 Screenshots
+
+Explore the live dual-theme Bento interface (with automatic OS `prefers-color-scheme` detection) and domain-bounded AI chatbot assistant:
+
+### 1. Midnight Obsidian Dark Mode
+<p align="center">
+  <img src="assets/images/screenshots/dark-mode.jpg" alt="Shanto Paul Portfolio — Midnight Obsidian Dark Mode UI" width="100%" />
+</p>
+
+### 2. Crisp Executive Light Mode
+<p align="center">
+  <img src="assets/images/screenshots/light-mode.jpg" alt="Shanto Paul Portfolio — Executive Light Mode UI" width="100%" />
+</p>
+
+### 3. Domain-Bounded AI Chatbot Assistant (Dark & Light Themes)
+<table>
+  <tr>
+    <th width="50%" align="center">🌙 Dark Mode Chatbot</th>
+    <th width="50%" align="center">☀️ Light Mode Chatbot</th>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/images/screenshots/chatbot-dark.jpg" alt="Shanto's AI Assistant — Dark Mode" width="100%" />
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/images/screenshots/chatbot-light.jpg" alt="Shanto's AI Assistant — Light Mode" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -433,8 +470,9 @@ This is an academic assignment project. However, suggestions and feedback are we
 
 Software Engineering Student @ Daffodil International University
 
+[![Website](https://img.shields.io/badge/Website-shantopaul.com-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shantopaul.com/)
 [![GitHub](https://img.shields.io/badge/GitHub-shantopaul-181717?style=for-the-badge&logo=github)](https://github.com/shantopaul)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/shantopaul)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/shantopauldev)
 
 </div>
 
