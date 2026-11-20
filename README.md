@@ -20,7 +20,7 @@ A modern, responsive, and professional personal portfolio website featuring an *
 
 <br />
 
-[View Live Demo](https://portfolio-assignment.shantopaul.com/) · [Report Bug](https://github.com/shantopaul/Portfolio-Assignment/issues) · [Request Feature](https://github.com/shantopaul/Portfolio-Assignment/issues)
+[Official Website](https://shantopaul.com/) · [View Live Demo](https://portfolio-assignment.shantopaul.com/) · [Report Bug](https://github.com/shantopaul/Portfolio-Assignment/issues) · [Request Feature](https://github.com/shantopaul/Portfolio-Assignment/issues)
 
 </div>
 
@@ -212,8 +212,10 @@ Portfolio-Assignment/
 │   │   ├── contact.js                # Form validation & submission
 │   │   └── theme.js                  # Dark/light theme toggle
 │   ├── 📂 images/
-│   │   ├── 📂 profile/               # Profile photos
-│   │   ├── 📂 projects/              # Project screenshots
+│   │   ├── 📂 profile/               # Profile portraits (light & dark studio)
+│   │   ├── 📂 projects/              # Project UI vector thumbnails
+│   │   ├── 📂 logo/                  # Brand vector logo (SP)
+│   │   ├── 📂 screenshots/           # UI showcase captures (dark, light, chatbot)
 │   │   ├── 📂 icons/                 # Custom icons
 │   │   └── 📂 favicon/               # Favicon files
 │   └── 📂 data/
@@ -390,6 +392,38 @@ npm test
 
 ---
 
+## 📸 Screenshots
+
+Explore the live dual-theme Bento interface (with automatic OS `prefers-color-scheme` detection) and domain-bounded AI chatbot assistant:
+
+### 1. Midnight Obsidian Dark Mode
+<p align="center">
+  <img src="assets/images/screenshots/dark-mode.jpg" alt="Shanto Paul Portfolio — Midnight Obsidian Dark Mode UI" width="100%" />
+</p>
+
+### 2. Crisp Executive Light Mode
+<p align="center">
+  <img src="assets/images/screenshots/light-mode.jpg" alt="Shanto Paul Portfolio — Executive Light Mode UI" width="100%" />
+</p>
+
+### 3. Domain-Bounded AI Chatbot Assistant (Dark & Light Themes)
+<table>
+  <tr>
+    <th width="50%" align="center">🌙 Dark Mode Chatbot</th>
+    <th width="50%" align="center">☀️ Light Mode Chatbot</th>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/images/screenshots/chatbot-dark.jpg" alt="Shanto's AI Assistant — Dark Mode" width="100%" />
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/images/screenshots/chatbot-light.jpg" alt="Shanto's AI Assistant — Light Mode" width="100%" />
+    </td>
+  </tr>
+</table>
+
+---
+
 ## 🗺️ Roadmap & Phase Progression
 
 - [x] **Pre-development:** Project planning & documentation (`PRD.md`, `Architecture.md`, `Rules.md`, `Phases.md`, `Design.md`, `Memory.md`)
@@ -436,6 +470,7 @@ This is an academic assignment project. However, suggestions and feedback are we
 
 Software Engineering Student @ Daffodil International University
 
+[![Website](https://img.shields.io/badge/Website-shantopaul.com-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shantopaul.com/)
 [![GitHub](https://img.shields.io/badge/GitHub-shantopaul-181717?style=for-the-badge&logo=github)](https://github.com/shantopaul)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/shantopauldev)
 
