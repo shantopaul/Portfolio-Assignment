@@ -61,6 +61,16 @@
     height: 38px;
     font-size: 0.8rem;
   }
+
+  .nav-brand-badge {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
 }
 
 /* --------------------------------------------------------------------------

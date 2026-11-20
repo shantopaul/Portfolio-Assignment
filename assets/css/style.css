@@ -326,16 +326,58 @@ code, pre {
 }
 
 .nav-brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 0.65rem;
   text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-brand-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-hero);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.nav-brand:hover .nav-brand-badge {
+  transform: scale(1.06) rotate(-2deg);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .nav-brand-text {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.brand-name {
+  font-size: 1.18rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.brand-sub {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
 }
 
 .nav-brand:hover .text-gradient {
