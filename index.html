@@ -31,8 +31,10 @@
   <link rel="canonical" href="https://portfolio-assignment.shantopaul.com/">
   <meta name="theme-color" content="#070B14">
 
-  <!-- Favicon -->
+  <!-- Favicon & App Icons -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/favicon/favicon.svg">
 
   <!-- Structured Data (JSON-LD) for SEO -->
   <script type="application/ld+json">
@@ -41,6 +43,7 @@
     "@type": "Person",
     "name": "Shanto Paul",
     "url": "https://portfolio-assignment.shantopaul.com/",
+    "image": "https://portfolio-assignment.shantopaul.com/assets/images/profile/shanto-paul.webp",
     "jobTitle": "Software Engineering Student & Full-Stack Developer",
     "worksFor": {
       "@type": "EducationalOrganization",
@@ -90,7 +93,7 @@
     <div class="container navbar-container">
       <!-- Brand Logo / Full Name -->
       <a href="#hero" class="nav-brand" aria-label="Shanto Paul Portfolio Home">
-        <span class="nav-brand-badge" aria-hidden="true">SP</span>
+        <img src="assets/images/logo/sp-logo.svg" alt="" class="nav-brand-logo" width="38" height="38" aria-hidden="true">
         <span class="nav-brand-text">
           <span class="text-gradient brand-name">Shanto Paul</span>
         </span>
@@ -1138,7 +1141,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#hero" class="nav-brand" style="text-decoration: none;">
-            <span class="nav-brand-badge">SP</span>
+            <img src="assets/images/logo/sp-logo.svg" alt="" class="nav-brand-logo" width="40" height="40" aria-hidden="true">
             <span class="nav-brand-text">
               <span class="brand-name">Shanto Paul</span>
               <span class="brand-sub">SWE Student • DIU</span>
@@ -1205,7 +1208,10 @@
       <!-- Chat Header -->
       <div class="chat-header">
         <div class="chat-header-title">
-          <span class="chat-status-dot" aria-hidden="true"></span>
+          <div class="chat-avatar-brand" aria-hidden="true">
+            <img src="assets/images/logo/sp-logo.svg" alt="" class="chat-header-logo" width="36" height="36">
+            <span class="chat-status-dot"></span>
+          </div>
           <div class="chat-header-text">
             <h3 id="chat-heading">Shanto's AI Assistant</h3>
             <span class="chat-header-model">Verified AI • Powered by Gemini</span>

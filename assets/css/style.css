@@ -334,27 +334,19 @@ code, pre {
   flex-shrink: 0;
 }
 
-.nav-brand-badge {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
-  background: var(--gradient-hero);
-  color: #FFFFFF;
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+.nav-brand-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: block;
   flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.nav-brand:hover .nav-brand-badge {
+.nav-brand:hover .nav-brand-logo {
   transform: scale(1.06) rotate(-2deg);
-  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5);
 }
 
 .nav-brand-text {

@@ -358,10 +358,10 @@
     gap: 0.5rem;
   }
 
-  .nav-brand-badge {
+  .nav-brand-logo {
     width: 32px;
     height: 32px;
-    font-size: 0.8rem;
+    border-radius: 8px;
   }
 
   .brand-name {
