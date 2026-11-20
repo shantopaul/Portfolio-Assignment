@@ -9,12 +9,14 @@
 ## 📋 Completed Tasks
 
 ### Planning Documents
-- [x] PRD.md — Project Requirement Document ✅
-- [x] Architecture.md — Application Architecture ✅
-- [x] Rules.md — Development Rules & Guidelines ✅
-- [x] Phases.md — Development Phases & Milestones ✅
-- [x] Design.md — Design System & Visual Guidelines ✅
-- [x] Memory.md — Project Memory (this file) ✅
+- [x] [`docs/Protfolio Website Shanto.md`](Protfolio%20Website%20Shanto.md) — Master development specification prompt ✅
+- [x] [`docs/PRD.md`](PRD.md) — Project Requirement Document ✅
+- [x] [`docs/Architecture.md`](Architecture.md) — Application Architecture ✅
+- [x] [`docs/Rules.md`](Rules.md) — Development Rules & Guidelines ✅
+- [x] [`docs/Phases.md`](Phases.md) — Development Phases & Milestones ✅
+- [x] [`docs/Design.md`](Design.md) — Design System & Visual Guidelines ✅
+- [x] [`docs/Memory.md`](Memory.md) — Project Memory (this file) ✅
+- [x] [`docs/Portfolio Development Report.docx`](Portfolio%20Development%20Report.docx) — Final SE 235 Assignment Report ✅
 
 ### Development
 - [x] Phase 1: Project Setup & Foundation Architecture ✅
@@ -41,12 +43,14 @@ List of all project files and their status:
 
 | File | Status | Last Modified | Notes |
 |------|--------|---------------|-------|
-| PRD.md | ✅ Complete | 2026-10-12 | Project requirements defined |
-| Architecture.md | ✅ Complete | 2026-10-12 | Architecture & structure defined |
-| Rules.md | ✅ Complete | 2026-10-12 | Development rules established |
-| Phases.md | ✅ Complete | 2026-10-12 | 7 phases planned |
-| Design.md | ✅ Complete | 2026-10-12 | Design system + Bento Grid + AI specs |
-| Memory.md | ✅ Complete | 2026-10-12 | This file |
+| [`docs/Protfolio Website Shanto.md`](Protfolio%20Website%20Shanto.md) | ✅ Complete | 2026-10-12 | Master specification prompt |
+| [`docs/PRD.md`](PRD.md) | ✅ Complete | 2026-10-12 | Project requirements defined |
+| [`docs/Architecture.md`](Architecture.md) | ✅ Complete | 2026-10-12 | Architecture & structure defined |
+| [`docs/Rules.md`](Rules.md) | ✅ Complete | 2026-10-12 | Development rules established |
+| [`docs/Phases.md`](Phases.md) | ✅ Complete | 2026-10-12 | 7 phases planned |
+| [`docs/Design.md`](Design.md) | ✅ Complete | 2026-10-12 | Design system + Bento Grid + AI specs |
+| [`docs/Memory.md`](Memory.md) | ✅ Complete | 2026-11-20 | Organized under `docs/` & synced |
+| [`docs/Portfolio Development Report.docx`](Portfolio%20Development%20Report.docx) | ✅ Complete | 2026-11-20 | Final assignment report with Cover Page |
 | index.html | ✅ Complete | 2026-10-12 | Canonical link, theme-color meta, Schema.org JSON-LD |
 | assets/css/style.css | ✅ Complete | 2026-10-12 | Custom properties, reset, typography |
 | assets/css/responsive.css | ✅ Complete | 2026-10-12 | Mobile-first breakpoints |

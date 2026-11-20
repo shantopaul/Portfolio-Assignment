@@ -228,12 +228,14 @@ Portfolio-Assignment/
 │       └── chat.js                   # Serverless chatbot API function
 │
 └── 📂 docs/
+    ├── Protfolio Website Shanto.md   # Master development specification prompt
     ├── PRD.md                        # Project Requirement Document
     ├── Architecture.md               # Application Architecture
     ├── Rules.md                      # Development Rules & Guidelines
     ├── Phases.md                     # Development Phases & Milestones
     ├── Design.md                     # Design System & Visual Guidelines
-    └── Memory.md                     # Project Progress Tracker
+    ├── Memory.md                     # Project Progress Tracker
+    └── Portfolio Development Report.docx # Final SE 235 assignment report (with Cover Page)
 ```
 
 ---
@@ -244,12 +246,14 @@ Comprehensive planning was completed before any code was written:
 
 | Document | Description | Status |
 |----------|-------------|--------|
-| [`PRD.md`](PRD.md) | Project Requirements — features, users, acceptance criteria | ✅ Complete |
-| [`Architecture.md`](Architecture.md) | System architecture, tech stack, API specs, data flow | ✅ Complete |
-| [`Rules.md`](Rules.md) | Development rules — what to use, what to avoid, security | ✅ Complete |
-| [`Phases.md`](Phases.md) | 7 development phases with tasks & deliverables | ✅ Complete |
-| [`Design.md`](Design.md) | Design system — colors, fonts, spacing, components | ✅ Complete |
-| [`Memory.md`](Memory.md) | Project progress tracker — updated regularly | ✅ Complete |
+| [`docs/Protfolio Website Shanto.md`](docs/Protfolio%20Website%20Shanto.md) | Master specification prompt & AI chatbot guardrails | ✅ Complete |
+| [`docs/PRD.md`](docs/PRD.md) | Project Requirements — features, users, acceptance criteria | ✅ Complete |
+| [`docs/Architecture.md`](docs/Architecture.md) | System architecture, tech stack, API specs, data flow | ✅ Complete |
+| [`docs/Rules.md`](docs/Rules.md) | Development rules — what to use, what to avoid, security | ✅ Complete |
+| [`docs/Phases.md`](docs/Phases.md) | 7 development phases with tasks & deliverables | ✅ Complete |
+| [`docs/Design.md`](docs/Design.md) | Design system — colors, fonts, spacing, components | ✅ Complete |
+| [`docs/Memory.md`](docs/Memory.md) | Project progress tracker — updated regularly | ✅ Complete |
+| [`docs/Portfolio Development Report.docx`](docs/Portfolio%20Development%20Report.docx) | Full SE 235 assignment report with DIU Cover Page | ✅ Complete |
 
 ---
 
@@ -426,7 +430,7 @@ Explore the live dual-theme Bento interface (with automatic OS `prefers-color-sc
 
 ## 🗺️ Roadmap & Phase Progression
 
-- [x] **Pre-development:** Project planning & documentation (`PRD.md`, `Architecture.md`, `Rules.md`, `Phases.md`, `Design.md`, `Memory.md`)
+- [x] **Pre-development:** Master prompt & project planning ([`Protfolio Website Shanto.md`](docs/Protfolio%20Website%20Shanto.md), [`PRD.md`](docs/PRD.md), [`Architecture.md`](docs/Architecture.md), [`Rules.md`](docs/Rules.md), [`Phases.md`](docs/Phases.md), [`Design.md`](docs/Design.md), [`Memory.md`](docs/Memory.md))
 - [x] **Phase 1:** Project Setup & Foundation Architecture (`feature/setup`)
 - [x] **Phase 2:** Navigation & Bento Hero Section with Light/Dark Switcher (`feature/navigation`)
 - [x] **Phase 3:** Content Sections — About, Skills Matrix, Education Timeline, Experience (`feature/content`)
@@ -435,7 +439,7 @@ Explore the live dual-theme Bento interface (with automatic OS `prefers-color-sc
 - [x] **Phase 6:** Serverless Function, Google Gemini REST API, Prompt Guardrails (`feature/chatbot`)
 - [x] **Phase 7:** Comprehensive Testing, SEO, Lighthouse Optimization, Netlify Release (`feature/testing`)
 
-See [`Phases.md`](Phases.md) for detailed phase breakdowns and [`Memory.md`](Memory.md) for full delivery logs.
+See [`docs/Phases.md`](docs/Phases.md) for detailed phase breakdowns, [`docs/Memory.md`](docs/Memory.md) for delivery logs, and [`docs/Portfolio Development Report.docx`](docs/Portfolio%20Development%20Report.docx) for the final SE 235 report.
 
 ---
 
