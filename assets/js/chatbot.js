@@ -46,7 +46,10 @@ export async function initChatbot() {
     chatState.isOpen = true;
     panel.classList.add('active');
     launcher.setAttribute('aria-expanded', 'true');
-    setTimeout(() => input?.focus(), 150);
+    // Focus input on desktop; avoid forced virtual keyboard occlusion on mobile
+    if (window.innerWidth >= 768) {
+      setTimeout(() => input?.focus(), 150);
+    }
   };
 
   const closeChat = () => {

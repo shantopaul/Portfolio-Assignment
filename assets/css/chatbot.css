@@ -538,19 +538,27 @@
    7. Mobile Viewport Slide-up Bottom-Sheet (< 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 767.98px) {
+  .chat-launcher {
+    bottom: 1.15rem;
+    right: 1.15rem;
+    width: 54px;
+    height: 54px;
+    font-size: 1.4rem;
+  }
+
   .chat-panel {
     bottom: 0;
     right: 0;
     left: 0;
     width: 100%;
     max-width: 100%;
-    height: 85vh;
-    height: 85dvh;
-    max-height: 85dvh;
+    height: 88vh;
+    height: 88dvh;
+    max-height: 88dvh;
     border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
     border-bottom: none;
     transform: translateY(100%);
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.55);
   }
 
   .chat-panel.active {
@@ -563,6 +571,27 @@
     background: rgba(255, 255, 255, 0.45);
     border-radius: var(--radius-full);
     margin: 8px auto 4px auto;
+  }
+
+  .chat-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .chat-body {
+    padding: 0.85rem;
+  }
+
+  .chat-bubble {
+    max-width: 92%;
+    font-size: 0.9rem;
+  }
+
+  .chat-footer {
+    padding: 0.55rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .chat-input {
+    font-size: 16px;
   }
 }
 
