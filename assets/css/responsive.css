@@ -539,34 +539,42 @@
     flex-wrap: wrap;
   }
 
-  .hero-avatar-card > div {
-    min-height: 230px !important;
+  .hero-avatar-stage {
+    min-height: 295px;
+    max-width: 320px;
   }
 
   .hero-avatar-ring {
-    width: 165px !important;
-    height: 165px !important;
+    width: min(100%, 248px) !important;
+    height: auto !important;
+    aspect-ratio: 7 / 8;
+    border-radius: 22px !important;
+  }
+
+  .hero-avatar-ring::after,
+  .hero-avatar-img {
+    border-radius: 18px !important;
   }
 
   .hero-floating-badge {
     font-size: 0.72rem !important;
-    padding: 0.32rem 0.65rem !important;
+    padding: 0.34rem 0.68rem !important;
   }
 
   .badge-pos-top-right {
-    top: 4px !important;
+    top: 6px !important;
     right: 2px !important;
   }
 
   .badge-pos-bottom-left {
-    bottom: 4px !important;
+    bottom: 6px !important;
     left: 2px !important;
   }
 
   /* About Avatar */
   .about-avatar-wrap {
-    width: 118px;
-    height: 118px;
+    width: 160px;
+    height: 178px;
   }
 
   /* Wrap long course/skill badges cleanly on narrow phones */

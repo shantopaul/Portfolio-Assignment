@@ -674,44 +674,87 @@ code, pre {
   transform: translateY(-3px);
 }
 
-/* Hero Profile Avatar Container & Floating Badges */
+/* Hero Profile Portrait Container & Floating Badges */
 .hero-avatar-card {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(59, 130, 246, 0.14), rgba(139, 92, 246, 0.06) 50%, transparent 74%),
+    var(--surface);
+}
+
+.hero-avatar-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  min-height: 368px;
 }
 
 .hero-avatar-ring {
   position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  padding: 5px;
+  width: 316px;
+  height: 356px;
+  border-radius: 26px;
+  padding: 4px;
   background: var(--gradient-border);
   box-shadow: var(--shadow-xl), var(--shadow-primary-glow);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero-avatar-ring::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.04) 0%, rgba(15, 23, 42, 0) 45%, rgba(15, 23, 42, 0.22) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme='dark'] .hero-avatar-ring::after {
+  background:
+    radial-gradient(circle at 50% 35%, transparent 48%, rgba(7, 11, 20, 0.28) 100%),
+    linear-gradient(180deg, rgba(7, 11, 20, 0.1) 0%, transparent 40%, rgba(7, 11, 20, 0.42) 100%);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.22);
 }
 
 .hero-avatar-img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 22px;
   object-fit: cover;
-  object-position: center 15%;
-  background: var(--bg-primary);
+  object-position: center 12%;
+  background: #E2E8F0;
   display: block;
+  transition: transform var(--transition-slow), filter var(--transition-normal);
+}
+
+[data-theme='dark'] .hero-avatar-img {
+  filter: brightness(0.95) contrast(1.04) saturate(1.04);
+}
+
+.hero-avatar-card:hover .hero-avatar-img {
+  transform: scale(1.03);
 }
 
 /* Floating Glassmorphism Badges */
 .hero-floating-badge {
   position: absolute;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  padding: 0.45rem 0.95rem;
+  padding: 0.48rem 0.95rem;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -719,23 +762,23 @@ code, pre {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  z-index: 2;
+  z-index: 3;
   white-space: nowrap;
 }
 
 [data-theme='dark'] .hero-floating-badge {
-  background: rgba(15, 23, 42, 0.88);
+  background: rgba(15, 23, 42, 0.9);
   border-color: var(--border-strong);
 }
 
 .badge-pos-top-right {
-  top: 15px;
-  right: 0px;
+  top: 12px;
+  right: 4px;
 }
 
 .badge-pos-bottom-left {
-  bottom: 20px;
-  left: 0px;
+  bottom: 14px;
+  left: 4px;
 }
 
 /* --------------------------------------------------------------------------
@@ -772,23 +815,44 @@ code, pre {
 
 .about-avatar-wrap {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 184px;
+  height: 204px;
   margin: var(--space-md) auto var(--space-md);
-  border-radius: 50%;
+  border-radius: 22px;
   padding: 4px;
   background: var(--gradient-border);
   box-shadow: var(--shadow-lg), var(--shadow-primary-glow);
+  overflow: hidden;
+}
+
+.about-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, transparent 55%, rgba(15, 23, 42, 0.18) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .about-avatar-img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 18px;
   object-fit: cover;
-  object-position: center 15%;
-  background: var(--bg-primary);
+  object-position: center 12%;
+  background: #E2E8F0;
   display: block;
+  transition: transform var(--transition-slow), filter var(--transition-normal);
+}
+
+[data-theme='dark'] .about-avatar-img {
+  filter: brightness(0.95) contrast(1.04) saturate(1.04);
+}
+
+.about-profile-card:hover .about-avatar-img {
+  transform: scale(1.03);
 }
 
 .about-facts-list {
