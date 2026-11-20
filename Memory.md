@@ -30,7 +30,7 @@
 ## 📂 Current Working File
 
 **Branch:** `feature/real-info`  
-**Current Phase:** Verified Personal Info Integrated & Production Ready (Automated Test Suite 17/17 Passing, Real Portrait & Resume PDF, Verified Email & HSC/SSC Institutions, SEO Robots & Sitemap, Schema.org JSON-LD, Lighthouse 98/100 Optimized)  
+**Current Phase:** Dedicated Dark Mode & Continuous Basic Dataset Chatbot Complete (Automated Test Suite 18/18 Passing, Zero-Downtime Gemini Failure Fallback, Real Portrait & Resume PDF, Verified Email & HSC/SSC Institutions)  
 **Completed Files:** `tests/chatbot.test.js`, `robots.txt`, `sitemap.xml`, `README.md`, `index.html`, `assets/data/personal-info.json`, `netlify/functions/chat.js`, `assets/js/chatbot.js`, `dev-server.js`, `Memory.md`
 
 ---
@@ -90,12 +90,13 @@ List of all project files and their status:
 | 2026-10-12 | Phase 6 Completed | Netlify serverless chat function with in-memory IP rate limiter, strict domain prompt guardrails, zero-dependency Gemini REST client, 8/8 standardized test scenarios passed, and rich frontend markdown rendering |
 | 2026-10-12 | Phase 7 Completed | Automated 15-test evaluation suite created (`tests/chatbot.test.js`), `robots.txt`, `sitemap.xml`, Schema.org JSON-LD structured data, Lighthouse audit optimization, and final production README |
 | 2026-11-19 | Real Info Integrated | Replaced email (`shanto@shantopaul.com`), HSC (`Savar Govt College`), SSC (`Savar Adhar Chandra Government High School`), profile portrait (`shanto-paul.webp`), real `resume.pdf`, live demo URL, and expanded test suite to 17/17 passing |
+| 2026-11-20 | Dark Mode & Continuous Chatbot | Dedicated Midnight Obsidian Dark Mode UI + continuous Basic Dataset fallback engine (chatbot always responds from verified JSON data even if Gemini API key fails/expires/hits 429 quota), 18/18 tests passing |
 
 ---
 
 ## 🚧 Known Issues
 
-None. All 17 automated tests pass (100%), zero console exceptions, HTML5 semantics balanced, WCAG AA contrast compliant.
+None. All 18 automated tests pass (100%), zero console exceptions, HTML5 semantics balanced, WCAG AA contrast compliant.
 
 ---
 

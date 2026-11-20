@@ -204,4 +204,44 @@ test('Standardized 8-Scenario Evaluation Matrix', async (t) => {
     assert.equal(emailBody.status, 'success');
     assert.ok(emailBody.reply.includes('shanto@shantopaul.com'));
   });
+
+  await t.test('Scenario 11 (Gemini Key Failure / Quota 429 Continuity): Always answers from Basic Dataset', async () => {
+    const prevKey = process.env.GEMINI_API_KEY;
+    const prevFetch = global.fetch;
+
+    try {
+      process.env.GEMINI_API_KEY = 'mock-expired-or-revoked-key';
+
+      // Case A: Gemini returns 403 (API key invalid/revoked)
+      global.fetch = async () => new Response('{"error":{"code":403,"message":"API key expired"}}', { status: 403 });
+      const res403 = await handler({
+        httpMethod: 'POST',
+        headers: { 'client-ip': 'suite-s11-403' },
+        body: JSON.stringify({ message: 'Who is Shanto Paul?' })
+      });
+      assert.equal(res403.statusCode, 200);
+      const body403 = JSON.parse(res403.body);
+      assert.equal(body403.status, 'success');
+      assert.equal(body403.source, 'basic-dataset-fallback');
+      assert.ok(body403.reply.includes('Shanto Paul'));
+      assert.ok(body403.reply.includes('shantopaul.com'));
+
+      // Case B: Gemini returns 429 (API key quota exhausted)
+      global.fetch = async () => new Response('{"error":{"code":429,"message":"Quota exceeded"}}', { status: 429 });
+      const res429 = await handler({
+        httpMethod: 'POST',
+        headers: { 'client-ip': 'suite-s11-429' },
+        body: JSON.stringify({ message: 'What is Shanto experience and skills?' })
+      });
+      assert.equal(res429.statusCode, 200);
+      const body429 = JSON.parse(res429.body);
+      assert.equal(body429.status, 'success');
+      assert.equal(body429.source, 'basic-dataset-fallback');
+      assert.ok(body429.reply.includes('JavaScript'));
+    } finally {
+      global.fetch = prevFetch;
+      if (prevKey === undefined) delete process.env.GEMINI_API_KEY;
+      else process.env.GEMINI_API_KEY = prevKey;
+    }
+  });
 });

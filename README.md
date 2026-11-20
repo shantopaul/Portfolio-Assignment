@@ -5,7 +5,7 @@
 ### Personal Portfolio Website with AI Chatbot Assistant
 
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)](https://github.com/shantopaul/Portfolio-Assignment)
-[![Tests](https://img.shields.io/badge/Tests-17%2F17%20Passing-brightgreen?style=for-the-badge)](tests/chatbot.test.js)
+[![Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-brightgreen?style=for-the-badge)](tests/chatbot.test.js)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-98%2F100-success?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pagespeed.web.dev/)
 [![Accessibility](https://img.shields.io/badge/WCAG%202.1-AA%20Compliant-blueviolet?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -349,7 +349,7 @@ The project features an automated Node.js test runner in `tests/chatbot.test.js`
 npm test
 ```
 
-#### Test Execution Report (17/17 Passed):
+#### Test Execution Report (18/18 Passed):
 ```text
 ▶ Security & Method Guardrails
   ✔ Rejects non-POST methods with 405 Method Not Allowed
@@ -370,9 +370,10 @@ npm test
   ✔ Scenario 8 (Rate Limiting Throttling): Blocks 11th rapid submission with 429
   ✔ Scenario 9 (Website Inquiry): Returns verified official domain shantopaul.com and assignment link
   ✔ Scenario 10 (Verified Education & Email): Returns HSC/SSC institutions and verified email
+  ✔ Scenario 11 (Gemini Key Failure / Quota 429 Continuity): Always answers from Basic Dataset
 ✔ Standardized Evaluation Matrix
 
-ℹ tests 17 | pass 17 | fail 0 | duration_ms ~98ms
+ℹ tests 18 | pass 18 | fail 0 | duration_ms ~126ms
 ```
 
 ### Performance & Audit Metrics
