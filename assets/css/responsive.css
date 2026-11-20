@@ -55,6 +55,12 @@
   .about-stats-grid {
     grid-template-columns: 1fr !important;
   }
+
+  .btn-nav-ai {
+    padding: 0.45rem 0.8rem;
+    height: 38px;
+    font-size: 0.8rem;
+  }
 }
 
 /* --------------------------------------------------------------------------
