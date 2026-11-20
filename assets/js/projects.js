@@ -1,34 +1,105 @@
 /**
  * ============================================================================
- * PROJECTS.JS — DYNAMIC PROJECT RENDERING & CATEGORY FILTERING ENGINE
+ * PROJECTS.JS — LAZY PROJECT RENDERING, SHIMMER THUMBNAILS & CATEGORY FILTER
  * Project: Personal Portfolio Website — Shanto Paul (DIU)
  * Course: SE 236 — Desktop & Web Programming Lab
  * ============================================================================
  */
 
 let cachedProjects = [];
+let loadPromise = null;
 
 /**
- * Initializes the projects module by fetching projects data.
+ * Fetches and caches project metadata lazily without blocking initial page paint.
+ * @returns {Promise<Array>}
  */
-export async function initProjects() {
+function ensureProjectsLoaded() {
+  if (cachedProjects.length > 0) {
+    return Promise.resolve(cachedProjects);
+  }
+  if (loadPromise) {
+    return loadPromise;
+  }
+
+  loadPromise = fetch('assets/data/projects.json')
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to load projects');
+      return response.json();
+    })
+    .then((data) => {
+      cachedProjects = data.projects || [];
+      return cachedProjects;
+    })
+    .catch((error) => {
+      console.warn('Notice: Using pre-rendered fallback project cards.', error);
+      return [];
+    });
+
+  return loadPromise;
+}
+
+/**
+ * Progressive lazy-load shimmer state for project thumbnail images.
+ * Uses native loading="lazy" + decoding="async" + smooth shimmer fade-in.
+ * @param {HTMLElement} root
+ */
+function wireLazyThumbnails(root) {
+  const imgs = root.querySelectorAll('.project-card-image');
+  imgs.forEach((img) => {
+    const wrap = img.closest('.project-card-image-wrap');
+    if (!wrap) return;
+
+    if (img.complete && img.naturalWidth > 0) {
+      wrap.classList.remove('is-thumb-loading');
+      img.classList.remove('is-thumb-pending');
+      img.classList.add('is-thumb-loaded');
+      return;
+    }
+
+    wrap.classList.add('is-thumb-loading');
+    img.classList.add('is-thumb-pending');
+
+    const markLoaded = () => {
+      wrap.classList.remove('is-thumb-loading');
+      img.classList.remove('is-thumb-pending');
+      img.classList.add('is-thumb-loaded');
+    };
+
+    img.addEventListener('load', markLoaded, { once: true });
+    img.addEventListener('error', markLoaded, { once: true });
+  });
+}
+
+/**
+ * Initializes project thumbnails and defers JSON fetch until section approaches viewport or idle.
+ */
+export function initProjects() {
   const container = document.getElementById('projects-container');
   const filterBtns = document.querySelectorAll('.project-filter-btn');
 
   if (!container) return;
 
-  try {
-    const response = await fetch('assets/data/projects.json');
-    if (!response.ok) throw new Error('Failed to load projects');
-    const data = await response.json();
-    cachedProjects = data.projects || [];
-    renderProjects(cachedProjects, container);
-    setupFilters(filterBtns, container);
-  } catch (error) {
-    console.warn('Notice: Using pre-rendered fallback project cards.', error);
-    // In case fetch fails, existing static cards in HTML remain visible
-    const existingCards = container.querySelectorAll('.project-card');
-    existingCards.forEach((c) => c.classList.add('is-revealed'));
+  // Wire progressive shimmer on pre-rendered static cards right away (zero layout wipe)
+  wireLazyThumbnails(container);
+  setupFilters(filterBtns, container);
+
+  // Lazy prefetch projects.json when user scrolls near Projects section or during browser idle
+  const projectsSection = document.getElementById('projects') || container;
+  if ('IntersectionObserver' in window) {
+    const prefetchObserver = new IntersectionObserver(
+      (entries, observer) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          ensureProjectsLoaded();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '450px 0px' }
+    );
+    prefetchObserver.observe(projectsSection);
+  } else if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => ensureProjectsLoaded(), { timeout: 1500 });
+  } else {
+    setTimeout(() => ensureProjectsLoaded(), 600);
   }
 }
 
@@ -53,7 +124,7 @@ function renderProjects(projects, container) {
       (p) => `
     <article class="bento-card project-card reveal-on-scroll is-revealed" data-category="${p.category}">
       <div class="project-card-image-wrap">
-        <img src="${p.image}" alt="${p.title} preview illustration" loading="lazy" class="project-card-image" width="600" height="340">
+        <img src="${p.image}" alt="${p.title} preview illustration" loading="lazy" decoding="async" fetchpriority="low" class="project-card-image" width="600" height="340">
         ${p.featured ? '<span class="badge badge-featured"><i class="fa-solid fa-star"></i> Featured</span>' : ''}
       </div>
       <div class="project-card-body">
@@ -87,16 +158,18 @@ function renderProjects(projects, container) {
   `
     )
     .join('');
+
+  wireLazyThumbnails(container);
 }
 
 /**
- * Binds category filtering click events.
+ * Binds category filtering click events (lazily loading projects.json on demand).
  * @param {NodeList} buttons
  * @param {HTMLElement} container
  */
 function setupFilters(buttons, container) {
   buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       buttons.forEach((b) => {
         b.classList.remove('active');
         b.setAttribute('aria-pressed', 'false');
@@ -105,16 +178,29 @@ function setupFilters(buttons, container) {
       btn.setAttribute('aria-pressed', 'true');
 
       const filter = (btn.getAttribute('data-filter') || 'all').toLowerCase();
-      if (filter === 'all') {
-        renderProjects(cachedProjects, container);
-      } else {
-        const filtered = cachedProjects.filter((p) => {
-          const categoryMatch = p.category.toLowerCase().includes(filter);
-          const tagMatch = p.tags.some((t) => t.toLowerCase().includes(filter));
-          return categoryMatch || tagMatch;
-        });
-        renderProjects(filtered, container);
+      const projects = await ensureProjectsLoaded();
+
+      if (projects.length > 0) {
+        if (filter === 'all') {
+          renderProjects(projects, container);
+        } else {
+          const filtered = projects.filter((p) => {
+            const categoryMatch = p.category.toLowerCase().includes(filter);
+            const tagMatch = p.tags.some((t) => t.toLowerCase().includes(filter));
+            return categoryMatch || tagMatch;
+          });
+          renderProjects(filtered, container);
+        }
+        return;
       }
+
+      // Offline / static card fallback filter if fetch is unavailable
+      const cards = container.querySelectorAll('.project-card');
+      cards.forEach((card) => {
+        const category = (card.getAttribute('data-category') || '').toLowerCase();
+        const show = filter === 'all' || category.includes(filter);
+        card.style.display = show ? '' : 'none';
+      });
     });
   });
 }

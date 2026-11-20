@@ -5,9 +5,9 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Google Fonts Imports
+   1. Font Loading Strategy
    -------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* Google Fonts load non-blocking in index.html to avoid render-blocking CSSOM @import */
 
 /* --------------------------------------------------------------------------
    2. Design Tokens & CSS Custom Properties
@@ -324,6 +324,11 @@ code, pre {
   padding: var(--space-4xl) 0;
   position: relative;
   overflow-x: clip;
+}
+
+.section:not(.hero-section) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 .section-alt {
@@ -1709,22 +1714,51 @@ code, pre {
 .project-card-image-wrap {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
   height: 210px;
   overflow: hidden;
   background: var(--bg-tertiary);
   border-bottom: 1px solid var(--border);
 }
 
+.project-card-image-wrap.is-thumb-loading::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    var(--bg-tertiary) 25%,
+    rgba(96, 165, 250, 0.14) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: thumbShimmer 1.3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes thumbShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .project-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
   display: block;
 }
 
+.project-card-image.is-thumb-pending {
+  opacity: 0;
+}
+
+.project-card-image.is-thumb-loaded {
+  opacity: 1;
+}
+
 .project-card:hover .project-card-image {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 .project-card-image-wrap .badge-featured {
@@ -1980,6 +2014,8 @@ code, pre {
   padding: var(--space-3xl) 0 var(--space-xl);
   font-size: 0.9rem;
   color: var(--text-secondary);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 260px;
 }
 
 .footer-top {
